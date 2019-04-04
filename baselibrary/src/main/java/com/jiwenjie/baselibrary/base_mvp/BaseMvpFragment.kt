@@ -1,7 +1,8 @@
+package com.jiwenjie.baselibrary.base_mvp
 
 import android.os.Bundle
 import android.view.View
-import com.example.base_library.base_views.BaseFragment
+import com.jiwenjie.baselibrary.base_view.BaseFragment
 
 /**
  *  author:Jiwenjie

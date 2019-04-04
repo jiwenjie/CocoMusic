@@ -1,4 +1,4 @@
-package com.example.base_library.base_utils
+package com.jiwenjie.baselibrary.base_utils
 
 import android.app.Activity
 import android.content.Context

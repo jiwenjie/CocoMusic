@@ -1,7 +1,5 @@
 package com.jiwenjie.baselibrary.base_utils
 
-import com.example.base_library.base_utils.ErrorStatus
-import com.example.base_library.base_utils.LogUtils
 import com.google.gson.JsonParseException
 import org.json.JSONException
 import java.net.ConnectException

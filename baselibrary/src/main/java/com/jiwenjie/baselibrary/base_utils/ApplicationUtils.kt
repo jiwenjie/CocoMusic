@@ -1,4 +1,4 @@
-package com.example.base_library.base_utils
+package com.jiwenjie.baselibrary.base_utils
 
 import android.content.Context
 import android.content.pm.PackageInfo

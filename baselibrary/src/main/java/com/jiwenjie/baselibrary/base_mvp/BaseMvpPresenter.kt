@@ -1,3 +1,4 @@
+package com.jiwenjie.baselibrary.base_mvp
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver

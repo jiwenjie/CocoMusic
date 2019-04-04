@@ -1,6 +1,5 @@
-package com.example.base_library.base_views
+package com.jiwenjie.baselibrary.base_view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,9 +7,9 @@ import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.base_library.R
 import com.example.base_library.base_utils.LogUtils
 import com.jaeger.library.StatusBarUtil
+import com.jiwenjie.baselibrary.R
 
 /**
  *  author:Jiwenjie
@@ -29,7 +28,7 @@ abstract class BaseFragment : Fragment() {
     /**
      * 多种状态的 View 切换
      */
-    protected var mLayoutStatusView: MultipleStatusView? = null
+//    protected var mLayoutStatusView: MultipleStatusView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +36,7 @@ abstract class BaseFragment : Fragment() {
         initFragment(savedInstanceState)
         StatusBarUtil.setColor(activity, ContextCompat.getColor(activity!!, R.color.colorPrimary), 0)
         //多种状态切换的view 重试点击事件
-        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
+//        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
         loadData()
         setListener()
         handleRxBus()

@@ -1,5 +1,7 @@
+package com.jiwenjie.baselibrary.base_mvp
 
 import android.os.Bundle
+import com.jiwenjie.baselibrary.base_view.BaseActivity
 
 /**
  *  author:Jiwenjie

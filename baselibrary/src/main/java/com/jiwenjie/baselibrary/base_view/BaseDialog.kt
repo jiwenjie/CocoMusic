@@ -1,11 +1,11 @@
-package com.example.base_library.base_views
+package com.jiwenjie.baselibrary.base_view
 
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import com.example.base_library.R
+import com.jiwenjie.baselibrary.R
 
 /**
  *  author:Jiwenjie
