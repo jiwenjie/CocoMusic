@@ -8,17 +8,24 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.jiwenjie.cocomusic"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+repositories{
+    flatDir{
+        dirs 'libs'
     }
 }
 
@@ -31,5 +38,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation project(':baselibrary')
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation project(':library')
+    implementation files('libs/pgyer_sdk_3.0.2.jar')
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CocoMusic</string>
+
+    <string name="app_slogn">音乐的力量</string>
 </resources>

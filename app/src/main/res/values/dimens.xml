@@ -1,0 +1,36 @@
+<resources>
+    <!-- 布局 dp 的大小 -->
+    <dimen name="layout_10_dp">10dp</dimen>
+
+    <dimen name="layout_12_dp">12dp</dimen>
+    <dimen name="layout_15_dp">15dp</dimen>
+    <dimen name="layout_16_dp">16dp</dimen>
+    <dimen name="layout_18_dp">18dp</dimen>
+
+    <dimen name="layout_20_dp">20dp</dimen>
+    <dimen name="layout_25_dp">25dp</dimen>
+    <dimen name="layout_30_dp">30dp</dimen>
+    <dimen name="layout_35_dp">35dp</dimen>
+    <dimen name="layout_40_dp">40dp</dimen>
+    <dimen name="layout_45_dp">45dp</dimen>
+    <dimen name="layout_50_dp">50dp</dimen>
+    <dimen name="layout_55_dp">55dp</dimen>
+    <dimen name="layout_60_dp">60dp</dimen>
+    <dimen name="layout_65_dp">65dp</dimen>
+    <dimen name="layout_70_dp">70dp</dimen>
+    <dimen name="layout_75_dp">75dp</dimen>
+    <dimen name="layout_80_dp">80dp</dimen>
+
+    <!-- 字体 sp 的大小 -->
+    <dimen name="layout_10_sp">10sp</dimen>
+    <dimen name="layout_12_sp">12sp</dimen>
+    <dimen name="layout_14_sp">14sp</dimen>
+    <dimen name="layout_16_sp">16sp</dimen>
+    <dimen name="layout_18_sp">18sp</dimen>
+    <dimen name="layout_20_sp">20sp</dimen>
+    <dimen name="layout_24_sp">24sp</dimen>
+    <dimen name="layout_30_sp">30sp</dimen>
+    <dimen name="layout_35_sp">35sp</dimen>
+    <dimen name="layout_36_sp">36sp</dimen>
+    <dimen name="layout_40_sp">40sp</dimen>
+</resources>
