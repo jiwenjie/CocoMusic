@@ -42,6 +42,7 @@ object ApplicationUtils {
         return ""
     }
 
+    @Suppress("DEPRECATION")
     @JvmStatic
     fun getAppVersionCode(context: Context): Int {
         try {
