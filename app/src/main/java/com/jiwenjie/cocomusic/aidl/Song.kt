@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.bean
+package com.jiwenjie.cocomusic.aidl
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -30,6 +30,11 @@ class Song() : Serializable, Parcelable {
 
    override fun writeToParcel(dest: Parcel, flags: Int) {
       dest.writeString(this.path)
+   }
+
+   fun readFromParcel(dest: Parcel) {
+      // 此处的顺序应该和 writeToParcel 中的顺序是一致的
+      path = dest.readString()
    }
 
    override fun describeContents(): Int {
