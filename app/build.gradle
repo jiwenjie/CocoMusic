@@ -42,4 +42,6 @@ dependencies {
 
     implementation project(':library')
     implementation files('libs/pgyer_sdk_3.0.2.jar')
+
+    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
 }

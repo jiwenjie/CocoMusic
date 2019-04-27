@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.interfaces
+package com.jiwenjie.cocomusic.service
 
 /**
  *  author:Jiwenjie

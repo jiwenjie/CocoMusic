@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import com.jiwenjie.cocomusic.utils.UnCaught
+import com.squareup.leakcanary.LeakCanary
 
 /**
  *  author:Jiwenjie
@@ -16,6 +17,7 @@ class CocoApp : Application() {
 
    override fun onCreate() {
       super.onCreate()
+      LeakCanary.install(this)         // 内存泄漏中注册
       UnCaught.getInstance().init(this)   // 本地 crash 捕捉
 //      PgyCrashManager.register()    // 新版推荐使用，注册 蒲公英
       contextInstance = this.applicationContext

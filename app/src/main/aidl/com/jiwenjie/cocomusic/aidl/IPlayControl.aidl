@@ -10,7 +10,7 @@ import com.jiwenjie.cocomusic.aidl.IOnDataIsReadyListener;
 
 interface IPlayControl {
     // 播放指定歌曲
-    void play(in Song whitch);
+    int play(in Song whitch);
 
     int playByIndex(int index);
 

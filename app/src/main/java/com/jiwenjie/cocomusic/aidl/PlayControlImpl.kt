@@ -2,6 +2,10 @@ package com.jiwenjie.cocomusic.aidl
 
 import android.content.Context
 import android.os.RemoteCallbackList
+import android.os.RemoteException
+import com.jiwenjie.cocomusic.service.AudioFocusManager
+import com.jiwenjie.cocomusic.service.MediaSessionManager
+import com.jiwenjie.cocomusic.service.PlayController
 
 /**
  *  author:Jiwenjie
@@ -13,127 +17,267 @@ import android.os.RemoteCallbackList
  *  该实现类不再抛出 RemoteException 异常
  *  version:1.0
  */
-class PlayControlImpl(context: Context): IPlayControl.Stub() {
+open class PlayControlImpl(context: Context): IPlayControl.Stub() {
+
+    protected val mSongChangeListeners: RemoteCallbackList<IOnSongChangedListener>
+    protected val mStatusChangeListeners: RemoteCallbackList<IOnPlayStatusChangedListener>
+    protected val mPlayListChangeListeners: RemoteCallbackList<IOnPlayListChangedListener>
+    protected val mDataIsReadyListeners: RemoteCallbackList<IOnDataIsReadyListener>
+
+    private val manager: PlayController
+    private val focusManager: AudioFocusManager?
+    private val sessionManager: MediaSessionManager
+
+    private val context: Context = context
 
     init {
-        val mSongChangeListeners: RemoteCallbackList<IOnSongChangedListener> = RemoteCallbackList()
-        val mStatusChangeListeners: RemoteCallbackList<IOnPlayStatusChangedListener> = RemoteCallbackList()
-        val mPlayListChangeListeners: RemoteCallbackList<IOnPlayListChangedListener> = RemoteCallbackList()
-        val mDataIsReadyListeners: RemoteCallbackList<IOnDataIsReadyListener> = RemoteCallbackList()
+        this.mSongChangeListeners = RemoteCallbackList()
+        this.mStatusChangeListeners = RemoteCallbackList()
+        this.mPlayListChangeListeners = RemoteCallbackList()
+        this.mDataIsReadyListeners = RemoteCallbackList()
 
-        
+        this.sessionManager = MediaSessionManager(context, this)
+        this.focusManager = AudioFocusManager(context, this)
+        this.manager = PlayController.getMediaContController(
+            context,
+            focusManager,
+            sessionManager,
+            NotifyStatusChange(),
+            NotifySongChange(),
+            NotifyPlayListChange()
+        )
     }
 
-    override fun play(whitch: Song?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    /**
+     * 播放相同列表中的指定曲目
+     *
+     * whitch 曲目
+     * return 播放是否成功
+     */
+    @Synchronized
+    override fun play(whitch: Song?): Int {
+        if (whitch == null) return -1
+        var re = PlayController.ERROR_UNKNOWN
+        if (manager.getCurrentSong() != whitch) {
+            re = manager.play(whitch)
+        }
+        return re
     }
 
     override fun playByIndex(index: Int): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var re = PlayController.ERROR_UNKNOWN
+        if (index < manager.getSongList().size && manager.getCurrentSongIndex() != index) {
+            re = manager.play(index)
+        }
+        return re
     }
 
     override fun getAudioSessionId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.getAudioSessionId()
     }
 
     override fun setCurrentSong(song: Song?): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (song == null) return -1
+        return manager.prepare(song)
     }
 
+    /**
+     * 该方法并没有在 aidl 文件中声明，客户端不应该调用该方法
+     *
+     * 播放列表对应下标
+     */
+    fun play(index: Int): Int {
+        return manager.play(index)
+    }
+
+    @Synchronized
     override fun pre(): Song {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val pre = manager.getCurrentSong()
+        val s = manager.preSong()
+        return s!!
     }
 
+    @Synchronized
     override fun next(): Song {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val pre = manager.getCurrentSong()
+        // 随机播放时可能播放同一首歌曲
+        val next = manager.nextSong()
+        return next!!
     }
 
+    @Synchronized
     override fun pause(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.pause()
     }
 
+    @Synchronized
     override fun resume(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.resume()
     }
 
     override fun currentSong(): Song {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.getCurrentSong()!!
     }
 
     override fun currentSongIndex(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.getCurrentSongIndex()
     }
 
     override fun status(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.getPlayState()
     }
 
-    override fun setPlayList(songs: MutableList<Song>?, current: Int, id: Int): Song {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setPlayList(songs: MutableList<Song>?, current: Int, id: Int): Song? {
+        if (songs!!.size <= 0) {
+            return null
+        }
+
+        var cu = 0
+        if (current >= 0 && current < songs.size) {
+            cu = current
+        }
+        return manager.setPlayList(songs as ArrayList<Song>, cu, id)
     }
 
-    override fun setPlaySheet(sheetID: Int, current: Int): Song {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setPlaySheet(sheetID: Int, current: Int): Song? {
+        return manager.setPlaySheet(sheetID, current)
     }
 
     override fun getPlayList(): MutableList<Song> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.getSongList() as MutableList<Song>
     }
 
-    override fun getPlayListId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun registerOnSongChangedListener(li: IOnSongChangedListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun registerOnPlayStatusChangedListener(li: IOnPlayStatusChangedListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun registerOnPlayListChangedListener(li: IOnPlayListChangedListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun registerOnDataIsReadyListener(li: IOnDataIsReadyListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun unregisterOnSongChangedListener(li: IOnSongChangedListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun unregisterOnPlayStatusChangedListener(li: IOnPlayStatusChangedListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun unregisterOnPlayListChangedListener(li: IOnPlayListChangedListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun unregisterOnDataIsReadyListener(li: IOnDataIsReadyListener?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
+    @Synchronized
     override fun setPlayMode(mode: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (mode >= PlayController.MODE_DEFAULT && mode <= PlayController.MODE_RANDOM) manager.setPlayMode(mode)
     }
 
     override fun getProgress(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.getProgress()
     }
 
     override fun seekTo(pos: Int): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.seekTo(pos)
     }
 
     override fun remove(song: Song?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        manager.remove(song)
     }
 
     override fun getPlayMode(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return manager.getPlayMode()
+    }
+
+    override fun getPlayListId(): Int {
+        return manager.getPlayListId()
+    }
+
+    override fun registerOnSongChangedListener(li: IOnSongChangedListener?) {
+        mSongChangeListeners.register(li)
+    }
+
+    override fun registerOnPlayStatusChangedListener(li: IOnPlayStatusChangedListener?) {
+        mStatusChangeListeners.register(li)
+    }
+
+    override fun registerOnPlayListChangedListener(li: IOnPlayListChangedListener?) {
+        mPlayListChangeListeners.register(li)
+    }
+
+    override fun registerOnDataIsReadyListener(li: IOnDataIsReadyListener?) {
+        mDataIsReadyListeners.register(li)
+    }
+
+    override fun unregisterOnSongChangedListener(li: IOnSongChangedListener?) {
+        mSongChangeListeners.unregister(li)
+    }
+
+    override fun unregisterOnPlayStatusChangedListener(li: IOnPlayStatusChangedListener?) {
+        mStatusChangeListeners.unregister(li)
+    }
+
+    override fun unregisterOnPlayListChangedListener(li: IOnPlayListChangedListener?) {
+        mPlayListChangeListeners.unregister(li)
+    }
+
+    override fun unregisterOnDataIsReadyListener(li: IOnDataIsReadyListener?) {
+        mDataIsReadyListeners.unregister(li)
+    }
+
+    fun releashMediaPlayer() {
+        manager.releaseMediaPlayer()
+
+        if (focusManager != null) {
+            // 释放音乐焦点
+            focusManager.abandonAudioFocus()
+        }
+    }
+
+    fun notifyDataIsReady() {
+        val N = mDataIsReadyListeners.beginBroadcast()
+        for (i in 0 until N) {
+            val listener = mDataIsReadyListeners.getBroadcastItem(i)
+            if (listener != null) {
+                try {
+                    listener.dataIsReady()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        mDataIsReadyListeners.finishBroadcast()
+    }
+
+    private inner class NotifyStatusChange : PlayController.NotifyStatusChanged {
+        override fun notify(song: Song?, index: Int, status: Int) {
+            val N = mStatusChangeListeners.beginBroadcast()
+            for (i in 0 until N) {
+                val listener = mStatusChangeListeners.getBroadcastItem(i)
+                if (listener != null) {
+                    try {
+                        when (status) {
+                            PlayController.STATUS_START -> listener.playStart(song, index, status)
+                            PlayController.STATUS_STOP -> listener.playStop(song, index, status)
+                        }
+                    } catch (e: RemoteException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+    }
+
+    private inner class NotifySongChange : PlayController.NotifySongChanged {
+        override fun notify(song: Song?, index: Int, isNext: Boolean) {
+            val N = mSongChangeListeners.beginBroadcast()
+            for (i in 0 until N) {
+                val listener = mSongChangeListeners.getBroadcastItem(i)
+                if (listener != null) {
+                    try {
+                        listener.onSongChange(song, index, isNext)
+                    } catch (e: RemoteException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            mSongChangeListeners.finishBroadcast()
+        }
+    }
+
+    private inner class NotifyPlayListChange : PlayController.NotifyPlayListChanged {
+        override fun notify(current: Song?, index: Int, id: Int) {
+            val N = mPlayListChangeListeners.beginBroadcast()
+            for (i in 0 until N) {
+                val listener = mPlayListChangeListeners.getBroadcastItem(i)
+                if (listener != null) {
+                    try {
+                        listener.onPlayListChange(current, index, id)
+                    } catch (e: RemoteException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
     }
 }
 

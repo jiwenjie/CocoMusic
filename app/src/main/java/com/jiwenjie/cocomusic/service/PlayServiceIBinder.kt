@@ -1,5 +1,8 @@
 package com.jiwenjie.cocomusic.service
 
+import android.content.Context
+import com.jiwenjie.cocomusic.aidl.PlayControlImpl
+
 /**
  *  author:Jiwenjie
  *  email:278630464@qq.com
@@ -7,5 +10,4 @@ package com.jiwenjie.cocomusic.service
  *  desc:
  *  version:1.0
  */
-class PlayServiceIBinder {
-}
+class PlayServiceIBinder(private val mContext: Context) : PlayControlImpl(mContext)

@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.service
+package com.jiwenjie.cocomusic.manager
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -30,7 +30,8 @@ class MediaManager private constructor() {
          if (MEDIAMANAGER == null) {
             synchronized(MediaManager::class.java) {
                if (MEDIAMANAGER == null)
-                  MEDIAMANAGER = MediaManager()
+                  MEDIAMANAGER =
+                          MediaManager()
             }
          }
          return MEDIAMANAGER!!

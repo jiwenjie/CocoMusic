@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jiwenjie.cocomusic">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".CocoApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".CocoApp"
         android:roundIcon="@mipmap/music_icon"
         android:supportsRtl="true"
         android:theme="@style/BaseTheme"
@@ -20,6 +22,30 @@
         </activity>
 
         <activity android:name=".ui.MainActivity" />
+
+
+        <!-- Service Start-->
+        <service
+            android:name=".service.PlayService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.jiwenjie.cocomusic.ACCESS_PLAY_SERVICE"
+            android:process=":playService">
+            <intent-filter>
+                <action android:name="com.jiwenjie.cocomusic.action.PLAY_SERVICE" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </service>
+        <!-- Service End-->
+
+        <!-- Receiver Start -->
+        <receiver android:name=".service.HeadphoneWireControlReceiver">
+            <intent-filter android:priority="2000">
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+        <!-- Receiver Start -->
 
         <!-- FileProvider start -->
         <provider
