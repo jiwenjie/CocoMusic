@@ -8,4 +8,6 @@ package com.jiwenjie.cocomusic.manager
  *  version:1.0
  */
 class PlayServiceManager {
+
+
 }

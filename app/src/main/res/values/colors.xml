@@ -5,4 +5,33 @@
     <color name="colorAccent">#C62F2F</color>
 
     <color name="background">#F3F3F3</color>
+
+    <color name="gold">#FFAE22</color>
+    <color name="silver">#A7A7A7</color>
+    <color name="copper">#D06200</color>
+
+    <color name="item_select_color">#ec4b42</color>
+    <color name="default_text_hint">#939393</color>
+
+    <color name="default_play_bg_color">#3d3d3d</color>
+    <color name="default_play_text_color">#d6d6d6</color>
+
+    <color name="white">#ffffff</color>
+    <color name="white_d">#f9f9f9</color>
+    <color name="white_d_d">#c1c0c0</color>
+    <color name="white_d_d_d">#a1a1a1</color>
+    <color name="white_d_d_d_d">#818181</color>
+
+    <color name="dark">#000000</color>
+    <color name="dark_l">#101010</color>
+    <color name="dark_l_l">#252525</color>
+    <color name="dark_l_l_l">#2d2d2d</color>
+    <color name="dark_l_l_l_l">#4e4e4e</color>
+    <color name="dark_l_l_l_l_l">#5b5b5b</color>
+
+    <color name="dsb_progress_color">#ff009688</color>
+    <color name="dsb_track_color">#ff939393</color>
+    <color name="dsb_disabled_color">#66939393</color>
+    <color name="dsb_ripple_color_pressed">#77939393</color>
+    <color name="dsb_ripple_color_focused">#99999999</color>
 </resources>
