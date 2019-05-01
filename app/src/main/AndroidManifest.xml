@@ -26,7 +26,7 @@
 
         <!-- Service Start-->
         <service
-            android:name=".service.PlayService"
+            android:name=".one.service.PlayService"
             android:enabled="true"
             android:exported="true"
             android:permission="com.jiwenjie.cocomusic.ACCESS_PLAY_SERVICE"
@@ -39,8 +39,14 @@
         </service>
         <!-- Service End-->
 
+        <!-- second Play Service Start -->
+        <service android:name=".playservice.MusicPlayerService"
+                 android:exported="true"
+                 android:enabled="true"/>
+        <!-- second Play Service End -->
+
         <!-- Receiver Start -->
-        <receiver android:name=".service.HeadphoneWireControlReceiver">
+        <receiver android:name=".one.service.HeadphoneWireControlReceiver">
             <intent-filter android:priority="2000">
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>

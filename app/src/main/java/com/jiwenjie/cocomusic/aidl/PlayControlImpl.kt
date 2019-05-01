@@ -3,9 +3,9 @@ package com.jiwenjie.cocomusic.aidl
 import android.content.Context
 import android.os.RemoteCallbackList
 import android.os.RemoteException
-import com.jiwenjie.cocomusic.service.AudioFocusManager
-import com.jiwenjie.cocomusic.service.MediaSessionManager
-import com.jiwenjie.cocomusic.service.PlayController
+import com.jiwenjie.cocomusic.one.service.AudioFocusManager
+import com.jiwenjie.cocomusic.one.service.MediaSessionManager
+import com.jiwenjie.cocomusic.one.service.PlayController
 
 /**
  *  author:Jiwenjie
