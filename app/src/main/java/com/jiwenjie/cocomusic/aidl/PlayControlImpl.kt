@@ -3,8 +3,8 @@ package com.jiwenjie.cocomusic.aidl
 import android.content.Context
 import android.os.RemoteCallbackList
 import android.os.RemoteException
-import com.jiwenjie.cocomusic.one.service.AudioFocusManager
-import com.jiwenjie.cocomusic.one.service.MediaSessionManager
+import com.jiwenjie.cocomusic.one.service.AudioFocusManagerFirst
+import com.jiwenjie.cocomusic.one.service.MediaSessionManagerFirst
 import com.jiwenjie.cocomusic.one.service.PlayController
 
 /**
@@ -25,8 +25,8 @@ open class PlayControlImpl(context: Context): IPlayControl.Stub() {
     protected val mDataIsReadyListeners: RemoteCallbackList<IOnDataIsReadyListener>
 
     private val manager: PlayController
-    private val focusManager: AudioFocusManager?
-    private val sessionManager: MediaSessionManager
+    private val focusManager: AudioFocusManagerFirst?
+    private val sessionManager: MediaSessionManagerFirst
 
     private val context: Context = context
 
@@ -36,8 +36,8 @@ open class PlayControlImpl(context: Context): IPlayControl.Stub() {
         this.mPlayListChangeListeners = RemoteCallbackList()
         this.mDataIsReadyListeners = RemoteCallbackList()
 
-        this.sessionManager = MediaSessionManager(context, this)
-        this.focusManager = AudioFocusManager(context, this)
+        this.sessionManager = MediaSessionManagerFirst(context, this)
+        this.focusManager = AudioFocusManagerFirst(context, this)
         this.manager = PlayController.getMediaContController(
             context,
             focusManager,

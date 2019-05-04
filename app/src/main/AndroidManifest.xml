@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jiwenjie.cocomusic">
 
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -23,6 +24,7 @@
 
         <activity android:name=".ui.MainActivity" />
 
+        <activity android:name=".ui.PlayerActivity" />  <!-- 播放音乐的 Activity -->
 
         <!-- Service Start-->
         <service
@@ -65,5 +67,4 @@
         </provider>
         <!-- FileProvider end-->
     </application>
-
 </manifest>

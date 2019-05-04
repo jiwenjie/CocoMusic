@@ -16,8 +16,8 @@ import kotlin.collections.ArrayList
  *  version:1.0
  */
 class PlayController private constructor(
-    context: Context, focusManager: AudioFocusManager,
-    sessionManager: MediaSessionManager,
+    context: Context, focusManager: AudioFocusManagerFirst,
+    sessionManager: MediaSessionManagerFirst,
     sl: NotifyStatusChanged,
     sc: NotifySongChanged,
     pl: NotifyPlayListChanged
@@ -25,8 +25,8 @@ class PlayController private constructor(
 
     private var context: Context? = null
 
-    private var focusManager: AudioFocusManager? = null
-    private var sessionManager: MediaSessionManager? = null
+    private var focusManager: AudioFocusManagerFirst? = null
+    private var sessionManager: MediaSessionManagerFirst? = null
 
     private var mCurrentSong = 0
     private var mPlayState = -99
@@ -103,8 +103,8 @@ class PlayController private constructor(
         @Volatile
         private var MANAGER: PlayController? = null
 
-        fun getMediaContController(context: Context, focusManager: AudioFocusManager,
-                                   sessionManager: MediaSessionManager,
+        fun getMediaContController(context: Context, focusManager: AudioFocusManagerFirst,
+                                   sessionManager: MediaSessionManagerFirst,
                                    sl: NotifyStatusChanged,
                                    sc: NotifySongChanged,
                                    pl: NotifyPlayListChanged

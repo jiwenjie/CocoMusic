@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.ui.base
+package com.jiwenjie.cocomusic.ui
 
 import android.content.ComponentName
 import android.content.ServiceConnection
@@ -8,8 +8,8 @@ import android.os.IBinder
 import com.jiwenjie.basepart.views.BaseActivity
 import com.jiwenjie.cocomusic.aidl.IMusicService
 import com.jiwenjie.cocomusic.event.MetaChangedEvent
-import com.jiwenjie.cocomusic.PlayManager
-import com.jiwenjie.cocomusic.PlayManager.mService
+import com.jiwenjie.cocomusic.playservice.PlayManager
+import com.jiwenjie.cocomusic.playservice.PlayManager.mService
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class PlayBaseActivity : BaseActivity(), ServiceConnection {
 
-    private var mHandler: Handler? = null
+    private val mHandler by lazy { Handler() }
     private var mToken: PlayManager.ServiceToken? = null
     var isPause = true
 
@@ -34,7 +34,6 @@ abstract class PlayBaseActivity : BaseActivity(), ServiceConnection {
         super.onCreate(savedInstanceState)
         EventBus.getDefault().register(this)
         mToken = PlayManager.bindToService(this, this)
-        mHandler = Handler()
     }
 
     override fun onStart() {

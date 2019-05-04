@@ -34,4 +34,7 @@
     <color name="dsb_disabled_color">#66939393</color>
     <color name="dsb_ripple_color_pressed">#77939393</color>
     <color name="dsb_ripple_color_focused">#99999999</color>
+
+    <color name="black_translucent">#66000000</color>
+    <color name="white_translucent">#c8ffffff</color>
 </resources>

@@ -1,11 +1,10 @@
-package com.jiwenjie.cocomusic
+package com.jiwenjie.cocomusic.playservice
 
 import android.app.Activity
 import android.content.*
 import android.os.IBinder
 import com.jiwenjie.cocomusic.aidl.IMusicService
 import com.jiwenjie.cocomusic.aidl.Music
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -45,7 +44,8 @@ object PlayManager {
 
         val contextWrapper = ContextWrapper(realActivity)
         contextWrapper.startService(Intent(contextWrapper, MusicPlayerService::class.java))
-        val binder = ServiceBinder(callback, contextWrapper.applicationContext)
+        val binder =
+            ServiceBinder(callback, contextWrapper.applicationContext)
         if (contextWrapper.bindService(Intent().setClass(contextWrapper, MusicPlayerService::class.java), binder, 0)) {
             mConnectionMap!!.put(contextWrapper, binder)
             return ServiceToken(contextWrapper)

@@ -16,7 +16,7 @@ import com.jiwenjie.cocomusic.aidl.IPlayControl
  *  参考文章 http://www.jianshu.com/p/bc2f779a5400，波尼音乐的作者
  *  version:1.0
  */
-class AudioFocusManager(context: Context, control: IPlayControl) : AudioManager.OnAudioFocusChangeListener {
+class AudioFocusManagerFirst(context: Context, control: IPlayControl) : AudioManager.OnAudioFocusChangeListener {
 
    private var mAudioManager: AudioManager? = null
 

@@ -12,6 +12,7 @@
     <dimen name="layout_20_dp">20dp</dimen>
     <dimen name="layout_25_dp">25dp</dimen>
     <dimen name="layout_30_dp">30dp</dimen>
+    <dimen name="layout_32_dp">32dp</dimen>
     <dimen name="layout_35_dp">35dp</dimen>
     <dimen name="layout_40_dp">40dp</dimen>
     <dimen name="layout_45_dp">45dp</dimen>
@@ -20,6 +21,7 @@
     <dimen name="layout_60_dp">60dp</dimen>
     <dimen name="layout_65_dp">65dp</dimen>
     <dimen name="layout_70_dp">70dp</dimen>
+    <dimen name="layout_72_dp">72dp</dimen>
     <dimen name="layout_75_dp">75dp</dimen>
     <dimen name="layout_80_dp">80dp</dimen>
 

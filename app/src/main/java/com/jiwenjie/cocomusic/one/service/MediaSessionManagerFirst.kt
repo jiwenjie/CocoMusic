@@ -22,7 +22,7 @@ import com.jiwenjie.cocomusic.utils.StringUtils
  *  version:1.0
  */
 @Suppress("JAVA_CLASS_ON_COMPANION")
-class MediaSessionManager constructor(context: Context, control: IPlayControl) {
+class MediaSessionManagerFirst constructor(context: Context, control: IPlayControl) {
 
    private var control: IPlayControl? = null
    private var context: Context? = null
@@ -37,7 +37,7 @@ class MediaSessionManager constructor(context: Context, control: IPlayControl) {
    }
 
    companion object {
-      var TAG = MediaSessionManager.javaClass.simpleName
+      var TAG = MediaSessionManagerFirst.javaClass.simpleName
       val MEDIA_SESSION_ACTIONS = (PlaybackStateCompat.ACTION_PLAY
               or PlaybackStateCompat.ACTION_PAUSE
               or PlaybackStateCompat.ACTION_PLAY_PAUSE

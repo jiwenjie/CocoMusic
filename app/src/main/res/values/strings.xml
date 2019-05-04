@@ -2,4 +2,30 @@
     <string name="app_name">CocoMusic</string>
 
     <string name="app_slogn">音乐的力量</string>
+
+    <string name="play_time">--:--</string>
+    <string name="play_no_resource">无音乐</string>
+    <string name="play_mode">%1$s("%2$d")</string>
+    <string name="play_mode_random">随机播放</string>
+    <string name="play_mode_repeat">单曲播放</string>
+    <string name="play_mode_loop">顺序播放</string>
+
+
+    <string name="delete">删除</string>
+    <string name="pause">暂停</string>
+    <string name="start">开始</string>
+
+    <string name="setting_key_mobile_wifi">mobile_wifi</string>
+    <string name="setting_key_sound_effect">sound_effect</string>
+
+    <!-- Transitions -->
+    <string name="transition_cover">CoverTransition</string>
+    <string name="transition_album">AlbumTransition</string>
+
+
+    <string name="song_list_item_title_1">1.%1$s - %2$s</string>
+    <string name="song_list_item_title_2">2.%1$s - %2$s</string>
+    <string name="song_list_item_title_3">3.%1$s - %2$s</string>
+
+    <string name="play_next">播放下一首</string>
 </resources>
