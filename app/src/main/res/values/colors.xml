@@ -16,11 +16,16 @@
     <color name="default_play_bg_color">#3d3d3d</color>
     <color name="default_play_text_color">#d6d6d6</color>
 
+    <color name="app_green">#05b962</color>
+
     <color name="white">#ffffff</color>
     <color name="white_d">#f9f9f9</color>
     <color name="white_d_d">#c1c0c0</color>
     <color name="white_d_d_d">#a1a1a1</color>
     <color name="white_d_d_d_d">#818181</color>
+
+    <color name="grey">#9e9e9e</color>
+    <color name="translucent_grey">#809E9E9E</color>
 
     <color name="dark">#000000</color>
     <color name="dark_l">#101010</color>

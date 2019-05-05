@@ -9,8 +9,10 @@ import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
 import com.jiwenjie.cocomusic.CocoApp
+import com.jiwenjie.cocomusic.R
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.util.regex.Pattern
 
 /**
  *  author:Jiwenjie
@@ -21,6 +23,9 @@ import java.io.ByteArrayOutputStream
  */
 object CommonUtils {
 
+    /**
+     * @param inSampleSize 图片像素的 1/n*n
+     */
     fun createBlurredImageFromBitmap(bitmap: Bitmap, inSampleSize: Int): Drawable {
         val rs = RenderScript.create(CocoApp.contextInstance)
         val options = BitmapFactory.Options()
@@ -43,4 +48,55 @@ object CommonUtils {
         return BitmapDrawable(CocoApp.contextInstance.resources, blurTemplate)
     }
 
+    /**
+     * 音乐名格式化
+     */
+    fun getTitle(title: String?): String {
+        var strTitle = stringFilter(title)
+        if (strTitle.isNullOrEmpty()) strTitle = CocoApp.contextInstance.getString(R.string.unknown)
+
+        return strTitle!!
+    }
+
+    /**
+     * 歌手专辑格式化
+     */
+    fun getArtistAndAlbum(artist: String, album: String): String {
+        val strArt = stringFilter(artist)
+        val strAlbum = stringFilter(album)
+
+        return if (strArt.isNullOrEmpty() && strAlbum.isNullOrEmpty()) ""
+        else if (!strArt.isNullOrEmpty() && strAlbum.isNullOrEmpty()) strArt
+        else if (strArt.isNullOrEmpty() && !strAlbum.isNullOrEmpty()) album
+        else strArt + strAlbum
+    }
+
+    /**
+     * 过滤特殊字符
+     */
+    fun stringFilter(str: String?): String? {
+        if (str.isNullOrEmpty()) return null
+
+        val regEx = "<[^>]+>"
+        val pattern = Pattern.compile(regEx)
+        val matcher = pattern.matcher(str)
+        return matcher.replaceAll("").trim()
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

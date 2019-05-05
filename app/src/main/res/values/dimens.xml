@@ -1,5 +1,6 @@
 <resources>
     <!-- 布局 dp 的大小 -->
+    <dimen name="layout_2_dp">2dp</dimen>
     <dimen name="layout_4_dp">4dp</dimen>
     <dimen name="layout_6_dp">6dp</dimen>
     <dimen name="layout_8_dp">8dp</dimen>
