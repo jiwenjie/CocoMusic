@@ -32,6 +32,11 @@ abstract class PlayBaseActivity : BaseActivity(), ServiceConnection {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        EventBus.getDefault().register(this)
+//        mToken = PlayManager.bindToService(this, this)
+    }
+
+    override fun initActivity(savedInstanceState: Bundle?) {
         EventBus.getDefault().register(this)
         mToken = PlayManager.bindToService(this, this)
     }

@@ -8,14 +8,15 @@
 
     <TextView
         android:id="@+id/test"
-        android:text="点击测试"
-        android:textSize="25sp"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="点击测试"
+        android:textSize="25sp" />
 
     <fragment
+        android:id="@+id/activity_main_controlFragment"
         class="com.jiwenjie.cocomusic.ui.PlayControlFragment"
         android:layout_width="match_parent"
         android:layout_height="56dp"

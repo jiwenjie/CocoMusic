@@ -13,7 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/app_slogn"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/layout_35_sp"
+        android:textSize="@dimen/layout_40_sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/activity_splash_iconImg"
-        android:layout_width="@dimen/layout_35_dp"
-        android:layout_height="@dimen/layout_35_dp"
+        android:layout_width="@dimen/layout_32_dp"
+        android:layout_height="@dimen/layout_32_dp"
         android:src="@mipmap/music_icon"
         android:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

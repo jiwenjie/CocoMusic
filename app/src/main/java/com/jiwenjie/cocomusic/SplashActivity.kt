@@ -26,11 +26,11 @@ class SplashActivity: BaseActivity() {
       fullScreen()   // 设置全屏
       activity_splash_slognText.typeface = AssetsLoader.getFontSourceFromAssets(CocoApp.contextInstance, "font/fanxinshu.TTF")
       // 设置动画
-      val objAnimX = ObjectAnimator.ofFloat(activity_splash_slognText, "scaleX", 0f, 1f)
-      val objAnimY = ObjectAnimator.ofFloat(activity_splash_slognText, "scaleY", 0f, 1f)
+      val objAnimX = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleX", 0f, 1f)
+      val objAnimY = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleY", 0f, 1f)
       val animatorSet = AnimatorSet()
       animatorSet.playTogether(objAnimX, objAnimY)
-      animatorSet.duration = 900
+      animatorSet.duration = 600
       animatorSet.start()
 
       Observable.timer(1200, TimeUnit.MILLISECONDS)

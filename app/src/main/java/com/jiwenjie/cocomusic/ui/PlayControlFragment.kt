@@ -39,22 +39,9 @@ class PlayControlFragment : BaseFragment(), SeekBar.OnSeekBarChangeListener, Bas
 //    private var mAdapter: BottomMusicAdapter? = null
     private val musicList = ArrayList<Music>()
 
-    companion object {
-       fun newInstance(): PlayControlFragment {
-           val args = Bundle()
-           val fragment = PlayControlFragment()
-           fragment.arguments = args
-           return fragment
-       }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        EventBus.getDefault().register(this)
-    }
-
     override fun initFragment(savedInstanceState: Bundle?) {
         // 初始化控件
+        EventBus.getDefault().register(this)
 //        showLyric(FloatLyricViewManager.lyricInfo, true)
         updatePlayStatus(PlayManager.isPlaying())
         initSongList()
