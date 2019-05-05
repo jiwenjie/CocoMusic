@@ -2,11 +2,10 @@ package com.jiwenjie.cocomusic.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.jiwenjie.cocomusic.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : PlayBaseActivity() {
 
     companion object {
        fun runActivity(activity: Activity) {
@@ -15,8 +14,9 @@ class MainActivity : AppCompatActivity() {
        }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+   override fun initActivity(savedInstanceState: Bundle?) {
+
+   }
+
+   override fun getLayoutId(): Int = R.layout.activity_main
 }

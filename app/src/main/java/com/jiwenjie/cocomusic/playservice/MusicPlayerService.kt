@@ -30,7 +30,7 @@ import com.jiwenjie.cocomusic.event.StatusChangedEvent
 import com.jiwenjie.cocomusic.play.AudioAndFocusManager
 import com.jiwenjie.cocomusic.play.IMusicServiceStub
 import com.jiwenjie.cocomusic.play.MediaSessionManager
-import com.jiwenjie.cocomusic.ui.PlayerActivity
+import com.jiwenjie.cocomusic.ui.PlayerDetailActivity
 import com.jiwenjie.cocomusic.utils.CoverLoader
 import com.jiwenjie.cocomusic.utils.FileUtils
 import com.jiwenjie.cocomusic.utils.SPUtils
@@ -578,7 +578,7 @@ class MusicPlayerService : Service() {
         val playButtonResId = if (isMusicPlaying) R.drawable.ic_pause
                                 else R.drawable.ic_play
 
-        val nowPlayingIntent = Intent(this, PlayerActivity::class.java)
+        val nowPlayingIntent = Intent(this, PlayerDetailActivity::class.java)
         nowPlayingIntent.action = Constants.DEAULT_NOTIFICATION
         val clickIntent = PendingIntent.getActivity(this, 0, nowPlayingIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         if (mNotificationPostTime == 0) {

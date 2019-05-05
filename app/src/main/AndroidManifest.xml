@@ -24,7 +24,7 @@
 
         <activity android:name=".ui.MainActivity" />
 
-        <activity android:name=".ui.PlayerActivity" />  <!-- 播放音乐的 Activity -->
+        <activity android:name=".ui.PlayerDetailActivity" />  <!-- 播放音乐的 Activity -->
 
         <!-- Service Start-->
         <service

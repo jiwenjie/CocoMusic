@@ -11,7 +11,7 @@ import com.jiwenjie.cocomusic.R
  *  desc:
  *  version:1.0
  */
-class PlayerActivity : BaseActivity() {
+class PlayerDetailActivity : BaseActivity() {
 
     override fun initActivity(savedInstanceState: Bundle?) {
     }

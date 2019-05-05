@@ -13,19 +13,23 @@ import com.jiwenjie.cocomusic.aidl.Music
  */
 interface BaseControlView {
 
-    fun setPlayingBitmap(albumArt: Bitmap?)
+//    fun setPlayingBitmap(albumArt: Bitmap?)
+//
+//    fun setPlayingBg(albumArt: Drawable?, isInit: Boolean? = false)
+//
+//    fun showLyric(lyric: String?, init: Boolean)
+//
+//    fun updatePlayStatus(isPlaying: Boolean)
+//
+//    fun updatePlayMode()
+//
+//    fun updateProgress(progress: Long, max: Long)
+//
+//    fun showNowPlaying(music: Music?)
 
-    fun setPlayingBg(albumArt: Drawable?, isInit: Boolean? = false)
+    fun onProgressUpdate(position: Long, duration: Long)
 
-    fun showLyric(lyric: String?, init: Boolean)
-
-    fun updatePlayStatus(isPlaying: Boolean)
-
-    fun updatePlayMode()
-
-    fun updateProgress(progress: Long, max: Long)
-
-    fun showNowPlaying(music: Music?)
+    fun updateNowPlaying(music: Music?, isInit: Boolean? = false)
 }
 
 

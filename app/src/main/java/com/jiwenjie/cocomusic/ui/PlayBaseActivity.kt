@@ -24,11 +24,11 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class PlayBaseActivity : BaseActivity(), ServiceConnection {
 
-    private val mHandler by lazy { Handler() }
-    private var mToken: PlayManager.ServiceToken? = null
+    protected val mHandler by lazy { Handler() }
+    protected var mToken: PlayManager.ServiceToken? = null
     var isPause = true
 
-    private val disposables = ArrayList<Disposable>()
+    protected val disposables = ArrayList<Disposable>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

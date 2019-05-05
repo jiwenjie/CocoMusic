@@ -71,16 +71,25 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
-        <com.jiwenjie.cocomusic.widget.PlayPauseView
+        <ImageView
             android:id="@+id/playPauseView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            app:anim_duration="200"
-            app:bg_color="@color/black_translucent"
-            app:btn_color="@color/colorPrimary"
-            app:gap_width="10" />
+            android:src="@drawable/ic_play"
+            android:tint="@color/colorPrimary" />
+
+        <!--<com.jiwenjie.cocomusic.widget.PlayPauseView-->
+        <!--android:id="@+id/playPauseView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="?android:attr/selectableItemBackgroundBorderless"-->
+        <!--app:anim_duration="200"-->
+        <!--app:bg_color="@color/black_translucent"-->
+        <!--app:btn_color="@color/colorPrimary"-->
+        <!--app:gap_width="10" />-->
 
         <ImageView
             android:id="@+id/playQueueIv"
