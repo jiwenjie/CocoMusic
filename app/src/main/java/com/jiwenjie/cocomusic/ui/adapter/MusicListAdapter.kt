@@ -28,13 +28,6 @@ import org.jetbrains.anko.dip
 class MusicListAdapter(context: Context, beanList: ArrayList<Music>)
    : BaseRecyclerAdapter<Music>(context, beanList) {
 
-   override fun onViewAttachedToWindow(holder: BaseRecyclerHolder) {
-      super.onViewAttachedToWindow(holder)
-      if (!EventBus.getDefault().isRegistered(this)) {
-         EventBus.getDefault().register(this)
-      }
-   }
-
    override fun convertView(itemView: View, data: Music, position: Int) {
       CoverLoader.loadImageView(mContext, data.coverUri!!, itemView.iv_cover)
       itemView.tv_title.text = CommonUtils.getTitle(data.title)
@@ -131,6 +124,20 @@ class MusicListAdapter(context: Context, beanList: ArrayList<Music>)
    }
 
    override fun getAdapterLayoutId(viewType: Int): Int = R.layout.activity_music_item
+
+   override fun onViewAttachedToWindow(holder: BaseRecyclerHolder) {
+      super.onViewAttachedToWindow(holder)
+      if (!EventBus.getDefault().isRegistered(this)) {
+         EventBus.getDefault().register(this)
+      }
+   }
+
+   override fun onViewDetachedFromWindow(holder: BaseRecyclerHolder) {
+      super.onViewDetachedFromWindow(holder)
+      if (EventBus.getDefault().isRegistered(this)) {
+         EventBus.getDefault().unregister(this)
+      }
+   }
 }
 
 

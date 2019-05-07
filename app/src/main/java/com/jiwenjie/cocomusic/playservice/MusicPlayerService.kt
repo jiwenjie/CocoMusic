@@ -144,7 +144,7 @@ class MusicPlayerService : Service() {
    internal lateinit var mHeadsetPlugInReceiver: HeadsetPlugInReceiver
    internal lateinit var intentFilter: IntentFilter
 
-//    private var mFloatLyricViewManager: FloatLyricViewManager? = null
+   // private var mFloatLyricViewManager: FloatLyricViewManager? = null
 
    private var mediaSessionManager: MediaSessionManager? = null
    private var audioAndFocusManager: AudioAndFocusManager? = null
@@ -168,7 +168,6 @@ class MusicPlayerService : Service() {
    private var mMainHandler: Handler? = null
 
    private var showLyric: Boolean = false
-
 
    private val listenerList = java.util.ArrayList<PlayProgressListener>()
 
@@ -218,19 +217,19 @@ class MusicPlayerService : Service() {
                   }
                   service!!.mPlayer!!.setVolume(mCurrentVolume)
                }
-               TRACK_WENT_TO_NEXT //mplayer播放完毕切换到下一首
-               ->
-                  //                        service.setAndRecordPlayPos(service.mNextPlayPos);
+               TRACK_WENT_TO_NEXT -> {//mplayer播放完毕切换到下一首
+                  // service.setAndRecordPlayPos(service.mNextPlayPos);
                   mMainHandler!!.post { service!!.next(true) }
-               TRACK_PLAY_ENDED//mPlayer播放完毕且暂时没有下一首
-               -> if (PlayQueueManager.getPlayModeId() === PlayQueueManager.PLAY_MODE_REPEAT) {
-                  service!!.seekTo(0, false)
-                  mMainHandler!!.post { service.play() }
-               } else {
-                  mMainHandler!!.post { service?.next(true) }
                }
-               TRACK_PLAY_ERROR//mPlayer播放错误
-               -> {
+               TRACK_PLAY_ENDED -> {//mPlayer播放完毕且暂时没有下一首
+                   if (PlayQueueManager.getPlayModeId() === PlayQueueManager.PLAY_MODE_REPEAT) {
+                     service!!.seekTo(0, false)
+                     mMainHandler!!.post { service.play() }
+                     } else {
+                        mMainHandler!!.post { service?.next(true) }
+                     }
+               }
+               TRACK_PLAY_ERROR  -> {           //mPlayer播放错误
                   LogUtils.e(TAG, msg.obj.toString() + "---")
                   playErrorTimes++
                   if (playErrorTimes < MAX_ERROR_TIMES) {
@@ -239,8 +238,9 @@ class MusicPlayerService : Service() {
                      mMainHandler!!.post { service?.pause() }
                   }
                }
-               RELEASE_WAKELOCK//释放电源锁
-               -> service!!.mWakeLock.release()
+               RELEASE_WAKELOCK -> {            //释放电源锁
+                service!!.mWakeLock.release()
+               }
                PREPARE_ASYNC_UPDATE -> {
                   val percent = msg.obj as Int
                   LogUtils.e(TAG, "Loading ... $percent")
@@ -250,9 +250,7 @@ class MusicPlayerService : Service() {
                   //执行prepared之后 准备完成，更新总时长
                   notifyChange(PLAY_STATE_CHANGED)
                AUDIO_FOCUS_CHANGE -> when (msg.arg1) {
-                  AudioManager.AUDIOFOCUS_LOSS//失去音频焦点
-                     , AudioManager.AUDIOFOCUS_LOSS_TRANSIENT//暂时失去焦点
-                  -> {
+                  AudioManager.AUDIOFOCUS_LOSS, AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {     //暂时失去焦点
                      if (service!!.isPlaying()) {
                         mPausedByTransientLossOfFocus = msg.arg1 == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT
                      }
@@ -262,8 +260,7 @@ class MusicPlayerService : Service() {
                      removeMessages(VOLUME_FADE_UP)
                      sendEmptyMessage(VOLUME_FADE_DOWN)
                   }
-                  AudioManager.AUDIOFOCUS_GAIN//重新获取焦点
-                  ->
+                  AudioManager.AUDIOFOCUS_GAIN -> {          //重新获取焦点
                      //重新获得焦点，且符合播放条件，开始播放
                      if (!service!!.isPlaying() && mPausedByTransientLossOfFocus) {
                         mPausedByTransientLossOfFocus = false
@@ -274,13 +271,14 @@ class MusicPlayerService : Service() {
                         removeMessages(VOLUME_FADE_DOWN)
                         sendEmptyMessage(VOLUME_FADE_UP)
                      }
+                  }
                   else -> {
                   }
                }
                else -> {
                }
-            }//                        service.updateCursor(service.mPlayQueue.get(service.mPlayPos).mId);
-            //                        service.bumpSongCount(); //更新歌曲的播放次数
+            }           // service.updateCursor(service.mPlayQueue.get(service.mPlayPos).mId);
+                        // service.bumpSongCount(); //更新歌曲的播放次数
          }
       }
    }
