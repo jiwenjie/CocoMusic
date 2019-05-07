@@ -40,8 +40,8 @@ object LogUtils {
             Log.e(className, createLog("null"))
         else when (msg) {
             is Int, Long, Float, Double, Boolean -> Log.e(className, createLog("$msg"))
-            is String -> Log.e(className, createLog(msg))
-            else -> Log.e(className, createLog(msg.toString()))
+            is String -> Log.e(tag + className, createLog(msg))
+            else -> Log.e(tag +  className, createLog(msg.toString()))
         }
     }
 

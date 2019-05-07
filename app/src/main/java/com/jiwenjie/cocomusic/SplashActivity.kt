@@ -37,6 +37,7 @@ class SplashActivity: BaseActivity() {
          .compose(RxJavaUtils.applyObservableAsync())
          .subscribe {
             MainActivity.runActivity(this)
+            finish()
          }
    }
 

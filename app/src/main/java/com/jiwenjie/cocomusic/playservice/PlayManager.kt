@@ -30,7 +30,10 @@ object PlayManager {
             realActivity = context
         }
         val contextWrapper = ContextWrapper(realActivity)
-        contextWrapper.startService(Intent(contextWrapper, MusicPlayerService::class.java))
+        // 启动 Service
+        contextWrapper.startService(
+            Intent(contextWrapper, MusicPlayerService::class.java))
+        // 绑定 Service
         val binder = ServiceBinder(callback,
                 contextWrapper.applicationContext)
         if (contextWrapper.bindService(

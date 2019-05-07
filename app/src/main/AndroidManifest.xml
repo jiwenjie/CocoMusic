@@ -87,7 +87,7 @@
 
         <!-- Receiver Start -->
         <receiver android:name=".play.MediaButtonIntentReceiver">
-            <intent-filter android:priority="2147483647">
+            <intent-filter android:priority="999">  <!-- 优先级  范围 [-1000, 1000] -->
                 <action android:name="android.media.AUDIO_BECOMING_NOISY" />
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -104,13 +104,6 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_standard" />
-        </receiver>
-
-        <receiver android:name=".play.MediaButtonIntentReceiver">
-            <intent-filter android:priority="2147483647">
-                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
-            </intent-filter>
         </receiver>
         <!-- Receiver Start -->
 

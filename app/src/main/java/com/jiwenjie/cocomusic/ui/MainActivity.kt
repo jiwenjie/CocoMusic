@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.KeyEvent
+import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.Constants
@@ -29,6 +31,7 @@ class MainActivity : PlayBaseActivity() {
     }
 
    override fun initActivity(savedInstanceState: Bundle?) {
+       super.initActivity(savedInstanceState)
        recyclerView.layoutManager = LinearLayoutManager(this)
        recyclerView.adapter = adapter
        adapter.setOnItemClickListener { position, view ->
@@ -49,6 +52,21 @@ class MainActivity : PlayBaseActivity() {
             startActivity(Intent(this, TestActivity::class.java))
        }
    }
+
+    // 双击退出程序
+    var prePressTime = 0L
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (System.currentTimeMillis() - prePressTime > 2000) {
+            prePressTime = System.currentTimeMillis()
+            ToastUtils.showToast(this, "再按一次退出程序")
+        } else {
+            finish()
+            android.os.Process.killProcess(android.os.Process.myUid())
+            System.exit(0)
+        }
+        return false
+    }
 
    override fun getLayoutId(): Int = R.layout.activity_main
 }

@@ -7,7 +7,10 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.widget.SeekBar
+import com.jiwenjie.basepart.utils.LogUtils
+import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.basepart.views.BaseFragment
+import com.jiwenjie.cocomusic.CocoApp
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.BaseControlView
@@ -33,6 +36,8 @@ import java.util.ArrayList
  *  version:1.0
  */
 class PlayControlFragment : BaseFragment(), SeekBar.OnSeekBarChangeListener, BaseControlView {
+
+    private val TAG = PlayControlFragment::class.java.simpleName
 
     private var coverAnimator: ObjectAnimator? = null
     private var currentPlayTime: Long = 0
@@ -69,7 +74,9 @@ class PlayControlFragment : BaseFragment(), SeekBar.OnSeekBarChangeListener, Bas
     }
 
     open fun showNowPlaying(music: Music?) {
-
+        if (music != null) {
+            LogUtils.e(TAG,  "展示当前播放状态" + music.album)
+        }
     }
 
     open fun setPlayingBg(albumArt: Drawable?, isInit: Boolean? = false) {
@@ -123,11 +130,13 @@ class PlayControlFragment : BaseFragment(), SeekBar.OnSeekBarChangeListener, Bas
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onPlayModeChangedEvent(event: PlayModeEvent) {
+        LogUtils.e(TAG, "响应 PlayModeEvent 事件")
         updatePlayMode()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMetaChangedEvent(event: MetaChangedEvent) {
+        LogUtils.e(TAG, "响应 MetaChangedEvent 事件")
         updateNowPlaying(event.music, false)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             progressBar.setProgress(PlayManager.getCurrentPosition(),true)
@@ -140,6 +149,7 @@ class PlayControlFragment : BaseFragment(), SeekBar.OnSeekBarChangeListener, Bas
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onStatusChangedEvent(event: StatusChangedEvent) {
+        LogUtils.e(TAG, "响应 StatusChangedEvent 事件")
 //        playPauseView.setLoading(!event.isPrepared)
         updatePlayStatus(event.isPlaying)
     }

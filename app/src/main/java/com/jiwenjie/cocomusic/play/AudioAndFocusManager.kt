@@ -10,9 +10,10 @@ import android.content.pm.PackageManager
 import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.media.session.MediaSession
-import android.os.Build
+import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.playservice.MusicPlayerService
 import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.AUDIO_FOCUS_CHANGE
+import com.jiwenjie.cocomusic.utils.SystemUtils
 
 /**
  *  author:Jiwenjie
@@ -23,8 +24,7 @@ import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.AUDIO_FOC
  *  version:1.0
  */
 @Suppress("DEPRECATION")
-class AudioAndFocusManager(context: Context, mHandler: MusicPlayerService.MusicPlayerHandler)
-    : AudioManager.OnAudioFocusChangeListener {
+class AudioAndFocusManager(context: Context, mHandler: MusicPlayerService.MusicPlayerHandler) {
 
     private var mAudioManager: AudioManager? = null
     private var mediaButtonReceiverComponent: ComponentName? = null
@@ -38,17 +38,19 @@ class AudioAndFocusManager(context: Context, mHandler: MusicPlayerService.MusicP
     }
 
     /**
-     * 初始化 AudioManager & Receiver
+     * 初始化AudioManager&Receiver
+     *
+     * @param mContext
      */
     private fun initAudioManager(mContext: Context) {
         mediaSession = MediaSession(mContext, "AudioAndFocusManager")
         mAudioManager = mContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         mediaButtonReceiverComponent = ComponentName(
             mContext.packageName,
-            MediaButtonIntentReceiver::class.java.simpleName
+            MediaButtonIntentReceiver::class.java.name
         )
         mContext.packageManager.setComponentEnabledSetting(
-            mediaButtonReceiverComponent,
+            mediaButtonReceiverComponent!!,
             PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
         )
         mAudioManager!!.registerMediaButtonEventReceiver(mediaButtonReceiverComponent)
@@ -66,11 +68,20 @@ class AudioAndFocusManager(context: Context, mHandler: MusicPlayerService.MusicP
      * 请求音频焦点
      */
     fun requestAudioFocus() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (SystemUtils.isO()) {
             val mAudioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
                 .setOnAudioFocusChangeListener(audioFocusChangeListener)
                 .build()
-            mAudioManager!!.requestAudioFocus(mAudioFocusRequest)
+            val res = mAudioManager!!.requestAudioFocus(mAudioFocusRequest)
+            if (res == 1) {
+                LogUtils.e("requestAudioFocus=" + true)
+            }
+        } else {
+            val result = AudioManager.AUDIOFOCUS_REQUEST_GRANTED == mAudioManager!!.requestAudioFocus(
+                audioFocusChangeListener,
+                AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN)
+            LogUtils.e("requestAudioFocus=$result")
         }
     }
 
@@ -78,42 +89,17 @@ class AudioAndFocusManager(context: Context, mHandler: MusicPlayerService.MusicP
      * 关闭音频焦点
      */
     fun abandonAudioFocus() {
-        mAudioManager!!.abandonAudioFocus(this)
+        val result = AudioManager.AUDIOFOCUS_REQUEST_GRANTED == mAudioManager!!.abandonAudioFocus(audioFocusChangeListener)
+        LogUtils.e("requestAudioFocus=$result")
     }
 
-    override fun onAudioFocusChange(focusChange: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     /**
      * 音频焦点改变监听器
      */
     private val audioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
+        LogUtils.e("OnAudioFocusChangeListener", focusChange.toString() + "---")
         mHandler.obtainMessage(AUDIO_FOCUS_CHANGE, focusChange, 0).sendToTarget()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
