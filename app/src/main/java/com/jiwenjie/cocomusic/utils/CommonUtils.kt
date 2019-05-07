@@ -82,7 +82,6 @@ object CommonUtils {
         val matcher = pattern.matcher(str)
         return matcher.replaceAll("").trim()
     }
-
 }
 
 

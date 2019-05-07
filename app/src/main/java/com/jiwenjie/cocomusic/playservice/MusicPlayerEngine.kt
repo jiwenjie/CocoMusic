@@ -6,6 +6,9 @@ import android.os.Handler
 import android.os.Message
 import android.os.PowerManager
 import com.jiwenjie.basepart.utils.LogUtils
+import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.RELEASE_WAKELOCK
+import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.TRACK_PLAY_ENDED
+import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.TRACK_WENT_TO_NEXT
 import java.lang.ref.WeakReference
 
 /**
@@ -173,12 +176,12 @@ class MusicPlayerEngine(service: MusicPlayerService) :
 
     override fun onCompletion(mp: MediaPlayer?) {
         LogUtils.e("$TAG + onCompletion")
-        if (mp == mCurrentMediaPlayer) {
-            mHandler!!.sendEmptyMessage(MusicPlayerService.TRACK_WENT_TO_NEXT)
+        if (mp === mCurrentMediaPlayer) {
+            mHandler?.sendEmptyMessage(TRACK_WENT_TO_NEXT)
         } else {
-            mService!!.get()!!.mWakeLock!!.acquire(30000)
-            mHandler!!.sendEmptyMessage(MusicPlayerService.TRACK_PLAY_ENDED)
-            mHandler!!.sendEmptyMessage(MusicPlayerService.RELEASE_WAKELOCK)
+            mService?.get()?.mWakeLock?.acquire(30000)
+            mHandler?.sendEmptyMessage(TRACK_PLAY_ENDED)
+            mHandler?.sendEmptyMessage(RELEASE_WAKELOCK)
         }
     }
 

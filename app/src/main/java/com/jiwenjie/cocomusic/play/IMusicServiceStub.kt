@@ -95,7 +95,7 @@ class IMusicServiceStub(service: MusicPlayerService) : IMusicService.Stub() {
         return mService!!.get()!!.getPlayingMusic()
     }
 
-    override fun getPlayList(): List<Music> {
+    override fun getPlayList(): List<Music>? {
         return mService!!.get()!!.getPlayQueue()
     }
 

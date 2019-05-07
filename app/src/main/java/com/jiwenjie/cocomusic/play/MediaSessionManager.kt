@@ -95,9 +95,9 @@ class MediaSessionManager(context: Context, control: IMusicServiceStub, mHandler
         }
     }
 
-    private fun getCount(): Long {
+    private fun getCount(): Long? {
         return try {
-            control!!.playList.size.toLong()
+            control!!.playList?.size?.toLong()
         } catch (e: RemoteException) {
             e.printStackTrace()
             0
@@ -126,7 +126,7 @@ class MediaSessionManager(context: Context, control: IMusicServiceStub, mHandler
 //            mMediaSession.setMetadata(metaDta.build())
 //        })
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            metaDta.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, getCount())
+            metaDta.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, getCount()!!)
         }
         mMediaSession!!.setMetadata(metaDta.build())
     }

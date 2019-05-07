@@ -81,7 +81,6 @@ class MediaButtonIntentReceiver : BroadcastReceiver() {
                                 null
                             }
                         }
-
                         if (command != null) {
                             val context = msg.obj as Context
                             startService(context, command)
@@ -122,7 +121,6 @@ class MediaButtonIntentReceiver : BroadcastReceiver() {
             if (mHandler.hasMessages(MSG_LONGPRESS_TIMEOUT) || mHandler.hasMessages(MSG_HEADSET_DOUBLE_CLICK_TIMEOUT)) {
                 return
             }
-
             if (mWakeLock != null) {
                 mWakeLock!!.release()
                 mWakeLock = null

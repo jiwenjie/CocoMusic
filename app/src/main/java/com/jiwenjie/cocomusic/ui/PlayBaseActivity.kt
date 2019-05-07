@@ -30,12 +30,6 @@ abstract class PlayBaseActivity : BaseActivity(), ServiceConnection {
 
     protected val disposables = ArrayList<Disposable>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        EventBus.getDefault().register(this)
-//        mToken = PlayManager.bindToService(this, this)
-    }
-
     override fun initActivity(savedInstanceState: Bundle?) {
         EventBus.getDefault().register(this)
         mToken = PlayManager.bindToService(this, this)

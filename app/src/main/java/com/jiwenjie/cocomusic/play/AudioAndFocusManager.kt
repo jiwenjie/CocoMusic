@@ -23,7 +23,8 @@ import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.AUDIO_FOC
  *  version:1.0
  */
 @Suppress("DEPRECATION")
-class AudioAndFocusManager(context: Context, mHandler: MusicPlayerService.MusicPlayerHandler) : AudioManager.OnAudioFocusChangeListener {
+class AudioAndFocusManager(context: Context, mHandler: MusicPlayerService.MusicPlayerHandler)
+    : AudioManager.OnAudioFocusChangeListener {
 
     private var mAudioManager: AudioManager? = null
     private var mediaButtonReceiverComponent: ComponentName? = null

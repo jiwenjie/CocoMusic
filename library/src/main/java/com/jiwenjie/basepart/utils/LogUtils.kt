@@ -29,6 +29,11 @@ object LogUtils {
 
     @JvmStatic
     fun e(msg: Any?) {
+        e(null, msg)
+    }
+
+    @JvmStatic
+    fun e(tag: String?, msg: Any?) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
         if (msg == null)
