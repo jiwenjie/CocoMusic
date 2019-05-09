@@ -79,7 +79,7 @@
 
         <!-- second Play Service Start -->
         <service
-            android:name=".playservice.MusicPlayerService"
+            android:name=".play.playservice.MusicPlayerService"
             android:exported="true"
             android:enabled="true"/>
 

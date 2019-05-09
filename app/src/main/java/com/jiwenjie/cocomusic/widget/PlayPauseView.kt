@@ -4,9 +4,11 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import com.jiwenjie.cocomusic.R
+import com.jiwenjie.cocomusic.play.playservice.PlayManager.isPlaying
 
 /**
  *  author:Jiwenjie
@@ -32,10 +34,10 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
    private var mProgress: Float = 0.toFloat() //动画Progress
    private var mRect: Rect? = null
    private var mRingRect: RectF? = null
-   private var isPlaying: Boolean = false
+   private var isPlaying = false
    private var isLoading: Boolean = false
    private var startAngle: Float = 0.toFloat()
-   private var sweepAngle:Float = 0.toFloat()
+   private var sweepAngle: Float = 0.toFloat()
    private var mRectWidth: Float = 0.toFloat()  //圆内矩形宽度
    private var mRectHeight: Float = 0.toFloat() //圆内矩形高度
    private var mRectLT: Int = 0  //矩形左侧上侧坐标
@@ -49,7 +51,8 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
    private fun init(context: Context, attrs: AttributeSet?) {
       val ta = context.obtainStyledAttributes(attrs, R.styleable.PlayPauseView)
       mBgColor = ta.getColor(R.styleable.PlayPauseView_bg_color, Color.WHITE)
-      mBtnColor = ta.getColor(R.styleable.PlayPauseView_btn_color, Color.BLACK)
+//      mBtnColor = ta.getColor(R.styleable.PlayPauseView_btn_color, Color.BLACK)
+      mBtnColor = ta.getColor(R.styleable.PlayPauseView_btn_color, ContextCompat.getColor(context, R.color.colorPrimary))
       mGapWidth = ta.getFloat(R.styleable.PlayPauseView_gap_width, 0f)
       mBorderWidth = ta.getFloat(R.styleable.PlayPauseView_border_width, 20f)
       mDirection = ta.getInt(R.styleable.PlayPauseView_anim_direction, Direction.POSITIVE.value)
@@ -305,7 +308,7 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
 
    /* ------------下方是参数------------- */
 
-   fun isPlaying(): Boolean {
+   fun getPlaing(): Boolean {
       return isPlaying
    }
 

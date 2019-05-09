@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.widget.RemoteViews
 import com.jiwenjie.basepart.utils.LogUtils
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
 import kotlin.math.acos
 
 /**

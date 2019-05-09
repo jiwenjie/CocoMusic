@@ -13,7 +13,7 @@ import android.os.Message
 import android.os.PowerManager
 import android.view.KeyEvent
 import com.jiwenjie.basepart.utils.LogUtils
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
 import com.jiwenjie.cocomusic.ui.MainActivity
 
 /**

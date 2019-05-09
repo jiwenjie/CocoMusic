@@ -11,8 +11,8 @@ import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.media.session.MediaSession
 import com.jiwenjie.basepart.utils.LogUtils
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.AUDIO_FOCUS_CHANGE
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService.Companion.AUDIO_FOCUS_CHANGE
 import com.jiwenjie.cocomusic.utils.SystemUtils
 
 /**

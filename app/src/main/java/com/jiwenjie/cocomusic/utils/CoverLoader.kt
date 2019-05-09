@@ -97,6 +97,16 @@ object CoverLoader {
                 .into(imageView)
     }
 
+    fun loadImageView(mContext: Context?, url: String, defaultUrl: Int, imageView: ImageView?) {
+        if (mContext == null) return
+        Glide.with(mContext)
+                .load(url)
+                .error(defaultUrl)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView)
+    }
+
     fun loadBigImageView(mContext: Context, music: Music?, imageView: ImageView?) {
         if (music == null || imageView == null) return
         val url = getCoverUriByMusic(music, true)

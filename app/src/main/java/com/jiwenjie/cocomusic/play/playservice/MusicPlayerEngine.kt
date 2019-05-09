@@ -1,14 +1,13 @@
-package com.jiwenjie.cocomusic.playservice
+package com.jiwenjie.cocomusic.play.playservice
 
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Handler
-import android.os.Message
 import android.os.PowerManager
 import com.jiwenjie.basepart.utils.LogUtils
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.RELEASE_WAKELOCK
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.TRACK_PLAY_ENDED
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService.Companion.TRACK_WENT_TO_NEXT
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService.Companion.RELEASE_WAKELOCK
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService.Companion.TRACK_PLAY_ENDED
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService.Companion.TRACK_WENT_TO_NEXT
 import java.lang.ref.WeakReference
 
 /**

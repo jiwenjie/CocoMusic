@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.playservice
+package com.jiwenjie.cocomusic.play.playservice
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -107,6 +107,17 @@ class MusicPlayerService : Service() {
       const val VOLUME_FADE_DOWN = 13 //音量改变减少
       const val VOLUME_FADE_UP = 14 //音量改变增加
 
+      // 进度改变监听
+      private val listenerList = java.util.ArrayList<PlayProgressListener>()
+
+      fun addProgressListener(listener: PlayProgressListener) {
+         listenerList.add(listener)
+      }
+
+      fun removeProgressListener(listener: PlayProgressListener) {
+         listenerList.remove(listener)
+      }
+
       private var instance: MusicPlayerService? = null
 
       fun getInstance(): MusicPlayerService? {
@@ -169,16 +180,6 @@ class MusicPlayerService : Service() {
 
    private var showLyric: Boolean = false
 
-   private val listenerList = java.util.ArrayList<PlayProgressListener>()
-
-   fun addProgressListener(listener: PlayProgressListener) {
-      listenerList.add(listener)
-   }
-
-   fun removeProgressListener(listener: PlayProgressListener) {
-      listenerList.remove(listener)
-   }
-
    private val disposable = Observable
            .interval(500, TimeUnit.MILLISECONDS)
            .subscribeOn(Schedulers.io())
@@ -229,7 +230,7 @@ class MusicPlayerService : Service() {
                         mMainHandler!!.post { service?.next(true) }
                      }
                }
-               TRACK_PLAY_ERROR  -> {           //mPlayer播放错误
+               TRACK_PLAY_ERROR -> {           //mPlayer播放错误
                   LogUtils.e(TAG, msg.obj.toString() + "---")
                   playErrorTimes++
                   if (playErrorTimes < MAX_ERROR_TIMES) {

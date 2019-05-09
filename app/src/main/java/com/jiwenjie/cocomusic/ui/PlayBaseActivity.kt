@@ -8,8 +8,8 @@ import android.os.IBinder
 import com.jiwenjie.basepart.views.BaseActivity
 import com.jiwenjie.cocomusic.aidl.IMusicService
 import com.jiwenjie.cocomusic.event.MetaChangedEvent
-import com.jiwenjie.cocomusic.playservice.PlayManager
-import com.jiwenjie.cocomusic.playservice.PlayManager.mService
+import com.jiwenjie.cocomusic.play.playservice.PlayManager
+import com.jiwenjie.cocomusic.play.playservice.PlayManager.mService
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

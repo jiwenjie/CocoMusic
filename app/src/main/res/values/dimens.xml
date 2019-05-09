@@ -19,6 +19,7 @@
     <dimen name="layout_45_dp">45dp</dimen>
     <dimen name="layout_50_dp">50dp</dimen>
     <dimen name="layout_55_dp">55dp</dimen>
+    <dimen name="layout_56_dp">56dp</dimen>
     <dimen name="layout_60_dp">60dp</dimen>
     <dimen name="layout_65_dp">65dp</dimen>
     <dimen name="layout_70_dp">70dp</dimen>

@@ -2,7 +2,7 @@ package com.jiwenjie.cocomusic.play
 
 import com.jiwenjie.cocomusic.aidl.IMusicService
 import com.jiwenjie.cocomusic.aidl.Music
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
 import java.lang.ref.WeakReference
 
 /**

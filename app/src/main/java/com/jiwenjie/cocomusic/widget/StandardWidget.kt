@@ -12,7 +12,7 @@ import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.common.Constants
 import com.jiwenjie.cocomusic.common.Extras
 import com.jiwenjie.cocomusic.common.NavigationHelper
-import com.jiwenjie.cocomusic.playservice.MusicPlayerService
+import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
 import com.jiwenjie.cocomusic.ui.MainActivity
 import com.jiwenjie.cocomusic.utils.CoverLoader
 

@@ -9,7 +9,7 @@ import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.Constants
 import com.jiwenjie.cocomusic.event.MetaChangedEvent
-import com.jiwenjie.cocomusic.playservice.PlayManager
+import com.jiwenjie.cocomusic.play.playservice.PlayManager
 import com.jiwenjie.cocomusic.utils.CommonUtils
 import com.jiwenjie.cocomusic.utils.CoverLoader
 import kotlinx.android.synthetic.main.activity_music_item.view.*

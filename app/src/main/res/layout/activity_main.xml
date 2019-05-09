@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/activity_main_controlFragment"
-        class="com.jiwenjie.cocomusic.ui.PlayControlFragment"
+        class="com.jiwenjie.cocomusic.ui.fragment.PlayControlFragment"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom" />

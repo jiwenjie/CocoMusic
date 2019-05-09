@@ -11,7 +11,7 @@ import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.Constants
-import com.jiwenjie.cocomusic.playservice.PlayManager
+import com.jiwenjie.cocomusic.play.playservice.PlayManager
 import com.jiwenjie.cocomusic.ui.adapter.MusicListAdapter
 import com.jiwenjie.cocomusic.utils.SongLoader
 import com.squareup.leakcanary.AnalyzedHeap.save
@@ -37,8 +37,8 @@ class MainActivity : PlayBaseActivity() {
 
    override fun initActivity(savedInstanceState: Bundle?) {
        super.initActivity(savedInstanceState)
-       recyclerView.layoutManager = LinearLayoutManager(this)
        recyclerView.adapter = adapter
+       recyclerView.layoutManager = LinearLayoutManager(this)
        adapter.setOnItemClickListener { position, view ->
            if (beanList.size == 0) return@setOnItemClickListener
            // 处理用户重复点击一首歌曲的时候每次都重新开始播放

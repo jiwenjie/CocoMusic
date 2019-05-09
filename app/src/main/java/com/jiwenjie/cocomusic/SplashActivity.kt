@@ -4,6 +4,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.KeyEvent
 import com.jiwenjie.basepart.views.BaseActivity
 import com.jiwenjie.basepart.utils.AssetsLoader
 import com.jiwenjie.cocomusic.ui.MainActivity
@@ -30,10 +31,10 @@ class SplashActivity: BaseActivity() {
       val objAnimY = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleY", 0f, 1f)
       val animatorSet = AnimatorSet()
       animatorSet.playTogether(objAnimX, objAnimY)
-      animatorSet.duration = 600
+      animatorSet.duration = 1000
       animatorSet.start()
 
-      Observable.timer(1200, TimeUnit.MILLISECONDS)
+      Observable.timer(3000, TimeUnit.MILLISECONDS)
          .compose(RxJavaUtils.applyObservableAsync())
          .subscribe {
             MainActivity.runActivity(this)
@@ -41,6 +42,9 @@ class SplashActivity: BaseActivity() {
          }
    }
 
+   override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+      return true
+   }
 
    override fun getLayoutId(): Int = R.layout.activity_splash
 }

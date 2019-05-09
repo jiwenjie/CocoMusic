@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.playservice
+package com.jiwenjie.cocomusic.play.playservice
 
 import android.app.Activity
 import android.content.*

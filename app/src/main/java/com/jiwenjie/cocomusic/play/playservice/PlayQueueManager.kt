@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.playservice
+package com.jiwenjie.cocomusic.play.playservice
 
 import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.CocoApp
@@ -60,7 +60,7 @@ object PlayQueueManager {
     }
 
     private fun initOrderList(total: Int) {
-        this.total = total
+        PlayQueueManager.total = total
         orderList.clear()
         for (i in 0 until total) {
             orderList.add(i)
@@ -72,7 +72,7 @@ object PlayQueueManager {
         if (getPlayModeId() == PLAY_MODE_RANDOM) {
             orderList.shuffle()
             randomPosition = 0
-            printOrderList(-1)
+           printOrderList(-1)
         }
     }
 
@@ -85,15 +85,15 @@ object PlayQueueManager {
         if (total == 1) {
             return 0
         }
-        initOrderList(total)
-        if (playingModeId == PlayQueueManager.PLAY_MODE_REPEAT && isAUto!!) {
+       initOrderList(total)
+        if (playingModeId == PLAY_MODE_REPEAT && isAUto!!) {
             return if (cuePosition < 0) {
                 0
             } else {
                 cuePosition
             }
-        } else if (playingModeId == PlayQueueManager.PLAY_MODE_RANDOM) {
-            printOrderList(orderList[randomPosition])
+        } else if (playingModeId == PLAY_MODE_RANDOM) {
+           printOrderList(orderList[randomPosition])
             saveList.add(orderList[randomPosition])
             return orderList[randomPosition]
         } else {
@@ -114,14 +114,14 @@ object PlayQueueManager {
         if (total == 1) {
             return 0
         }
-        getPlayModeId()
-        if (playingModeId == PlayQueueManager.PLAY_MODE_REPEAT) {
+       getPlayModeId()
+        if (playingModeId == PLAY_MODE_REPEAT) {
             return if (cuePosition < 0) {
                 0
             } else {
                 cuePosition
             }
-        } else if (playingModeId == PlayQueueManager.PLAY_MODE_RANDOM) {
+        } else if (playingModeId == PLAY_MODE_RANDOM) {
             randomPosition = if (saveList.size > 0) {
                 saveList.last()
                 saveList.removeAt(saveList.lastIndex)
@@ -132,7 +132,7 @@ object PlayQueueManager {
                 }
                 orderList[randomPosition]
             }
-            printOrderList(randomPosition)
+           printOrderList(randomPosition)
             return randomPosition
         } else {
             if (cuePosition == 0) {
