@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.ui.contract.base.BaseView
-import com.jiwenjie.cocomusic.ui.contract.base.BasePresenter
 
 /**
  *  author:Jiwenjie
@@ -34,7 +33,7 @@ interface PlayContract {
       fun showNowPlaying(music: Music?)
    }
 
-   interface Presenter: BasePresenter<View> {
+   interface Presenter {
 
       fun updateNowPlaying(music: Music?, isInit: Boolean? = false)
    }

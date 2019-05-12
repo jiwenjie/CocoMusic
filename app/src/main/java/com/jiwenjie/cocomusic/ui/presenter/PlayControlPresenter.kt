@@ -2,6 +2,7 @@ package com.jiwenjie.cocomusic.ui.presenter
 
 import android.graphics.Bitmap
 import com.jiwenjie.basepart.mvp.BaseMvpPresenter
+import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.PlayProgressListener
 import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
@@ -23,15 +24,20 @@ class PlayControlPresenter(view: PlayContract.View) :
         PlayContract.Presenter,
         PlayProgressListener {
 
-   override fun attachView(view: PlayContract.View) {
+   override fun onCreate() {
+      super.onCreate()
+      LogUtils.e("添加 onCreate 监听")
       MusicPlayerService.addProgressListener(this)
    }
 
-   override fun detachView() {
+   override fun onDestroy() {
+      super.onDestroy()
+      LogUtils.e("移除 onDestroy 监听")
       MusicPlayerService.removeProgressListener(this)
    }
 
    override fun onProgressUpdate(position: Long, duration: Long) {
+      LogUtils.e("mPresenter中 position:$position   duration: $duration")
       mView?.updateProgress(position, duration)
    }
 

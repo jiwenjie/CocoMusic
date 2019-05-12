@@ -303,10 +303,13 @@ class MusicPlayerService : Service() {
          .subscribeOn(Schedulers.io())
          .observeOn(AndroidSchedulers.mainThread())
          .subscribe { v ->
-            for (i in listenerList.indices) {
-               LogUtils.e(TAG, "currentPosition ${getCurrentPosition()} : duration ${getDuration()}")
-               listenerList[i].onProgressUpdate(getCurrentPosition(), getDuration())
+            listenerList.forEach {
+               it.onProgressUpdate(getCurrentPosition(), getDuration())
             }
+//            for (i in listenerList.indices) {
+//               LogUtils.e("TTTTTTT", "currentPosition ${getCurrentPosition()} : duration ${getDuration()}")
+//               listenerList[i].onProgressUpdate(getCurrentPosition(), getDuration())
+//            }
          }
    }
 
