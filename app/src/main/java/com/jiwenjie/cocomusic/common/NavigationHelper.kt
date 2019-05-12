@@ -6,11 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.app.Fragment
 import android.view.View
 import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
-import com.jiwenjie.cocomusic.ui.MainActivity
-import com.jiwenjie.cocomusic.ui.PlayerDetailActivity
+import com.jiwenjie.cocomusic.ui.activity.LocalMusicActivity
+import com.jiwenjie.cocomusic.ui.activity.PlayerDetailActivity
 
 /**
  *  author:Jiwenjie
@@ -22,7 +21,7 @@ import com.jiwenjie.cocomusic.ui.PlayerDetailActivity
 object NavigationHelper {
 
     fun getNowPlayingIntent(context: Context): Intent {
-        val intent = Intent(context, MainActivity::class.java)
+        val intent = Intent(context, LocalMusicActivity::class.java)
         intent.action = Constants.DEAULT_NOTIFICATION
         return intent
     }

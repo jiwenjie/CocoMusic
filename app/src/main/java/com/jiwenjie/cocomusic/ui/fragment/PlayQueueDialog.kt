@@ -10,6 +10,8 @@ import android.support.design.widget.BottomSheetDialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.WindowManager
+import com.jiwenjie.basepart.utils.ScreenUtils
+import com.jiwenjie.cocomusic.CocoApp
 import org.jetbrains.anko.support.v4.dip
 
 /**
@@ -41,7 +43,7 @@ class PlayQueueDialog : BottomSheetDialogFragment() {
       val params = window?.attributes
       params?.gravity = Gravity.BOTTOM
       params?.width = WindowManager.LayoutParams.MATCH_PARENT
-//      params?.height = CocoApp.screenSize.y / 7 * 4
+      params?.height = ScreenUtils.getScreenHeight(CocoApp.contextInstance) / 7 * 4
       window.attributes = params
       window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 

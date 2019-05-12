@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.ui
+package com.jiwenjie.cocomusic.ui.activity
 
 import android.content.ComponentName
 import android.content.ServiceConnection

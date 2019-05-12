@@ -1,27 +1,21 @@
-package com.jiwenjie.cocomusic.ui
+package com.jiwenjie.cocomusic.ui.activity
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.view.KeyEvent
-import com.jiwenjie.basepart.utils.LogUtils
-import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.Constants
 import com.jiwenjie.cocomusic.play.playservice.PlayManager
 import com.jiwenjie.cocomusic.ui.adapter.MusicListAdapter
 import com.jiwenjie.cocomusic.utils.SongLoader
-import com.squareup.leakcanary.AnalyzedHeap.save
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_local.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : PlayBaseActivity() {
+class LocalMusicActivity : PlayBaseActivity() {
 
     private val beanList by lazy { ArrayList<Music>() }
     private val adapter by lazy { MusicListAdapter(this, beanList) }
@@ -30,7 +24,7 @@ class MainActivity : PlayBaseActivity() {
 
     companion object {
        fun runActivity(activity: Activity) {
-           val intent = Intent(activity, MainActivity::class.java)
+           val intent = Intent(activity, LocalMusicActivity::class.java)
            activity.startActivity(intent)
        }
     }
@@ -56,7 +50,7 @@ class MainActivity : PlayBaseActivity() {
 
        // 异步读取本地歌曲
        doAsync {
-           val data = SongLoader.getAllLocalSongs(this@MainActivity)
+           val data = SongLoader.getAllLocalSongs(this@LocalMusicActivity)
            uiThread {
                adapter.addAllData(data as ArrayList<Music>)
            }
@@ -67,25 +61,5 @@ class MainActivity : PlayBaseActivity() {
        }
    }
 
-    // 双击退出程序
-    var prePressTime = 0.toLong()
-
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (System.currentTimeMillis() - prePressTime > 2000) {
-                prePressTime = System.currentTimeMillis()
-                ToastUtils.showToast(this, "再按一次退出程序")
-            } else {
-                finish()
-                android.os.Process.killProcess(android.os.Process.myUid())
-                System.exit(0)
-            }
-            return false
-        } else {
-            // 点击音量键加减的时候也会响应该方法，所以在这里处理，防止点击音量键会导致应用退出
-            return super.onKeyDown(keyCode, event)
-        }
-    }
-
-   override fun getLayoutId(): Int = R.layout.activity_main
+   override fun getLayoutId(): Int = R.layout.activity_local
 }

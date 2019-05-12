@@ -31,7 +31,7 @@ import com.jiwenjie.cocomusic.event.StatusChangedEvent
 import com.jiwenjie.cocomusic.play.AudioAndFocusManager
 import com.jiwenjie.cocomusic.play.IMusicServiceStub
 import com.jiwenjie.cocomusic.play.MediaSessionManager
-import com.jiwenjie.cocomusic.ui.PlayerDetailActivity
+import com.jiwenjie.cocomusic.ui.activity.PlayerDetailActivity
 import com.jiwenjie.cocomusic.utils.*
 import com.jiwenjie.cocomusic.widget.StandardWidget
 import io.reactivex.Observable
@@ -299,17 +299,13 @@ class MusicPlayerService : Service() {
     */
    private fun updateMusicSeek(): Disposable {
       return Observable
-         .interval(500, TimeUnit.MILLISECONDS)
+         .interval(150, TimeUnit.MILLISECONDS)
          .subscribeOn(Schedulers.io())
          .observeOn(AndroidSchedulers.mainThread())
          .subscribe { v ->
             listenerList.forEach {
                it.onProgressUpdate(getCurrentPosition(), getDuration())
             }
-//            for (i in listenerList.indices) {
-//               LogUtils.e("TTTTTTT", "currentPosition ${getCurrentPosition()} : duration ${getDuration()}")
-//               listenerList[i].onProgressUpdate(getCurrentPosition(), getDuration())
-//            }
          }
    }
 

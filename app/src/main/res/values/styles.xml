@@ -19,5 +19,19 @@
         <item name="actionMenuTextColor">@color/colorPrimary</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowDisablePreview">true</item>
+
+        <!-- 侧滑栏与 toolbar 关联时返回键样式 -->
+        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+    </style>
+
+    <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <!-- style root (add attribute fitsSystemWindows="true") -->
+    <style name="Roots">
+        <item name="android:fitsSystemWindows">true</item>
+        <!-- this attribute is can make recyclerView's item can under the toolbar -->
+        <item name="android:clipToPadding">false</item>
     </style>
 </resources>

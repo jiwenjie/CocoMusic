@@ -54,17 +54,20 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.MainActivity"
+        <activity android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.PlayerDetailActivity"
+            android:name=".ui.activity.LocalMusicActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.PlayerDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />  <!-- 播放音乐的 Activity -->
 
         <!-- 点击测试跳转的 Activity -->
-        <activity android:name=".ui.TestActivity" />
+        <activity android:name=".ui.activity.TestActivity" />
 
         <!-- Service Start-->
         <service

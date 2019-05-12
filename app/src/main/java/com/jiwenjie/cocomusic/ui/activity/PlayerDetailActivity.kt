@@ -1,4 +1,4 @@
-package com.jiwenjie.cocomusic.ui
+package com.jiwenjie.cocomusic.ui.activity
 
 import android.os.Bundle
 import com.jiwenjie.basepart.views.BaseActivity

@@ -1,10 +1,8 @@
-package com.jiwenjie.cocomusic.ui
+package com.jiwenjie.cocomusic.ui.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.cocomusic.R
-import com.jiwenjie.cocomusic.R.id.textView
 import kotlinx.android.synthetic.main.activity_test.*
 
 /**

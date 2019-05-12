@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import com.jiwenjie.basepart.views.BaseActivity
 import com.jiwenjie.basepart.utils.AssetsLoader
-import com.jiwenjie.cocomusic.ui.MainActivity
+import com.jiwenjie.cocomusic.ui.activity.MainActivity
 import com.jiwenjie.cocomusic.utils.RxJavaUtils
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_splash.*
@@ -28,12 +28,12 @@ class SplashActivity : BaseActivity() {
         activity_splash_slognText.typeface =
                 AssetsLoader.getFontSourceFromAssets(CocoApp.contextInstance, "font/fanxinshu.TTF")
         // 设置动画
-        val objAnimX = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleX", 0f, 1f)
-        val objAnimY = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleY", 0f, 1f)
+        val objAnimX = ObjectAnimator.ofFloat(bottomLyt, "scaleX", 0f, 1f)
+        val objAnimY = ObjectAnimator.ofFloat(bottomLyt, "scaleY", 0f, 1f)
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(objAnimX, objAnimY)
         animatorSet.duration = 1000
-        animatorSet.startDelay = 600
+        animatorSet.startDelay = 1000
         animatorSet.start()
 
         Observable.timer(3000, TimeUnit.MILLISECONDS)

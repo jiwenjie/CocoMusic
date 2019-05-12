@@ -18,7 +18,7 @@ import com.jiwenjie.cocomusic.aidl.IPlayControl
 import com.jiwenjie.cocomusic.bean.SongInfo
 import com.jiwenjie.cocomusic.one.interfaces.ViewVisibilityChangeable
 import com.jiwenjie.cocomusic.one.service.PlayController
-import com.jiwenjie.cocomusic.ui.MainActivity
+import com.jiwenjie.cocomusic.ui.activity.LocalMusicActivity
 
 /**
  *  author:Jiwenjie
@@ -63,7 +63,7 @@ class PlayNotifyManager(activity: Activity, control: IPlayControl) :
    private fun buildNotifycation(): Notification {
       val builder = NotificationCompat.Builder(activity)
 
-      val intent = Intent(activity, MainActivity::class.java)
+      val intent = Intent(activity, LocalMusicActivity::class.java)
       val startMainActivity = PendingIntent.getActivity(activity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
       builder.setContentIntent(startMainActivity)

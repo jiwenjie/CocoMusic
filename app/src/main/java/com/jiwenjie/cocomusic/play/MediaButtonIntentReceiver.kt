@@ -14,7 +14,7 @@ import android.os.PowerManager
 import android.view.KeyEvent
 import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.play.playservice.MusicPlayerService
-import com.jiwenjie.cocomusic.ui.MainActivity
+import com.jiwenjie.cocomusic.ui.activity.LocalMusicActivity
 
 /**
  *  author:Jiwenjie
@@ -58,7 +58,7 @@ class MediaButtonIntentReceiver : BroadcastReceiver() {
                         val context = msg.obj as Context
                         val i = Intent()
                         i.putExtra("autoshuffle", "true")
-                        i.setClass(context, MainActivity::class.java)
+                        i.setClass(context, LocalMusicActivity::class.java)
                         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                         context.startActivity(i)
                         mLaunched = true

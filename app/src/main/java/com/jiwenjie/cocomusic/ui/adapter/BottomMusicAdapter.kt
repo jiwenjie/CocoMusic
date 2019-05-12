@@ -7,7 +7,7 @@ import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.utils.CommonUtils
 import com.jiwenjie.cocomusic.utils.CoverLoader
-import kotlinx.android.synthetic.main.item_bottom_music.view.*
+import kotlinx.android.synthetic.main.fragment_bottom_music_item.view.*
 
 /**
  *  author:Jiwenjie
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.item_bottom_music.view.*
  */
 class BottomMusicAdapter(context: Context, beanList: ArrayList<Music>) : BaseRecyclerAdapter<Music>(context, beanList) {
 
-    override fun getAdapterLayoutId(viewType: Int): Int = R.layout.item_bottom_music
+    override fun getAdapterLayoutId(viewType: Int): Int = R.layout.fragment_bottom_music_item
 
     override fun convertView(itemView: View, data: Music, position: Int) {
         CoverLoader.loadImageView(mContext, data.coverUri!!, itemView.iv_cover)
