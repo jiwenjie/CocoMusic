@@ -72,6 +72,9 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
       }
    }
 
+   /**
+    * 设置底部控制栏的播放列表，可以左右滑动切换歌曲播放
+    */
    private fun initSongList() {
       musicList.clear()
       musicList.addAll(PlayManager.getPlayList())
@@ -127,6 +130,9 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
 
    }
 
+   /**
+    * 动态更新当前歌曲的进度
+    */
    override fun updateProgress(progress: Long, max: Long) {
       progressBar.progress = progress.toInt()
       progressBar.max = max.toInt()
@@ -140,7 +146,7 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
    }
 
    /**
-    * 有关进度条监听部分
+    * 有关进度条监听部分 Start
     */
    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
    }
@@ -156,6 +162,8 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
          seekBar!!.progress = 0
       }
    }
+
+   /**************** 有关进度条监听部分 End *************/
 
    @Subscribe(threadMode = ThreadMode.MAIN)
    fun onPlayModeChangedEvent(event: PlayModeEvent) {

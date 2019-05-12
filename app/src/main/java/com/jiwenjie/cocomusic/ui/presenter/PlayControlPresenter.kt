@@ -24,6 +24,9 @@ class PlayControlPresenter(view: PlayContract.View) :
         PlayContract.Presenter,
         PlayProgressListener {
 
+   /**
+    * 需要把监听器添加，则在 Service 中的更新才可以看到
+    */
    override fun onCreate() {
       super.onCreate()
       LogUtils.e("添加 onCreate 监听")
