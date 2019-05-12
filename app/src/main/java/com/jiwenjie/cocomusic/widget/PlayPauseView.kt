@@ -43,7 +43,7 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
    private var mRectLT: Int = 0  //矩形左侧上侧坐标
    private var mRadius: Int = 0  //圆的半径
    private var mBgColor = Color.WHITE
-   private var mBtnColor = Color.BLACK
+   private var mBtnColor = ContextCompat.getColor(context, R.color.colorPrimary)
    private var mDirection = Direction.POSITIVE.value
    private var mPadding: Float = 0.toFloat()
    private var mAnimDuration = 200//动画时间
@@ -51,7 +51,6 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
    private fun init(context: Context, attrs: AttributeSet?) {
       val ta = context.obtainStyledAttributes(attrs, R.styleable.PlayPauseView)
       mBgColor = ta.getColor(R.styleable.PlayPauseView_bg_color, Color.WHITE)
-//      mBtnColor = ta.getColor(R.styleable.PlayPauseView_btn_color, Color.BLACK)
       mBtnColor = ta.getColor(R.styleable.PlayPauseView_btn_color, ContextCompat.getColor(context, R.color.colorPrimary))
       mGapWidth = ta.getFloat(R.styleable.PlayPauseView_gap_width, 0f)
       mBorderWidth = ta.getFloat(R.styleable.PlayPauseView_border_width, 20f)
@@ -216,7 +215,7 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
     *
     * @return
     */
-   fun getLoadingAnim(): ValueAnimator {
+   fun getLoadingAnim(): ValueAnimator? {
       val valueAnimator = ValueAnimator.ofFloat(0f, 360f)
       valueAnimator.repeatCount = ObjectAnimator.INFINITE
       valueAnimator.repeatMode = ObjectAnimator.RESTART
@@ -235,7 +234,7 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
    }
 
 
-   fun getPlayPauseAnim(): ValueAnimator {
+   fun getPlayPauseAnim(): ValueAnimator? {
       val valueAnimator = ValueAnimator.ofFloat(if (isPlaying) 1F else 0F, if (isPlaying) 0F else 1F)
       valueAnimator.duration = mAnimDuration.toLong()
       valueAnimator.addUpdateListener { animation ->
@@ -250,9 +249,9 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
     */
    fun startLoading() {
       if (getLoadingAnim() != null) {
-         getLoadingAnim().cancel()
+         getLoadingAnim()!!.cancel()
       }
-      getLoadingAnim().start()
+      getLoadingAnim()?.start()
    }
 
    /**
@@ -260,25 +259,25 @@ class PlayPauseView(context: Context, attrs: AttributeSet?) : View(context, attr
     */
    fun stopLoading() {
       if (getLoadingAnim() != null) {
-         getLoadingAnim().cancel()
+         getLoadingAnim()!!.cancel()
       }
    }
 
 
    fun play() {
       if (getPlayPauseAnim() != null) {
-         getPlayPauseAnim().cancel()
+         getPlayPauseAnim()?.cancel()
       }
       setPlaying(true)
-      getPlayPauseAnim().start()
+      getPlayPauseAnim()?.start()
    }
 
    fun pause() {
       if (getPlayPauseAnim() != null) {
-         getPlayPauseAnim().cancel()
+         getPlayPauseAnim()!!.cancel()
       }
       setPlaying(false)
-      getPlayPauseAnim().start()
+      getPlayPauseAnim()?.start()
    }
 
    private var mPlayPauseListener: PlayPauseListener? = null

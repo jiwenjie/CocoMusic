@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.widget.SeekBar
 import com.jiwenjie.basepart.mvp.BaseMvpFragment
 import com.jiwenjie.basepart.utils.LogUtils
@@ -104,9 +105,11 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
     * View 实现部分
     */
    override fun setPlayingBitmap(albumArt: Bitmap?) {
+
    }
 
    override fun setPlayingBg(albumArt: Drawable?, isInit: Boolean?) {
+
    }
 
    override fun showLyric(lyric: String?, init: Boolean) {
@@ -121,6 +124,7 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
    }
 
    override fun updatePlayMode() {
+
    }
 
    override fun updateProgress(progress: Long, max: Long) {
@@ -129,6 +133,7 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
    }
 
    override fun showNowPlaying(music: Music?) {
+      LogUtils.e("测试")
       if (music != null) {
          LogUtils.e(TAG, "展示当前播放状态" + music.album)
       }
@@ -167,6 +172,8 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
          progressBar.progress = PlayManager.getCurrentPosition()
       }
       progressBar.max = PlayManager.getDuration()
+      initSongList()
+       LogUtils.e(TAG, "歌曲 max${PlayManager.getDuration()}  current:${PlayManager.getCurrentPosition()}")
    }
 
    @Subscribe(threadMode = ThreadMode.MAIN)
@@ -180,6 +187,11 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
       super.onDestroy()
       coverAnimator = null
       EventBus.getDefault().unregister(this)
+   }
+
+   override fun onResume() {
+      super.onResume()
+      mAdapter?.notifyDataSetChanged()
    }
 
    override fun getContext(): Context = activity!!

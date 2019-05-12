@@ -20,31 +20,33 @@ import java.util.concurrent.TimeUnit
  *  desc:
  *  version:1.0
  */
-class SplashActivity: BaseActivity() {
+class SplashActivity : BaseActivity() {
 
-   @SuppressLint("CheckResult")
-   override fun initActivity(savedInstanceState: Bundle?) {
-      fullScreen()   // 设置全屏
-      activity_splash_slognText.typeface = AssetsLoader.getFontSourceFromAssets(CocoApp.contextInstance, "font/fanxinshu.TTF")
-      // 设置动画
-      val objAnimX = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleX", 0f, 1f)
-      val objAnimY = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleY", 0f, 1f)
-      val animatorSet = AnimatorSet()
-      animatorSet.playTogether(objAnimX, objAnimY)
-      animatorSet.duration = 1000
-      animatorSet.start()
+    @SuppressLint("CheckResult")
+    override fun initActivity(savedInstanceState: Bundle?) {
+        fullScreen()   // 设置全屏
+        activity_splash_slognText.typeface =
+                AssetsLoader.getFontSourceFromAssets(CocoApp.contextInstance, "font/fanxinshu.TTF")
+        // 设置动画
+        val objAnimX = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleX", 0f, 1f)
+        val objAnimY = ObjectAnimator.ofFloat(activity_splash_iconImg, "scaleY", 0f, 1f)
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(objAnimX, objAnimY)
+        animatorSet.duration = 1000
+        animatorSet.startDelay = 600
+        animatorSet.start()
 
-      Observable.timer(3000, TimeUnit.MILLISECONDS)
-         .compose(RxJavaUtils.applyObservableAsync())
-         .subscribe {
-            MainActivity.runActivity(this)
-            finish()
-         }
-   }
+        Observable.timer(3000, TimeUnit.MILLISECONDS)
+            .compose(RxJavaUtils.applyObservableAsync())
+            .subscribe {
+                MainActivity.runActivity(this)
+                finish()
+            }
+    }
 
-   override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-      return true
-   }
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return true
+    }
 
-   override fun getLayoutId(): Int = R.layout.activity_splash
+    override fun getLayoutId(): Int = R.layout.activity_splash
 }

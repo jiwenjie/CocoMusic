@@ -17,7 +17,6 @@ interface PlayContract {
 
    interface View : BaseView {
 
-
       fun setPlayingBitmap(albumArt: Bitmap?)
 
       fun setPlayingBg(albumArt: Drawable?, isInit: Boolean? = false)

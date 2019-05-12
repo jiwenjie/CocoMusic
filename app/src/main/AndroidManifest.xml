@@ -39,25 +39,29 @@
     <application
         android:name=".CocoApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/coco_music_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/music_icon"
+        android:roundIcon="@mipmap/coco_music_icon"
         android:supportsRtl="true"
         android:theme="@style/BaseTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.PlayerDetailActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:name=".ui.PlayerDetailActivity" />  <!-- 播放音乐的 Activity -->
+            android:screenOrientation="portrait" />  <!-- 播放音乐的 Activity -->
 
         <!-- 点击测试跳转的 Activity -->
         <activity android:name=".ui.TestActivity" />
@@ -80,8 +84,8 @@
         <!-- second Play Service Start -->
         <service
             android:name=".play.playservice.MusicPlayerService"
-            android:exported="true"
-            android:enabled="true"/>
+            android:enabled="true"
+            android:exported="true" />
 
         <!-- second Play Service End -->
 

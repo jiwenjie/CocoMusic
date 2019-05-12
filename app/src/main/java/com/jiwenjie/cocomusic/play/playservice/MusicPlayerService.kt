@@ -36,6 +36,7 @@ import com.jiwenjie.cocomusic.utils.*
 import com.jiwenjie.cocomusic.widget.StandardWidget
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
@@ -180,15 +181,7 @@ class MusicPlayerService : Service() {
 
    private var showLyric: Boolean = false
 
-   private val disposable = Observable
-           .interval(500, TimeUnit.MILLISECONDS)
-           .subscribeOn(Schedulers.io())
-           .observeOn(AndroidSchedulers.mainThread())
-           .subscribe { v ->
-              for (i in listenerList.indices) {
-                 listenerList[i].onProgressUpdate(getCurrentPosition(), getDuration())
-              }
-           }
+   private var disposable: Disposable? = null
 
    @Suppress("DEPRECATED_IDENTITY_EQUALS")
    inner class MusicPlayerHandler(service: MusicPlayerService, looper: Looper) : Handler(looper) {
@@ -284,11 +277,11 @@ class MusicPlayerService : Service() {
       }
    }
 
-
    override fun onCreate() {
       super.onCreate()
       LogUtils.e(TAG, "onCreate")
       instance = this
+      disposable = updateMusicSeek()
       //初始化广播
       initReceiver()
       //初始化参数
@@ -302,11 +295,26 @@ class MusicPlayerService : Service() {
    }
 
    /**
+    * 通过 RxJava 来异步更新底部控制栏的歌曲进度
+    */
+   private fun updateMusicSeek(): Disposable {
+      return Observable
+         .interval(500, TimeUnit.MILLISECONDS)
+         .subscribeOn(Schedulers.io())
+         .observeOn(AndroidSchedulers.mainThread())
+         .subscribe { v ->
+            for (i in listenerList.indices) {
+               LogUtils.e(TAG, "currentPosition ${getCurrentPosition()} : duration ${getDuration()}")
+               listenerList[i].onProgressUpdate(getCurrentPosition(), getDuration())
+            }
+         }
+   }
+
+   /**
     * 参数配置，AudioManager、锁屏
     */
    @SuppressLint("InvalidWakeLockTag")
    private fun initConfig() {
-
       //初始化主线程Handler
       mMainHandler = Handler(Looper.getMainLooper())
       PlayQueueManager.getPlayModeId()
@@ -850,7 +858,6 @@ class MusicPlayerService : Service() {
       } catch (e: Exception) {
          e.printStackTrace()
       }
-
    }
 
    /**
@@ -983,7 +990,6 @@ class MusicPlayerService : Service() {
          mPlayingMusic
       } else null
    }
-
 
    /**
     * 设置播放队列
@@ -1347,7 +1353,7 @@ class MusicPlayerService : Service() {
    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
    override fun onDestroy() {
       super.onDestroy()
-      disposable.dispose()
+      disposable?.dispose()
       // Remove any sound effects
       val audioEffectsIntent = Intent(
               AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION)

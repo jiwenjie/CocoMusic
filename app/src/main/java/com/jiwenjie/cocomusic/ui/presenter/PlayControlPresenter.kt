@@ -39,6 +39,7 @@ class PlayControlPresenter(view: PlayContract.View) :
       mView?.showNowPlaying(music)
       CoverLoader.loadBigImageView(mView!!.getContext(), music, object : CoverLoader.BitmapCallBack {
          override fun showBitmap(bitmap: Bitmap?) {
+            mView?.setPlayingBitmap(bitmap)
             doAsync {
                val blur = CommonUtils.createBlurredImageFromBitmap(bitmap!!, 12)
                uiThread {
