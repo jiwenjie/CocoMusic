@@ -28,8 +28,8 @@ class SplashActivity : BaseActivity() {
         activity_splash_slognText.typeface =
                 AssetsLoader.getFontSourceFromAssets(CocoApp.contextInstance, "font/fanxinshu.TTF")
         // 设置动画
-        val objAnimX = ObjectAnimator.ofFloat(bottomLyt, "scaleX", 0f, 1f)
-        val objAnimY = ObjectAnimator.ofFloat(bottomLyt, "scaleY", 0f, 1f)
+        val objAnimX = ObjectAnimator.ofFloat(bottomLyt, "scaleX", 0.4f, 1f)
+        val objAnimY = ObjectAnimator.ofFloat(bottomLyt, "scaleY", 0.4f, 1f)
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(objAnimX, objAnimY)
         animatorSet.duration = 300

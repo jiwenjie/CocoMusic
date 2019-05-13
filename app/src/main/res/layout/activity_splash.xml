@@ -36,8 +36,8 @@
         app:layout_constraintVertical_bias="0.93">
 
         <ImageView
-            android:layout_width="@dimen/layout_25_dp"
-            android:layout_height="@dimen/layout_25_dp"
+            android:layout_width="@dimen/layout_20_dp"
+            android:layout_height="@dimen/layout_20_dp"
             android:src="@mipmap/coco_music_icon"
             android:tint="@android:color/white" />
 
@@ -47,6 +47,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/layout_8_dp"
             android:text="@string/app_name"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="@dimen/layout_12_sp" />
     </LinearLayout>
