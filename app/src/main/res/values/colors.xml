@@ -34,6 +34,22 @@
     <color name="dark_l_l_l_l">#4e4e4e</color>
     <color name="dark_l_l_l_l_l">#5b5b5b</color>
 
+    <!--87%white-->
+    <color name="alpha_15_white">#26FFFFFF</color>
+    <color name="alpha_60_white">#99FFFFFF</color>
+    <color name="alpha_80_white">#CCFFFFFF</color>
+    <color name="alpha_85_white">#D9FFFFFF</color>
+    <color name="alpha_90_white">#E6FFFFFF</color>
+    <color name="alpha_10_black">#1A000000</color>
+    <color name="alpha_25_black">#40000000</color>
+    <color name="alpha_35_black">#59000000</color>
+    <color name="alpha_40_black">#66000000</color>
+    <color name="alpha_60_black">#99000000</color>
+    <color name="alpha_70_black">#B3000000</color>
+    <color name="alpha_80_black">#CC000000</color>
+    <color name="alpha_85_black">#D9000000</color>
+    <color name="alpha_90_black">#E6000000</color>
+
     <color name="dsb_progress_color">#ff009688</color>
     <color name="dsb_track_color">#ff939393</color>
     <color name="dsb_disabled_color">#66939393</color>

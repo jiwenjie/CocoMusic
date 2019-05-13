@@ -32,8 +32,8 @@ class SplashActivity : BaseActivity() {
         val objAnimY = ObjectAnimator.ofFloat(bottomLyt, "scaleY", 0f, 1f)
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(objAnimX, objAnimY)
-        animatorSet.duration = 1000
-        animatorSet.startDelay = 1000
+        animatorSet.duration = 300
+        animatorSet.startDelay = 1500
         animatorSet.start()
 
         Observable.timer(3000, TimeUnit.MILLISECONDS)

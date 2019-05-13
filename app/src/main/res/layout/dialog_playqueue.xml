@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_play_mode"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="@dimen/layout_16_dp"
+                android:src="@drawable/ic_repeat_one"
+                android:tint="@color/dark" />
+
+            <TextView
+                android:id="@+id/tv_play_mode"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/layout_16_sp"
+                app:layout_constraintStart_toEndOf="@+id/iv_play_mode"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/play_mode_repeat" />
+
+            <ImageView
+                android:id="@+id/clear_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_16_dp"
+                android:src="@drawable/ic_delete"
+                android:tint="@color/dark" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/layout_1_dp"
+            android:background="@color/white_d_d_d_d" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_songs"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_behavior="@string/bottom_sheet_behavior" />
+    </LinearLayout>
+</LinearLayout>
+
