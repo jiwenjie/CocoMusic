@@ -1,6 +1,7 @@
 package com.jiwenjie.basepart.views
 
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
@@ -41,6 +42,10 @@ abstract class BaseActivity : AppCompatActivity() {
       super.onDestroy()
       LogUtils.e("onDestroy()")
       ActivityStackManager.removeActivity(this)
+   }
+
+   fun getActivity(): Activity {
+      return this
    }
 
    protected abstract fun initActivity(savedInstanceState: Bundle?)
