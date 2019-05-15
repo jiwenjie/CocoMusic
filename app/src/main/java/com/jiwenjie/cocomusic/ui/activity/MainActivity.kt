@@ -11,8 +11,6 @@ import android.support.v4.view.ViewPager
 import android.view.Gravity
 import android.view.KeyEvent
 import com.jiwenjie.basepart.adapters.BaseFragmentPagerAdapter
-import com.jiwenjie.basepart.utils.ToastUtils
-import com.jiwenjie.basepart.views.BaseActivity
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.test.TestFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,7 +25,7 @@ import kotlin.collections.ArrayList
  *  version:1.0
  */
 @Suppress("DEPRECATION")
-class MainActivity : BaseActivity() {
+class MainActivity : PlayBaseActivity() {
 
    private val CURRENT_ITEM_MINE = 0     // 我的
    private val CURRENT_ITEM_FIND = 1     // 发现
@@ -48,10 +46,11 @@ class MainActivity : BaseActivity() {
    }
 
    override fun initActivity(savedInstanceState: Bundle?) {
+      super.initActivity(savedInstanceState)
       initView()
       initEvent()
       // 设置默认的显示界面
-      activity_viewPager.currentItem = currentIndex
+      updateUI(-1, currentIndex)
    }
 
    private fun initView() {
@@ -92,7 +91,8 @@ class MainActivity : BaseActivity() {
       }
       common_search.setOnClickListener {
          // 点击搜索按钮，跳转搜索界面
-         LocalMusicActivity.runActivity(getActivity())
+         startActivity(Intent(getActivity(), TestActivity::class.java))
+//         LocalMusicActivity.runActivity(this)
 //         SearchActivity.runActivity(this)
       }
 
@@ -112,7 +112,7 @@ class MainActivity : BaseActivity() {
    private fun updateUI(lastIndex: Int, currentItem: Int) {
       currentIndex = currentItem
 
-      if (lastIndex == currentIndex) return
+      if (lastIndex != -1 && lastIndex == currentIndex) return
 
       // 设置被选中的 item 的选中动画
       changeItem(currentItem, true)
@@ -160,24 +160,28 @@ class MainActivity : BaseActivity() {
       animSet.start()
    }
 
-   // 双击退出程序
-   var prePressTime = 0.toLong()
+   /**
+    * 获取状态栏高度
+    */
+   private val statusBarHeight: Int
+      get() {
+         var result = 0
+         val resId = resources.getIdentifier("status_bar_height", "dimen", "android")
+         if (resId > 0) {
+            result = resources.getDimensionPixelSize(resId)
+         }
+         return result
+      }
 
    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-      if (keyCode == KeyEvent.KEYCODE_BACK) {
-         if (System.currentTimeMillis() - prePressTime > 2000) {
-            prePressTime = System.currentTimeMillis()
-            ToastUtils.showToast(this, resources.getString(R.string.exit_tip))
-         } else {
-            finish()
-            android.os.Process.killProcess(android.os.Process.myUid())
-            System.exit(0)
-         }
-         return false
-      } else {
-         // 点击音量键加减的时候也会响应该方法，所以在这里处理，防止点击音量键会导致应用退出
-         return super.onKeyDown(keyCode, event)
+      if (keyCode == KeyEvent.KEYCODE_BACK) {      // 设置点击返回桌面而不是退出应用
+         val home = Intent(Intent.ACTION_MAIN)
+         home.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+         home.addCategory(Intent.CATEGORY_HOME)
+         startActivity(home)
+         return true
       }
+      return super.onKeyDown(keyCode, event)
    }
 
    override fun getLayoutId(): Int = R.layout.activity_main
