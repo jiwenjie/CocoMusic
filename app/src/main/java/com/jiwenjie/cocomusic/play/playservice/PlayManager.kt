@@ -270,7 +270,7 @@ object PlayManager {
     }
 
     fun setPlayList(playlist: List<Music>) {
-
+        // todo
     }
 
     fun clearQueue() {

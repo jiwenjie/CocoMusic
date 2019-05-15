@@ -34,6 +34,7 @@
     <dimen name="layout_14_sp">14sp</dimen>
     <dimen name="layout_16_sp">16sp</dimen>
     <dimen name="layout_18_sp">18sp</dimen>
+    <dimen name="layout_19_sp">19sp</dimen>
     <dimen name="layout_20_sp">20sp</dimen>
     <dimen name="layout_24_sp">24sp</dimen>
     <dimen name="layout_30_sp">30sp</dimen>

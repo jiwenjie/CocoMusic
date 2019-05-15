@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
    private val CURRENT_ITEM_VIDEO = 3    // 视频
 
    private val ORIGINAL_FONT_SIZE = 16f   // 原始字体大小
-   private val SELECT_FONT_SIZE = 18f   // 点击选中字体大小
+   private val SELECT_FONT_SIZE = 19f   // 点击选中字体大小
 
    private var currentIndex = 0     // 标识 toolbar 的当前下标
 
@@ -92,7 +92,8 @@ class MainActivity : BaseActivity() {
       }
       common_search.setOnClickListener {
          // 点击搜索按钮，跳转搜索界面
-         SearchActivity.runActivity(this)
+         LocalMusicActivity.runActivity(getActivity())
+//         SearchActivity.runActivity(this)
       }
 
       activity_viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -146,11 +147,11 @@ class MainActivity : BaseActivity() {
       if (isSelect) {   // 被选中的动画
          objAnim = ObjectAnimator.ofFloat(target, onePropertyName, ORIGINAL_FONT_SIZE, SELECT_FONT_SIZE)      // 缩放
          colorAnim = ObjectAnimator.ofObject(target, twoPropertyName, ArgbEvaluator(),
-                 resources.getColor(R.color.alpha_80_white), resources.getColor(R.color.white))     // 字体颜色
+                 resources.getColor(R.color.alpha_60_white), resources.getColor(R.color.white))     // 字体颜色
       } else {    // 未被选中的动画
          objAnim = ObjectAnimator.ofFloat(target, onePropertyName, SELECT_FONT_SIZE, ORIGINAL_FONT_SIZE)      // 缩放
          colorAnim = ObjectAnimator.ofObject(target, twoPropertyName, ArgbEvaluator(),
-                 resources.getColor(R.color.white), resources.getColor(R.color.alpha_80_white))     // 字体颜色
+                 resources.getColor(R.color.white), resources.getColor(R.color.alpha_60_white))     // 字体颜色
       }
 
       val animSet = AnimatorSet()

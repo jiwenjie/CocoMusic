@@ -53,6 +53,7 @@ class LocalMusicActivity : PlayBaseActivity() {
            val data = SongLoader.getAllLocalSongs(this@LocalMusicActivity)
            uiThread {
                adapter.addAllData(data as ArrayList<Music>)
+               PlayManager.setPlayList(data)
            }
        }
 

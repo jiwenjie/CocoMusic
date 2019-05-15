@@ -33,7 +33,7 @@
             android:gravity="center"
             android:text="我的"
             android:textColor="@color/white"
-            android:textSize="@dimen/layout_18_sp" />
+            android:textSize="@dimen/layout_19_sp" />
 
         <TextView
             android:id="@+id/common_find"
@@ -43,7 +43,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="发现"
-            android:textColor="@color/alpha_80_white"
+            android:textColor="@color/alpha_60_white"
             android:textSize="@dimen/layout_16_sp" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="朋友"
-            android:textColor="@color/alpha_80_white"
+            android:textColor="@color/alpha_60_white"
             android:textSize="@dimen/layout_16_sp" />
 
         <TextView
@@ -65,7 +65,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="视频"
-            android:textColor="@color/alpha_80_white"
+            android:textColor="@color/alpha_60_white"
             android:textSize="@dimen/layout_16_sp" />
 
     </LinearLayout>
