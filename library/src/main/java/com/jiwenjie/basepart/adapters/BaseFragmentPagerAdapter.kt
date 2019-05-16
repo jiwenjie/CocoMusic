@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter
  *  desc:
  *  version:1.0
  */
-class BaseFragmentPagerAdapter(fragmentManager: FragmentManager, fragmentList: ArrayList<Fragment>, titles: ArrayList<String>)
+class BaseFragmentPagerAdapter(fragmentManager: FragmentManager, fragmentList: MutableList<Fragment>, titles: MutableList<String>)
     : FragmentPagerAdapter(fragmentManager) {
 
     private var mFragments = fragmentList
@@ -22,5 +22,5 @@ class BaseFragmentPagerAdapter(fragmentManager: FragmentManager, fragmentList: A
     override fun getCount(): Int = mTitles.size
 
     override fun getPageTitle(position: Int): CharSequence? =
-        if (mTitles.isEmpty()) super.getPageTitle(position) else mTitles[position]
+            if (mTitles.isEmpty()) super.getPageTitle(position) else mTitles[position]
 }

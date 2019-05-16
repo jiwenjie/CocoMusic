@@ -3,12 +3,9 @@ package com.jiwenjie.basepart.views
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.jaeger.library.StatusBarUtil
-import com.jiwenjie.basepart.R
 import com.jiwenjie.basepart.utils.LogUtils
 
 /**
@@ -29,10 +26,8 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         LogUtils.e("onViewCreated()")
         initFragment(savedInstanceState)
-        StatusBarUtil.setColor(activity, ContextCompat.getColor(activity!!, R.color.colorPrimary), 0)
         loadData()
         setListener()
-        handleRxBus()
     }
 
     protected open fun loadData() {}

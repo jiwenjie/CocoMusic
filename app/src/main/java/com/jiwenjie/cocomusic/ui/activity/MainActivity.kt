@@ -7,15 +7,16 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.view.Gravity
 import android.view.KeyEvent
+import com.jaeger.library.StatusBarUtil
 import com.jiwenjie.basepart.adapters.BaseFragmentPagerAdapter
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.test.TestFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_toolbar.*
-import kotlin.collections.ArrayList
 
 /**
  *  author:Jiwenjie
@@ -45,8 +46,14 @@ class MainActivity : PlayBaseActivity() {
       }
    }
 
+   /**
+    * 注意 super.initActivity() 必须调用
+    */
    override fun initActivity(savedInstanceState: Bundle?) {
+      StatusBarUtil.setColorForDrawerLayout(getActivity(), drawer_layout,
+               ContextCompat.getColor(getActivity(), R.color.colorPrimary), 0)
       super.initActivity(savedInstanceState)
+      // 设置了该方法后即可使得侧滑栏高度充满全屏
       initView()
       initEvent()
       // 设置默认的显示界面
@@ -66,13 +73,14 @@ class MainActivity : PlayBaseActivity() {
       titleList.add("three")
       titleList.add("four")
 
-      activity_viewPager.adapter = BaseFragmentPagerAdapter(supportFragmentManager, fragmentList, titleList)
+      viewPager.adapter = BaseFragmentPagerAdapter(supportFragmentManager, fragmentList, titleList)
    }
 
    private fun initEvent() {
       common_menu.setOnClickListener {
-         activity_drawerLyt.openDrawer(Gravity.START)
+         drawer_layout.openDrawer(Gravity.START)
       }
+
       common_mine.setOnClickListener {
          // 我的
          updateUI(currentIndex, CURRENT_ITEM_MINE)
@@ -89,14 +97,14 @@ class MainActivity : PlayBaseActivity() {
          // 视频
          updateUI(currentIndex, CURRENT_ITEM_VIDEO)
       }
+
       common_search.setOnClickListener {
          // 点击搜索按钮，跳转搜索界面
-         startActivity(Intent(getActivity(), TestActivity::class.java))
-//         LocalMusicActivity.runActivity(this)
-//         SearchActivity.runActivity(this)
+         LocalMusicActivity.runActivity(getActivity())
+         //         SearchActivity.runActivity(this)
       }
 
-      activity_viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+      viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
          override fun onPageScrollStateChanged(p0: Int) {
          }
 
@@ -119,7 +127,7 @@ class MainActivity : PlayBaseActivity() {
       // 设置之前选中的 item 的还原动画
       changeItem(lastIndex, false)
 
-      activity_viewPager.setCurrentItem(currentItem, true)
+      viewPager.setCurrentItem(currentItem, true)
    }
 
    // 改变选择 item 的方法
@@ -147,11 +155,11 @@ class MainActivity : PlayBaseActivity() {
       if (isSelect) {   // 被选中的动画
          objAnim = ObjectAnimator.ofFloat(target, onePropertyName, ORIGINAL_FONT_SIZE, SELECT_FONT_SIZE)      // 缩放
          colorAnim = ObjectAnimator.ofObject(target, twoPropertyName, ArgbEvaluator(),
-                 resources.getColor(R.color.alpha_60_white), resources.getColor(R.color.white))     // 字体颜色
+                 ContextCompat.getColor(getActivity(), R.color.alpha_60_white), ContextCompat.getColor(getActivity(), R.color.white))     // 字体颜色
       } else {    // 未被选中的动画
          objAnim = ObjectAnimator.ofFloat(target, onePropertyName, SELECT_FONT_SIZE, ORIGINAL_FONT_SIZE)      // 缩放
          colorAnim = ObjectAnimator.ofObject(target, twoPropertyName, ArgbEvaluator(),
-                 resources.getColor(R.color.white), resources.getColor(R.color.alpha_60_white))     // 字体颜色
+                 ContextCompat.getColor(getActivity(), R.color.white), ContextCompat.getColor(getActivity(), R.color.alpha_60_white))     // 字体颜色
       }
 
       val animSet = AnimatorSet()
@@ -159,19 +167,6 @@ class MainActivity : PlayBaseActivity() {
       animSet.duration = 300
       animSet.start()
    }
-
-   /**
-    * 获取状态栏高度
-    */
-   private val statusBarHeight: Int
-      get() {
-         var result = 0
-         val resId = resources.getIdentifier("status_bar_height", "dimen", "android")
-         if (resId > 0) {
-            result = resources.getDimensionPixelSize(resId)
-         }
-         return result
-      }
 
    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
       if (keyCode == KeyEvent.KEYCODE_BACK) {      // 设置点击返回桌面而不是退出应用

@@ -41,7 +41,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/coco_music_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/coco_music_icon"
         android:supportsRtl="true"
         android:theme="@style/BaseTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -54,7 +53,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.MainActivity"
+        <activity
+            android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -66,7 +66,8 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />  <!-- 播放音乐的 Activity -->
 
-        <activity android:name=".ui.activity.SearchActivity"
+        <activity
+            android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait" />
 
         <!-- 点击测试跳转的 Activity -->

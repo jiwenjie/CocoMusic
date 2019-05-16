@@ -39,11 +39,12 @@ class SplashActivity : BaseActivity() {
         Observable.timer(3000, TimeUnit.MILLISECONDS)
             .compose(RxJavaUtils.applyObservableAsync())
             .subscribe {
-                MainActivity.runActivity(this)
+                MainActivity.runActivity(getActivity())
                 finish()
             }
     }
 
+    // 不允许点击退出
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         return true
     }
