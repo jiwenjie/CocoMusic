@@ -15,6 +15,7 @@ import com.jaeger.library.StatusBarUtil
 import com.jiwenjie.basepart.adapters.BaseFragmentPagerAdapter
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.test.TestFragment
+import com.jiwenjie.cocomusic.ui.fragment.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_toolbar.*
 
@@ -61,17 +62,20 @@ class MainActivity : PlayBaseActivity() {
    }
 
    private fun initView() {
-      val fragmentList = ArrayList<Fragment>()
-      fragmentList.add(TestFragment.newInstance("one"))
-      fragmentList.add(TestFragment.newInstance("two"))
-      fragmentList.add(TestFragment.newInstance("three"))
-      fragmentList.add(TestFragment.newInstance("four"))
 
-      val titleList = ArrayList<String>()
-      titleList.add("one")
-      titleList.add("two")
-      titleList.add("three")
-      titleList.add("four")
+      val fragmentList = ArrayList<Fragment>().apply {
+         add(MineFragment.newInstance())
+         add(TestFragment.newInstance("two"))
+         add(TestFragment.newInstance("three"))
+         add(TestFragment.newInstance("four"))
+      }
+
+      val titleList = ArrayList<String>().apply {
+         add("one")
+         add("two")
+         add("three")
+         add("four")
+      }
 
       viewPager.adapter = BaseFragmentPagerAdapter(supportFragmentManager, fragmentList, titleList)
    }

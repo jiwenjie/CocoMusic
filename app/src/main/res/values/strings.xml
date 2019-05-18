@@ -10,7 +10,6 @@
     <string name="play_mode_repeat">单曲播放</string>
     <string name="play_mode_loop">顺序播放</string>
 
-
     <string name="delete">删除</string>
     <string name="pause">暂停</string>
     <string name="start">开始</string>
@@ -36,4 +35,13 @@
     <string name="song">歌曲名</string>
     <string name="artist_tips">歌手 - 专辑</string>
     <string name="unknown">未知</string>
+
+    <!-- 我的界面 -->
+    <string name="local_music">本地音乐</string>
+    <string name="recent_play">最近播放</string>
+    <string name="download_manager">下载管理</string>
+    <string name="my_radio">我的电台</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="show_create_musicList">创建的歌单</string>
+    <string name="collect_musicList">收藏的歌单</string>
 </resources>

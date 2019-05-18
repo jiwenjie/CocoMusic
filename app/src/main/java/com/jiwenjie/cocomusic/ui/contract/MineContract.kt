@@ -2,6 +2,7 @@ package com.jiwenjie.cocomusic.ui.contract
 
 import com.jiwenjie.basepart.mvp.BaseMvpViewImpl
 import com.jiwenjie.cocomusic.aidl.Music
+import io.reactivex.Observable
 
 /**
  *  author:Jiwenjie
@@ -13,9 +14,9 @@ import com.jiwenjie.cocomusic.aidl.Music
 interface MineContract {
 
    interface Model {
-      fun getLocalMusicSize(): MutableList<Music>?    // 获取本地音乐
+      fun getLocalMusicSize(): Observable<MutableList<Music>>?    // 获取本地音乐
 
-      fun getRecentOpen(): MutableList<Music>?       // 获取最近播放的歌曲
+      fun getRecentOpen(): Observable<MutableList<Music>>?       // 获取最近播放的歌曲
 
       fun managerDownload()   // 下载管理
 
@@ -25,9 +26,9 @@ interface MineContract {
    }
 
    interface View: BaseMvpViewImpl {
-      fun showLocalMusicSize()    // 获取本地音乐的数量
+      fun showLocalMusicSize(musicList: MutableList<Music>)    // 获取本地音乐的数量
 
-      fun showRecentOpen()        // 获取最近播放的歌曲
+      fun showRecentOpen(musicList: MutableList<Music>)        // 获取最近播放的歌曲
 
       fun managerDownload()   // 下载管理
 

@@ -1,6 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package com.jiwenjie.cocomusic.utils
 
 import android.app.Activity
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -13,10 +18,13 @@ import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
 import android.view.View
 import android.view.WindowManager
+import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.CocoApp
 import com.jiwenjie.cocomusic.R
+import com.jiwenjie.cocomusic.bean.AppInfo
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.regex.Pattern
 
 /**
@@ -113,6 +121,60 @@ object CommonUtils {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = Color.TRANSPARENT
         }
+    }
+
+    /**
+     * 获取已安装apk的列表
+     */
+    private fun getAppInfos(): ArrayList<AppInfo> {
+        val appInfos = ArrayList<AppInfo>()
+        //获取到包的管理者
+        val packageManager = CocoApp.contextInstance.packageManager
+        //获得所有的安装包
+        val installedPackages = packageManager.getInstalledPackages(0)
+
+        //遍历每个安装包，获取对应的信息
+        for (packageInfo in installedPackages) {
+
+            val appInfo = AppInfo()
+
+            appInfo.applicationInfo = packageInfo.applicationInfo
+            appInfo.versionCode = packageInfo.versionCode
+
+            //得到icon
+            val drawable = packageInfo.applicationInfo.loadIcon(packageManager)
+            appInfo.icon = drawable
+
+            //得到程序的名字
+            val apkName = packageInfo.applicationInfo.loadLabel(packageManager).toString()
+            appInfo.apkName = apkName
+
+            //得到程序的包名
+            val packageName = packageInfo.packageName
+            appInfo.apkPackageName = packageName
+
+            //得到程序的资源文件夹
+            val sourceDir = packageInfo.applicationInfo.sourceDir
+            val file = File(sourceDir)
+            //得到apk的大小
+            val size = file.length()
+            appInfo.apkSize = size
+
+            LogUtils.e("---------------------------")
+            LogUtils.e("程序的名字:$apkName")
+            LogUtils.e("程序的包名:$packageName")
+            LogUtils.e("程序的大小:$size")
+
+            //获取到安装应用程序的标记
+            val flags = packageInfo.applicationInfo.flags
+
+           appInfo.isUserApp = (flags and ApplicationInfo.FLAG_SYSTEM) == 0
+
+           appInfo.isRom = (flags and  ApplicationInfo.FLAG_EXTERNAL_STORAGE) == 0
+
+           appInfos.add(appInfo)
+        }
+        return appInfos
     }
 }
 

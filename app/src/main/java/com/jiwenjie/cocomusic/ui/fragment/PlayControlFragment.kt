@@ -41,6 +41,8 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
         PlayContract.View,
         SeekBar.OnSeekBarChangeListener {
 
+   private val isShow = false    // 是否显示底部控制栏，默认不显示
+
    private val TAG = PlayControlFragment::class.java.simpleName
 
    private var coverAnimator: ObjectAnimator? = null
@@ -48,6 +50,11 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
    private val musicList = ArrayList<Music>()
 
    override fun initFragment(savedInstanceState: Bundle?) {
+      if (isShow) {
+         view?.visibility = View.VISIBLE
+      } else {
+         view?.visibility = View.GONE
+      }
       // 初始化控件
       EventBus.getDefault().register(this)
 //        showLyric(FloatLyricViewManager.lyricInfo, true)
@@ -181,7 +188,7 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
       }
       progressBar.max = PlayManager.getDuration()
       initSongList()
-       LogUtils.e(TAG, "歌曲 max${PlayManager.getDuration()}  current:${PlayManager.getCurrentPosition()}")
+      LogUtils.e(TAG, "歌曲 max${PlayManager.getDuration()}  current:${PlayManager.getCurrentPosition()}")
    }
 
    @Subscribe(threadMode = ThreadMode.MAIN)

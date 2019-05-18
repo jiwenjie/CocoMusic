@@ -41,4 +41,7 @@
     <dimen name="layout_35_sp">35sp</dimen>
     <dimen name="layout_36_sp">36sp</dimen>
     <dimen name="layout_40_sp">40sp</dimen>
+
+    <!-- px 大小 -->
+    <dimen name="layout_1_px">1px</dimen>
 </resources>

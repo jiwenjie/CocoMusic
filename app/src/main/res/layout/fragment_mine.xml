@@ -1,6 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mineRefreshLyt"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <!-- 展示网易云本地最上面一行的滑动列表，暂时不写 -->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mineRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/mine_localLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/layout_16_dp"
+                    android:paddingTop="@dimen/layout_8_dp"
+                    android:paddingEnd="@dimen/layout_16_dp"
+                    android:paddingBottom="@dimen/layout_8_dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/layout_40_dp"
+                        android:layout_height="@dimen/layout_40_dp"
+                        android:padding="@dimen/layout_6_dp"
+                        android:src="@drawable/icon_local_music"
+                        android:tint="@color/dark_l_l_l_l" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_16_dp"
+                        android:text="@string/local_music"
+                        android:textColor="@color/alpha_70_black"
+                        android:textSize="@dimen/layout_16_sp" />
+
+                    <TextView
+                        android:id="@+id/localMusicSizeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_4_dp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/layout_14_sp"
+                        tools:text="(0)" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_1_px"
+                    android:background="@color/background" />
+
+                <LinearLayout
+                    android:id="@+id/mine_recentPlayLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/layout_16_dp"
+                    android:paddingTop="@dimen/layout_8_dp"
+                    android:paddingEnd="@dimen/layout_16_dp"
+                    android:paddingBottom="@dimen/layout_8_dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/layout_40_dp"
+                        android:layout_height="@dimen/layout_40_dp"
+                        android:padding="@dimen/layout_6_dp"
+                        android:src="@drawable/icon_recent_music"
+                        android:tint="@color/dark_l_l_l_l" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_16_dp"
+                        android:text="@string/recent_play"
+                        android:textColor="@color/alpha_70_black"
+                        android:textSize="@dimen/layout_16_sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_4_dp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/layout_14_sp"
+                        tools:text="(0)" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_1_px"
+                    android:background="@color/background" />
+
+                <LinearLayout
+                    android:id="@+id/mine_downloadLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/layout_16_dp"
+                    android:paddingTop="@dimen/layout_8_dp"
+                    android:paddingEnd="@dimen/layout_16_dp"
+                    android:paddingBottom="@dimen/layout_8_dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/layout_40_dp"
+                        android:layout_height="@dimen/layout_40_dp"
+                        android:padding="@dimen/layout_8_dp"
+                        android:src="@drawable/icon_download"
+                        android:tint="@color/dark_l_l_l_l" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_16_dp"
+                        android:text="@string/download_manager"
+                        android:textColor="@color/alpha_70_black"
+                        android:textSize="@dimen/layout_16_sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_4_dp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/layout_14_sp"
+                        tools:text="(0)" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_1_px"
+                    android:background="@color/background" />
+
+                <LinearLayout
+                    android:id="@+id/mine_radioLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/layout_16_dp"
+                    android:paddingTop="@dimen/layout_8_dp"
+                    android:paddingEnd="@dimen/layout_16_dp"
+                    android:paddingBottom="@dimen/layout_8_dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/layout_40_dp"
+                        android:layout_height="@dimen/layout_40_dp"
+                        android:padding="@dimen/layout_8_dp"
+                        android:src="@drawable/icon_radio"
+                        android:tint="@color/dark_l_l_l_l" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_16_dp"
+                        android:text="@string/my_radio"
+                        android:textColor="@color/alpha_70_black"
+                        android:textSize="@dimen/layout_16_sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_4_dp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/layout_14_sp"
+                        tools:text="(0)" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_1_px"
+                    android:background="@color/background" />
+
+                <LinearLayout
+                    android:id="@+id/mine_collectLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/layout_16_dp"
+                    android:paddingTop="@dimen/layout_8_dp"
+                    android:paddingEnd="@dimen/layout_16_dp"
+                    android:paddingBottom="@dimen/layout_8_dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/layout_40_dp"
+                        android:layout_height="@dimen/layout_40_dp"
+                        android:padding="@dimen/layout_8_dp"
+                        android:src="@drawable/icon_collect"
+                        android:tint="@color/dark_l_l_l_l" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_16_dp"
+                        android:text="@string/my_collect"
+                        android:textColor="@color/alpha_70_black"
+                        android:textSize="@dimen/layout_16_sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_4_dp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/layout_14_sp"
+                        tools:text="(0)" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_8_dp"
+                android:background="@color/background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/layout_16_dp"
+                android:paddingTop="@dimen/layout_12_dp"
+                android:paddingEnd="@dimen/layout_16_dp"
+                android:paddingBottom="@dimen/layout_12_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_25_dp"
+                    android:layout_height="@dimen/layout_25_dp"
+                    android:layout_marginEnd="@dimen/layout_10_dp"
+                    android:padding="@dimen/layout_4_dp"
+                    android:src="@drawable/icon_right_arrow"
+                    android:tint="@color/alpha_70_black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_create_musicList"
+                    android:textColor="@color/alpha_70_black"
+                    android:textSize="@dimen/layout_16_sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_4_dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/layout_14_sp"
+                    tools:text="(0)" />
+
+                <ImageView
+                    android:id="@+id/createMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_12_dp"
+                    android:rotation="45"
+                    android:src="@drawable/ic_clear"
+                    android:tint="@color/alpha_70_black" />
+
+                <ImageView
+                    android:id="@+id/editCreateIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_more_grey" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/createMusicListRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/layout_16_dp"
+                android:paddingTop="@dimen/layout_12_dp"
+                android:paddingEnd="@dimen/layout_16_dp"
+                android:paddingBottom="@dimen/layout_12_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_25_dp"
+                    android:layout_height="@dimen/layout_25_dp"
+                    android:layout_marginEnd="@dimen/layout_10_dp"
+                    android:padding="@dimen/layout_4_dp"
+                    android:src="@drawable/icon_right_arrow"
+                    android:tint="@color/alpha_70_black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/collect_musicList"
+                    android:textColor="@color/alpha_70_black"
+                    android:textSize="@dimen/layout_16_sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_4_dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/layout_14_sp"
+                    tools:text="(0)" />
+
+                <ImageView
+                    android:id="@+id/editCollectIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_more_grey" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/collectMusicListRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

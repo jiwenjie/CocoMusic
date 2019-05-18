@@ -2,11 +2,11 @@ package com.jiwenjie.cocomusic.utils
 
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Flowable.create
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-
 
 /**
  *  author:Jiwenjie
@@ -38,7 +38,7 @@ object RxJavaUtils {
     */
    @JvmStatic
    fun <T> createFlowable(t: T): Flowable<T> {
-      return Flowable.create({ emitter ->
+      return create({ emitter ->
          try {
             emitter.onNext(t)
             emitter.onComplete()

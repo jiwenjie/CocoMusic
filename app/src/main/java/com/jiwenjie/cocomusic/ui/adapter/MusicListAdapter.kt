@@ -123,8 +123,6 @@ class MusicListAdapter(context: Context, beanList: ArrayList<Music>)
       this.listener = listener
    }
 
-   override fun getAdapterLayoutId(viewType: Int): Int = R.layout.activity_music_item
-
    override fun onViewAttachedToWindow(holder: BaseRecyclerHolder) {
       super.onViewAttachedToWindow(holder)
       if (!EventBus.getDefault().isRegistered(this)) {
@@ -138,6 +136,8 @@ class MusicListAdapter(context: Context, beanList: ArrayList<Music>)
          EventBus.getDefault().unregister(this)
       }
    }
+
+   override fun getAdapterLayoutId(viewType: Int): Int = R.layout.activity_music_item
 }
 
 
