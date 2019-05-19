@@ -1,134 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="@color/white"
     android:clickable="true"
-    android:focusable="true">
-    <!-- 为了可以在右侧默认不显示需要设置 layout_gravity="start"
-         否则默认会遮住全屏 -->
+    android:focusable="true"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+        <!-- 为了可以在右侧默认不显示需要设置 layout_gravity="start"
+             否则默认会遮住全屏 -->
 
-        <!-- header start -->
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="192dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
+            <!-- header start -->
+            <FrameLayout
                 android:layout_width="match_parent"
+                android:layout_height="192dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                <ImageView
+                    android:id="@+id/avatarImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/nav_header_bg"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="56dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_avatar" />
+
+                <TextView
+                    android:id="@+id/userNameText"
+                    style="@style/NormalTextStyle"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="24dp"
+                    android:padding="16dp"
+                    android:text="stormwenjie"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_gravity="bottom"
+                    android:padding="16dp"
+                    android:text="写代码的猴子"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+            </FrameLayout>
+            <!-- header end -->
+
+            <LinearLayout
+                android:id="@+id/setTimeStopLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_settime_stop"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/setting_time_stop"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/scanLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_scan"
+                    android:tint="@color/dark" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/setting_time_stop"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/myFriendLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_my_friend"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/my_friend"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/changeThemeLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_theme"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/change_theme"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/alarmColckLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_alarm_clock"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/music_alarm_clock"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudDiskLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_cloud_disk"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/cloud_disk"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/couponLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_coupon"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/coupon"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/joinUsLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_join_us"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/join_us"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/broadcastLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_16_dp">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_microphone"
+                    android:tint="@color/dark_l_l_l" />
+
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_10_dp"
+                    android:text="@string/start_broadcast"
+                    android:textSize="@dimen/layout_14_sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_50_dp"
+        android:background="@color/background"
+        android:paddingStart="@dimen/layout_16_dp"
+        android:paddingEnd="@dimen/layout_16_dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1px"
+            android:background="@color/alpha_80_white">
+
+            <LinearLayout
+                android:id="@+id/nightTypeLyt"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/nav_header_bg"
-                android:scaleType="centerCrop" />
+                android:layout_weight="1"
+                android:gravity="center">
 
-            <ImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="56dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_avatar" />
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_moon" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="24dp"
-                android:padding="16dp"
-                android:text="stormwenjie"
-                android:textColor="@android:color/white" />
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_8_dp"
+                    android:layout_marginEnd="@dimen/layout_8_dp"
+                    android:drawablePadding="@dimen/layout_8_dp"
+                    android:text="@string/moon_type" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:padding="16dp"
-                android:text="写代码的猴子"
-                android:textColor="@android:color/white"
-                android:textSize="12sp" />
-        </FrameLayout>
-        <!-- header end -->
+            <LinearLayout
+                android:id="@+id/settingLyt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_setting" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_8_dp"
+                    android:layout_marginEnd="@dimen/layout_8_dp"
+                    android:drawablePadding="@dimen/layout_8_dp"
+                    android:text="@string/setting" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
+            <LinearLayout
+                android:id="@+id/exitLyt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
+                <ImageView
+                    android:layout_width="@dimen/layout_20_dp"
+                    android:layout_height="@dimen/layout_20_dp"
+                    android:src="@drawable/icon_power"
+                    android:tint="@color/dark_l_l_l_l_l" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_20_dp"
-            android:text="cascascsa"
-            android:textSize="@dimen/layout_18_sp" />
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+                <TextView
+                    style="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/layout_8_dp"
+                    android:layout_marginEnd="@dimen/layout_8_dp"
+                    android:drawablePadding="@dimen/layout_8_dp"
+                    android:text="@string/exit_application" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

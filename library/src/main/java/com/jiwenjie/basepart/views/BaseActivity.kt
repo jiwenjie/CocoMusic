@@ -16,6 +16,8 @@ import com.jiwenjie.basepart.ActivityStackManager
 import com.jiwenjie.basepart.PermissionListener
 import com.jiwenjie.basepart.utils.LogUtils
 import android.view.WindowManager
+import com.jaeger.library.StatusBarUtil
+import com.jiwenjie.basepart.R
 
 
 /**
@@ -32,6 +34,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
+      StatusBarUtil.setColor(getActivity(), ContextCompat.getColor(getActivity(), R.color.default_theme))
       // 该行代码可以实现侧滑栏高度充满全屏，不过侧滑栏拉开后状态栏颜色为半透明不是全透明
       fullScreen(getActivity())
       LogUtils.e("onCreate()")

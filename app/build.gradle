@@ -44,4 +44,7 @@ dependencies {
     //Eventbus
     implementation 'org.greenrobot:eventbus:3.1.1'
     api "org.jetbrains.anko:anko-appcompat-v7-commons:0.10.8"
+
+    // 添加 kotlin 的协程依赖
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'
 }

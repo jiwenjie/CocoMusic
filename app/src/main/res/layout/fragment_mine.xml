@@ -46,12 +46,9 @@
                         android:tint="@color/dark_l_l_l_l" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/NormalTextStyle"
                         android:layout_marginStart="@dimen/layout_16_dp"
-                        android:text="@string/local_music"
-                        android:textColor="@color/alpha_70_black"
-                        android:textSize="@dimen/layout_16_sp" />
+                        android:text="@string/local_music" />
 
                     <TextView
                         android:id="@+id/localMusicSizeText"
@@ -87,12 +84,9 @@
                         android:tint="@color/dark_l_l_l_l" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/NormalTextStyle"
                         android:layout_marginStart="@dimen/layout_16_dp"
-                        android:text="@string/recent_play"
-                        android:textColor="@color/alpha_70_black"
-                        android:textSize="@dimen/layout_16_sp" />
+                        android:text="@string/recent_play" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,12 +121,9 @@
                         android:tint="@color/dark_l_l_l_l" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/NormalTextStyle"
                         android:layout_marginStart="@dimen/layout_16_dp"
-                        android:text="@string/download_manager"
-                        android:textColor="@color/alpha_70_black"
-                        android:textSize="@dimen/layout_16_sp" />
+                        android:text="@string/download_manager" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -167,12 +158,9 @@
                         android:tint="@color/dark_l_l_l_l" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/NormalTextStyle"
                         android:layout_marginStart="@dimen/layout_16_dp"
-                        android:text="@string/my_radio"
-                        android:textColor="@color/alpha_70_black"
-                        android:textSize="@dimen/layout_16_sp" />
+                        android:text="@string/my_radio" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -207,12 +195,9 @@
                         android:tint="@color/dark_l_l_l_l" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/NormalTextStyle"
                         android:layout_marginStart="@dimen/layout_16_dp"
-                        android:text="@string/my_collect"
-                        android:textColor="@color/alpha_70_black"
-                        android:textSize="@dimen/layout_16_sp" />
+                        android:text="@string/my_collect" />
 
                     <TextView
                         android:layout_width="wrap_content"

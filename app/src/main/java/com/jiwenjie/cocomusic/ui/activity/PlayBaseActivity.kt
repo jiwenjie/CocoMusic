@@ -24,52 +24,52 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class PlayBaseActivity : BaseActivity(), ServiceConnection {
 
-    protected val mHandler by lazy { Handler() }
-    protected var mToken: PlayManager.ServiceToken? = null
-    var isPause = true
+   protected val mHandler by lazy { Handler() }
+   protected var mToken: PlayManager.ServiceToken? = null
+   var isPause = true
 
-    protected val disposables = ArrayList<Disposable>()
+   protected val disposables = ArrayList<Disposable>()
 
-    override fun initActivity(savedInstanceState: Bundle?) {
-        EventBus.getDefault().register(this)
-        mToken = PlayManager.bindToService(this, this)
-    }
+   override fun initActivity(savedInstanceState: Bundle?) {
+      EventBus.getDefault().register(this)
+      mToken = PlayManager.bindToService(this, this)
+   }
 
-    override fun onStart() {
-        super.onStart()
-        isPause = false
-    }
+   override fun onStart() {
+      super.onStart()
+      isPause = false
+   }
 
-    override fun onStop() {
-        super.onStop()
-        isPause = true
-    }
+   override fun onStop() {
+      super.onStop()
+      isPause = true
+   }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBus.getDefault().unregister(this)
-        if (mToken != null) {
-            PlayManager.unbindFromService(mToken)
-            mToken = null
-        }
-        for (disposable in disposables) {
-            disposable.dispose()
-        }
-    }
+   override fun onDestroy() {
+      super.onDestroy()
+      EventBus.getDefault().unregister(this)
+      if (mToken != null) {
+         PlayManager.unbindFromService(mToken)
+         mToken = null
+      }
+      for (disposable in disposables) {
+         disposable.dispose()
+      }
+   }
 
-    override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
-        mService = IMusicService.Stub.asInterface(iBinder)
-        setListener()
-        loadData()
-    }
+   override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
+      mService = IMusicService.Stub.asInterface(iBinder)
+      setListener()
+      loadData()
+   }
 
-    override fun onServiceDisconnected(componentName: ComponentName) {
-        mService = null
-    }
+   override fun onServiceDisconnected(componentName: ComponentName) {
+      mService = null
+   }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onDefaultEvent(event: MetaChangedEvent) {
-    }
+   @Subscribe(threadMode = ThreadMode.MAIN)
+   fun onDefaultEvent(event: MetaChangedEvent) {
+   }
 }
 
 

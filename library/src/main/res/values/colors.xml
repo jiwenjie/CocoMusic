@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="mn_colorDialogWindowBg">#00000000</color>
+    <color name="default_theme">#C62F2F</color>
     <color name="mn_colorDialogViewBg">#b2000000</color>
     <color name="mn_colorDialogTextColor">#ffffff</color>
     <color name="mn_colorDialogProgressBarColor">#ffffff</color>
