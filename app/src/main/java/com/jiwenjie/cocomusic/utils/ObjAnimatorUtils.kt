@@ -17,7 +17,7 @@ import com.jiwenjie.cocomusic.R
 object ObjAnimatorUtils {
 
    // 缩放的动画方法
-   fun startAnim(target: Any, onePropertyName: String,
+   fun startAnimObj(target: Any, onePropertyName: String,
                          twoPropertyName: String, isSelect: Boolean,
                          originValue: Float = 16f, selectValue: Float = 19f) {
       val objAnim: ObjectAnimator

@@ -47,5 +47,8 @@ interface MineContract {
       fun getMyRadio()        // 获取我的电台数量
 
       fun getMyCollect()      // 获取我的收藏数量
+
+      fun getCreateMusicList()
+      fun getCollectMusicList()
    }
 }

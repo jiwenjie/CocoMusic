@@ -25,10 +25,6 @@ class StandardWidget : BaseWidget() {
 
     private var isFirstCreate = true
 
-    override fun getLayoutRes(): Int {
-        return R.layout.widget_standard
-    }
-
     override fun onViewsUpdate(context: Context, remoteViews: RemoteViews, serviceName: ComponentName, extras: Bundle?) {
         LogUtils.e("BaseWidget 接收到广播---------- onViewsUpdate")
         if (isFirstCreate) {
@@ -98,6 +94,8 @@ class StandardWidget : BaseWidget() {
         val intent = Intent(context, MusicPlayerService::class.java)
         context.startService(intent)
     }
+
+    override fun getLayoutRes(): Int = R.layout.widget_standard
 }
 
 

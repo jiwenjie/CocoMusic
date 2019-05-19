@@ -7,7 +7,7 @@ import com.jiwenjie.basepart.views.BaseActivity
  *  author:Jiwenjie
  *  email:278630464@qq.com
  *  time:2018/12/14
- *  desc:
+ *  desc:普通的 MVP 基类
  *  version:1.0
  */
 abstract class BaseMvpActivity<V : BaseMvpViewImpl, P : BaseMvpPresenter<V>> : BaseActivity() {

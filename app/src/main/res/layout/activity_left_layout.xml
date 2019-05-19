@@ -27,13 +27,13 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                 <ImageView
-                    android:id="@+id/avatarImg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/nav_header_bg"
                     android:scaleType="centerCrop" />
 
                 <ImageView
+                    android:id="@+id/avatarImg"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_gravity="bottom"
@@ -97,7 +97,7 @@
                 <TextView
                     style="@style/NormalTextStyle"
                     android:layout_marginStart="@dimen/layout_10_dp"
-                    android:text="@string/setting_time_stop"
+                    android:text="@string/scan"
                     android:textSize="@dimen/layout_14_sp" />
             </LinearLayout>
 
@@ -246,18 +246,16 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/layout_50_dp"
-        android:background="@color/background"
-        android:paddingStart="@dimen/layout_16_dp"
-        android:paddingEnd="@dimen/layout_16_dp">
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="1px"
-            android:background="@color/alpha_80_white">
+            android:layout_marginTop="1px">
 
             <LinearLayout
                 android:id="@+id/nightTypeLyt"
+                android:paddingStart="@dimen/layout_16_dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -270,9 +268,8 @@
 
                 <TextView
                     style="@style/NormalTextStyle"
-                    android:layout_marginStart="@dimen/layout_8_dp"
+                    android:layout_marginStart="@dimen/layout_4_dp"
                     android:layout_marginEnd="@dimen/layout_8_dp"
-                    android:drawablePadding="@dimen/layout_8_dp"
                     android:text="@string/moon_type" />
             </LinearLayout>
 
@@ -290,14 +287,14 @@
 
                 <TextView
                     style="@style/NormalTextStyle"
-                    android:layout_marginStart="@dimen/layout_8_dp"
+                    android:layout_marginStart="@dimen/layout_4_dp"
                     android:layout_marginEnd="@dimen/layout_8_dp"
-                    android:drawablePadding="@dimen/layout_8_dp"
                     android:text="@string/setting" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/exitLyt"
+                android:paddingEnd="@dimen/layout_16_dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -311,9 +308,8 @@
 
                 <TextView
                     style="@style/NormalTextStyle"
-                    android:layout_marginStart="@dimen/layout_8_dp"
+                    android:layout_marginStart="@dimen/layout_4_dp"
                     android:layout_marginEnd="@dimen/layout_8_dp"
-                    android:drawablePadding="@dimen/layout_8_dp"
                     android:text="@string/exit_application" />
             </LinearLayout>
         </LinearLayout>

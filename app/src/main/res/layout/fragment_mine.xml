@@ -251,7 +251,7 @@
                     tools:text="(0)" />
 
                 <ImageView
-                    android:id="@+id/createMusic"
+                    android:id="@+id/createMusicListImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/layout_12_dp"
@@ -264,7 +264,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_more_grey" />
-
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView

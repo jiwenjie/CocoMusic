@@ -5,6 +5,7 @@ import com.jiwenjie.basepart.mvp.BaseMvpFragment
 import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
+import com.jiwenjie.cocomusic.ui.activity.LocalMusicActivity
 import com.jiwenjie.cocomusic.ui.contract.MineContract
 import com.jiwenjie.cocomusic.ui.presenter.MFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -44,6 +45,9 @@ class MineFragment : BaseMvpFragment<MineContract.View, MFragmentPresenter>(), M
    private fun initEvent() {
       mine_localLyt.setOnClickListener {
          // 点击跳转本地音乐
+         LocalMusicActivity.runActivity(activity!!, beanList = localMusic)
+      }
+      createMusicListImg.setOnClickListener {
 
       }
    }

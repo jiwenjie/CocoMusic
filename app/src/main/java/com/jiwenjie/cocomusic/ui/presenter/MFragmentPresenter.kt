@@ -41,4 +41,13 @@ class MFragmentPresenter(view: MineContract.View) :
 
    override fun getMyCollect() {
    }
+
+   /** 获取创建的歌单列表 **/
+   override fun getCreateMusicList() {
+
+   }
+
+   override fun getCollectMusicList() {
+
+   }
 }

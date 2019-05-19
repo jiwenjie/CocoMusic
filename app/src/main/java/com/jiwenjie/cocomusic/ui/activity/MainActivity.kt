@@ -10,12 +10,18 @@ import android.view.Gravity
 import android.view.KeyEvent
 import com.jaeger.library.StatusBarUtil
 import com.jiwenjie.basepart.adapters.BaseFragmentPagerAdapter
+import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.test.TestFragment
+import com.jiwenjie.cocomusic.ui.contract.MainContract
 import com.jiwenjie.cocomusic.ui.fragment.MineFragment
+import com.jiwenjie.cocomusic.ui.presenter.MainPresenter
 import com.jiwenjie.cocomusic.utils.ObjAnimatorUtils
+import io.reactivex.Observable
+import kotlinx.android.synthetic.main.activity_left_layout.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_toolbar.*
+import java.util.concurrent.TimeUnit
 
 /**
  *  author:Jiwenjie
@@ -25,12 +31,12 @@ import kotlinx.android.synthetic.main.activity_main_toolbar.*
  *  version:1.0
  */
 @Suppress("DEPRECATION")
-class MainActivity : PlayBaseActivity() {
+class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), MainContract.View {
 
-   private val CURRENT_ITEM_MINE = 0     // 我的
-   private val CURRENT_ITEM_FIND = 1     // 发现
-   private val CURRENT_ITEM_FRIEND = 2   // 朋友
-   private val CURRENT_ITEM_VIDEO = 3    // 视频
+   private val CURRENT_ITEM_MINE = 0     // mine
+   private val CURRENT_ITEM_FIND = 1     // find
+   private val CURRENT_ITEM_FRIEND = 2   // friend
+   private val CURRENT_ITEM_VIDEO = 3    // video
 
    private var currentIndex = 0     // 标识 toolbar 的当前下标
 
@@ -48,7 +54,6 @@ class MainActivity : PlayBaseActivity() {
    override fun initActivity(savedInstanceState: Bundle?) {
       StatusBarUtil.setColorForDrawerLayout(getActivity(), drawer_layout,
               ContextCompat.getColor(getActivity(), R.color.colorPrimary), 0)
-      super.initActivity(savedInstanceState)
       // 设置了该方法后即可使得侧滑栏高度充满全屏
       initView()
       initEvent()
@@ -57,7 +62,7 @@ class MainActivity : PlayBaseActivity() {
    }
 
    private fun initView() {
-
+      // main part
       val fragmentList = ArrayList<Fragment>().apply {
          add(MineFragment.newInstance())
          add(TestFragment.newInstance("two"))
@@ -79,6 +84,96 @@ class MainActivity : PlayBaseActivity() {
       common_menu.setOnClickListener {
          drawer_layout.openDrawer(Gravity.START)
       }
+
+      // drawlerLyt start
+      avatarImg.setOnClickListener {
+         ToastUtils.showToast(getActivity(), "暂未实现")
+      }
+      setTimeStopLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.setTimeStopPlay(getActivity())
+                 }
+      }
+      scanLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.openScan(getActivity())
+                 }
+      }
+      myFriendLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.showMyFriend(getActivity())
+                 }
+      }
+      changeThemeLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.changeAppTheme(getActivity())
+                 }
+      }
+      alarmColckLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.openMusicAlarmClock(getActivity())
+                 }
+      }
+      cloudDiskLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.openMusicCloud(getActivity())
+                 }
+      }
+      couponLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                 }
+         ToastUtils.showToast(getActivity(), "暂未实现")
+      }
+      joinUsLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                 }
+         ToastUtils.showToast(getActivity(), "暂未实现")
+      }
+      broadcastLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                 }
+         ToastUtils.showToast(getActivity(), "暂未实现")
+      }
+      nightTypeLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.setNightType(getActivity())
+                 }
+      }
+      settingLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.openSetting(getActivity())
+                 }
+      }
+      exitLyt.setOnClickListener {
+         drawer_layout.closeDrawers()
+         Observable.timer(300, TimeUnit.MILLISECONDS)
+                 .subscribe {
+                    mPresenter.exitApplication()
+                 }
+      }
+      // drawlerLyt end
 
       common_mine.setOnClickListener {
          // 我的
@@ -116,8 +211,9 @@ class MainActivity : PlayBaseActivity() {
    }
 
    private fun updateUI(lastIndex: Int, currentItem: Int) {
-      if (lastIndex != -1 && lastIndex == currentIndex) return
       currentIndex = currentItem
+
+      if (lastIndex != -1 && lastIndex == currentIndex) return
 
       // 设置被选中的 item 的选中动画
       changeItem(currentItem, isSelect = true)
@@ -131,16 +227,16 @@ class MainActivity : PlayBaseActivity() {
    private fun changeItem(index: Int, isSelect: Boolean) {
       when (index) {
          CURRENT_ITEM_MINE -> {
-            ObjAnimatorUtils.startAnim(common_mine, "textSize", "textColor", isSelect)
+            ObjAnimatorUtils.startAnimObj(common_mine, "textSize", "textColor", isSelect)
          }
          CURRENT_ITEM_FIND -> {
-            ObjAnimatorUtils.startAnim(common_find, "textSize", "textColor", isSelect)
+            ObjAnimatorUtils.startAnimObj(common_find, "textSize", "textColor", isSelect)
          }
          CURRENT_ITEM_FRIEND -> {
-            ObjAnimatorUtils.startAnim(common_friend, "textSize", "textColor", isSelect)
+            ObjAnimatorUtils.startAnimObj(common_friend, "textSize", "textColor", isSelect)
          }
          CURRENT_ITEM_VIDEO -> {
-            ObjAnimatorUtils.startAnim(common_video, "textSize", "textColor", isSelect)
+            ObjAnimatorUtils.startAnimObj(common_video, "textSize", "textColor", isSelect)
          }
       }
    }
@@ -156,6 +252,8 @@ class MainActivity : PlayBaseActivity() {
       }
       return super.onKeyDown(keyCode, event)
    }
+
+   override fun initPresenter(): MainPresenter = MainPresenter(this)
 
    override fun getLayoutId(): Int = R.layout.activity_main
 }
