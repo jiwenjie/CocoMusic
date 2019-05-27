@@ -369,11 +369,11 @@ class MusicPlayerService : Service() {
             mPlayQueue= data
          }
       }
-      mPlayingPos = SPUtils.playPosition
+      mPlayingPos = SharedPreferenceUtils.playPosition
       if (mPlayingPos >= 0 && mPlayingPos < mPlayQueue!!.size) {
          mPlayingMusic = mPlayQueue!![mPlayingPos]
          updateNotification(false)
-         seekTo(SPUtils.position, true)
+         seekTo(SharedPreferenceUtils.position, true)
          notifyChange(META_CHANGED)
       }
       notifyChange(PLAY_QUEUE_CHANGE)
@@ -817,12 +817,12 @@ class MusicPlayerService : Service() {
       }
       if (mPlayingMusic != null) {
          //保存歌曲id
-         SPUtils.saveCurrentSongId(mPlayingMusic!!.mid!!)
+         SharedPreferenceUtils.saveCurrentSongId(mPlayingMusic!!.mid!!)
       }
       //保存歌曲id
-      SPUtils.savePosition(mPlayingPos.toLong())
+      SharedPreferenceUtils.savePosition(mPlayingPos.toLong())
       //保存歌曲进度
-      SPUtils.savePosition(getCurrentPosition())
+      SharedPreferenceUtils.savePosition(getCurrentPosition())
 
       LogUtils.e("save 保存歌曲id=" + mPlayingPos + " 歌曲进度= " + getCurrentPosition())
       notifyChange(PLAY_QUEUE_CHANGE)

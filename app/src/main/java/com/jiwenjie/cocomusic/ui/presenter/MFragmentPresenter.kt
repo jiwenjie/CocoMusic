@@ -22,9 +22,11 @@ class MFragmentPresenter(view: MineContract.View) :
    @SuppressLint("CheckResult")
    override fun getLocalMusicSize() {
       // 展示进度条
+      mView?.showLoading()
       addSubscription(mModel.getLocalMusicSize()
                       .subscribe({
                          mView?.showLocalMusicSize(it)
+                         mView?.dismissProgress()
                       }, {
                          LogUtils.e(it.message.toString())
                       }))

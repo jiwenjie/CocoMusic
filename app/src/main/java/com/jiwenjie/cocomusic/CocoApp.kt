@@ -4,13 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.graphics.Point
-import android.os.Bundle
 import android.support.multidex.MultiDex
-import android.view.WindowManager
-import com.jiwenjie.basepart.utils.LogUtils
+import com.jiwenjie.cocomusic.ui.fragment.PlayControlFragment
+import com.jiwenjie.cocomusic.utils.SharedPreferenceUtils
 import com.jiwenjie.cocomusic.utils.UnCaught
-import com.pgyersdk.crash.PgyCrashManager
 import com.squareup.leakcanary.LeakCanary
 
 /**
@@ -30,10 +27,21 @@ class CocoApp : Application() {
       UnCaught.getInstance().init(this)   // 本地 crash 捕捉
 //      PgyCrashManager.register()    // 新版推荐使用，注册 蒲公英
       contextInstance = this
+      // 现在测试使用默认是 true，显示底部菜单控制栏
+      isPlayMusic = SharedPreferenceUtils.getBooleanMethod(SharedPreferenceUtils.KEY_ISPLAY, true)
    }
 
    companion object {
       @SuppressLint("StaticFieldLeak")
       lateinit var contextInstance: Context
+
+      var isPlayMusic: Boolean = false    // 标识是否播放过音乐，如果播放过则一直显示底部控制栏，否则隐藏底部播放控制栏
+
+      // 把底部菜单栏显示出来
+      fun displayBottomControl() {
+         isPlayMusic = true
+         SharedPreferenceUtils.setBooleanMethod(SharedPreferenceUtils.KEY_ISPLAY, isPlayMusic)
+         PlayControlFragment.showBottomControl()
+      }
    }
 }

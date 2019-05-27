@@ -4,7 +4,7 @@ import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.CocoApp
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.event.PlayModeEvent
-import com.jiwenjie.cocomusic.utils.SPUtils
+import com.jiwenjie.cocomusic.utils.SharedPreferenceUtils
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -39,7 +39,7 @@ object PlayQueueManager {
      */
     fun updatePlayMode(): Int {
         playingModeId = (playingModeId + 1) % 3
-        SPUtils.savePlayMode(playingModeId)
+        SharedPreferenceUtils.savePlayMode(playingModeId)
         EventBus.getDefault().post(PlayModeEvent())
         return playingModeId
     }
@@ -48,7 +48,7 @@ object PlayQueueManager {
      * 获取播放模式 id
      */
     fun getPlayModeId(): Int {
-        playingModeId = SPUtils.playMode
+        playingModeId = SharedPreferenceUtils.playMode
         return playingModeId
     }
 

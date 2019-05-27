@@ -1,7 +1,7 @@
 package com.jiwenjie.cocomusic.ui.contract
 
-import com.jiwenjie.basepart.mvp.BaseMvpViewImpl
 import com.jiwenjie.cocomusic.aidl.Music
+import com.jiwenjie.cocomusic.ui.contract.base.BaseNormalView
 import io.reactivex.Observable
 
 /**
@@ -25,7 +25,7 @@ interface MineContract {
       fun getMyCollect()      // 获取我的收藏数量
    }
 
-   interface View: BaseMvpViewImpl {
+   interface View: BaseNormalView {
       fun showLocalMusicSize(musicList: MutableList<Music>?)    // 获取本地音乐的数量
 
       fun showRecentOpen(musicList: MutableList<Music>?)        // 获取最近播放的歌曲
@@ -35,6 +35,9 @@ interface MineContract {
       fun showMyRadio()        // 获取我的电台数量
 
       fun showMyCollect()      // 获取我的收藏数量
+
+      fun showCreateMusicList()     // get the musicList for users create
+      fun showCollectMusicList()    // get the musicList for users collect
    }
 
    interface Presenter {

@@ -1,5 +1,6 @@
 package com.jiwenjie.cocomusic.utils
 
+import android.annotation.TargetApi
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
@@ -99,10 +100,11 @@ object SystemUtils {
     *
     * @return
     */
+   @TargetApi(Build.VERSION_CODES.LOLLIPOP_MR1)
    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
    private fun isNoSwitch(): Boolean {
       val dujinyang = System.currentTimeMillis()
-      val usageStatsManager = CocoApp.contextInstance.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+      val usageStatsManager = CocoApp.contextInstance.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager?
       var queryUsageStats: List<UsageStats>? = null
       if (usageStatsManager != null) {
          queryUsageStats = usageStatsManager.queryUsageStats(

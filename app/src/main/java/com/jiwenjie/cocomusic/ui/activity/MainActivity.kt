@@ -135,22 +135,22 @@ class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), Ma
          drawer_layout.closeDrawers()
          Observable.timer(300, TimeUnit.MILLISECONDS)
                  .subscribe {
+                    ToastUtils.showToast(getActivity(), "暂未实现")
                  }
-         ToastUtils.showToast(getActivity(), "暂未实现")
       }
       joinUsLyt.setOnClickListener {
          drawer_layout.closeDrawers()
          Observable.timer(300, TimeUnit.MILLISECONDS)
                  .subscribe {
+                    ToastUtils.showToast(getActivity(), "暂未实现")
                  }
-         ToastUtils.showToast(getActivity(), "暂未实现")
       }
       broadcastLyt.setOnClickListener {
          drawer_layout.closeDrawers()
          Observable.timer(300, TimeUnit.MILLISECONDS)
                  .subscribe {
+                    ToastUtils.showToast(getActivity(), "暂未实现")
                  }
-         ToastUtils.showToast(getActivity(), "暂未实现")
       }
       nightTypeLyt.setOnClickListener {
          drawer_layout.closeDrawers()

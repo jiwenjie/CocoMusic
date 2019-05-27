@@ -52,14 +52,15 @@ object RxJavaUtils {
     * 生成Observable
     *
     * @param t
-    * @return Flowable
     */
    @JvmStatic
    fun <T> createObservable(t: T): Observable<T> {
-      return Observable.create { emitter ->
+      return Observable.create<T> { emitter ->
          try {
-            emitter.onNext(t)
-            emitter.onComplete()
+            if (!emitter.isDisposed) {
+               emitter.onNext(t)
+               emitter.onComplete()
+            }
          } catch (e: Exception) {
             emitter.onError(e)
          }

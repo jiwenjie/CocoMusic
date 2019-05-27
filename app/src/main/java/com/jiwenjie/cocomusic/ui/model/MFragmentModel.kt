@@ -17,12 +17,9 @@ import io.reactivex.Observable
 class MFragmentModel : MineContract.Model {
 
    override fun getLocalMusicSize(): Observable<MutableList<Music>?> {
-      return Observable.create<MutableList<Music>> { e ->
-         if (!e.isDisposed) {
-            e.onNext(SongLoader.getAllLocalSongs(CocoApp.contextInstance))
-            e.onComplete()
-         }
-      }.compose(RxJavaUtils.applyObservableAsync())
+      return RxJavaUtils
+              .createObservable(SongLoader.getAllLocalSongs(CocoApp.contextInstance))
+              .compose(RxJavaUtils.applyObservableAsync())
    }
 
    override fun getRecentOpen(): Observable<MutableList<Music>?> {

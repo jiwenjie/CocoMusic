@@ -14,7 +14,10 @@ import android.view.View
 import android.widget.SeekBar
 import com.jiwenjie.basepart.mvp.BaseMvpFragment
 import com.jiwenjie.basepart.utils.LogUtils
+import com.jiwenjie.basepart.utils.ScreenUtils
+import com.jiwenjie.cocomusic.CocoApp
 import com.jiwenjie.cocomusic.R
+import com.jiwenjie.cocomusic.R.id.top_container
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.NavigationHelper
 import com.jiwenjie.cocomusic.event.MetaChangedEvent
@@ -41,7 +44,15 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
         PlayContract.View,
         SeekBar.OnSeekBarChangeListener {
 
-   private val isShow = false    // 是否显示底部控制栏，默认不显示
+   companion object {
+      // 显示底部控制栏
+      fun showBottomControl() {
+         val objHeight  = ObjectAnimator.ofFloat(top_container, "transitionY",
+                 0f, ScreenUtils.dip2px(CocoApp.contextInstance, 56f).toFloat())
+         objHeight.duration = 300
+         objHeight.start()
+      }
+   }
 
    private val TAG = PlayControlFragment::class.java.simpleName
 
@@ -50,7 +61,7 @@ class PlayControlFragment : BaseMvpFragment<PlayContract.View, PlayControlPresen
    private val musicList = ArrayList<Music>()
 
    override fun initFragment(savedInstanceState: Bundle?) {
-      if (isShow) {
+      if (CocoApp.isPlayMusic) {
          view?.visibility = View.VISIBLE
       } else {
          view?.visibility = View.GONE
