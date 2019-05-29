@@ -2,6 +2,7 @@ package com.jiwenjie.cocomusic.ui.model
 
 import com.jiwenjie.cocomusic.CocoApp
 import com.jiwenjie.cocomusic.aidl.Music
+import com.jiwenjie.cocomusic.bean.MusicListBean
 import com.jiwenjie.cocomusic.ui.contract.MineContract
 import com.jiwenjie.cocomusic.utils.RxJavaUtils
 import com.jiwenjie.cocomusic.utils.SongLoader
@@ -42,5 +43,48 @@ class MFragmentModel : MineContract.Model {
 
    override fun getMyCollect() {
 
+   }
+
+   // 目前都只是假数据，往后可以实现本地数据库存储
+   override fun getCreateMusicList(): Observable<ArrayList<MusicListBean>> {
+      return Observable.create<ArrayList<MusicListBean>> { e ->
+         if (!e.isDisposed) {
+            val beanList = ArrayList<MusicListBean>()
+
+            for (i in 1 until 10) {
+               val bean = MusicListBean()
+               bean.totalSize = 20 * i
+               bean.downloadSize = bean.totalSize - i * 3
+               bean.ownername = "stormwenjie"
+               bean.name = "皇家马德里$i"
+               bean.createtime = "2019-05-28"
+               beanList.add(bean)
+            }
+
+            e.onNext(beanList)
+            e.onComplete()
+         }
+      }.compose(RxJavaUtils.applyObservableAsync())
+   }
+
+   override fun getCollectMusicList(): Observable<ArrayList<MusicListBean>> {
+      return Observable.create<ArrayList<MusicListBean>> { e ->
+         if (!e.isDisposed) {
+            val beanList = ArrayList<MusicListBean>()
+
+            for (i in 1 until 10) {
+               val bean = MusicListBean()
+               bean.totalSize = 20 * i
+               bean.downloadSize = bean.totalSize - i * 3
+               bean.ownername = "stormwenjie"
+               bean.name = "新西兰$i"
+               bean.createtime = "2019-05-28"
+               beanList.add(bean)
+            }
+
+            e.onNext(beanList)
+            e.onComplete()
+         }
+      }.compose(RxJavaUtils.applyObservableAsync())
    }
 }

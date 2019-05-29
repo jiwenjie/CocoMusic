@@ -1,6 +1,7 @@
 package com.jiwenjie.cocomusic.ui.contract
 
 import com.jiwenjie.cocomusic.aidl.Music
+import com.jiwenjie.cocomusic.bean.MusicListBean
 import com.jiwenjie.cocomusic.ui.contract.base.BaseNormalView
 import io.reactivex.Observable
 
@@ -22,7 +23,10 @@ interface MineContract {
 
       fun getMyRadio()        // 获取我的电台数量
 
-      fun getMyCollect()      // 获取我的收藏数量
+      fun getMyCollect()      // 获取我的收藏歌曲数量
+
+      fun getCreateMusicList() : Observable<ArrayList<MusicListBean>>     // get the musicList(歌单) for create
+      fun getCollectMusicList() : Observable<ArrayList<MusicListBean>>     // get the musicList for collect
    }
 
    interface View: BaseNormalView {
@@ -36,8 +40,8 @@ interface MineContract {
 
       fun showMyCollect()      // 获取我的收藏数量
 
-      fun showCreateMusicList()     // get the musicList for users create
-      fun showCollectMusicList()    // get the musicList for users collect
+      fun showCreateMusicList(beanList: ArrayList<MusicListBean>)     // get the musicList for users create
+      fun showCollectMusicList(beanList: ArrayList<MusicListBean>)    // get the musicList for users collect
    }
 
    interface Presenter {

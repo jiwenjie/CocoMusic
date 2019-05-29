@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/layout_12_dp"
+    android:paddingTop="@dimen/layout_4_dp"
+    android:paddingEnd="@dimen/layout_12_dp"
+    android:paddingBottom="@dimen/layout_4_dp">
+
+    <com.jiwenjie.cocomusic.widget.XCRoundImageView
+        android:id="@+id/listItemAlbum"
+        android:layout_width="@dimen/layout_50_dp"
+        android:layout_height="@dimen/layout_50_dp"
+        android:src="@drawable/default_album" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_8_dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/musicListNameText"
+            style="@style/NormalTextStyle"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textSize="@dimen/layout_16_sp"
+            tools:text="吉文杰的年度歌单" />
+
+        <TextView
+            android:id="@+id/otherMessageText"
+            style="@style/NormalTextStyle"
+            android:layout_marginTop="@dimen/layout_4_dp"
+            android:textSize="@dimen/layout_12_sp"
+            tools:text="256首歌，已下载25首" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/editMusicListImg"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="@dimen/layout_4_dp"
+        android:src="@drawable/ic_more_grey"
+        android:tint="@color/alpha_15_white" />
+</LinearLayout>

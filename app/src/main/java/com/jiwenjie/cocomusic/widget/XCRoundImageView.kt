@@ -22,7 +22,7 @@ class XCRoundImageView(context: Context, attributeSet: AttributeSet?) : ImageVie
    private val mXfermode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
    private var mMaskBitmap: Bitmap? = null
    private var mRoundBorderRadius = 0        // 圆角大小
-   private var mType = -1                    // 类型：圆形、圆角或椭圆
+   private var mType = -1                 // 类型：圆形、圆角或椭圆
 
    private var mBufferBitmap: WeakReference<Bitmap>? = null       // 使用缓存技术，避免每次都执行onDraw
 
@@ -39,13 +39,13 @@ class XCRoundImageView(context: Context, attributeSet: AttributeSet?) : ImageVie
        * 椭圆形
        */
       const val TYPE_OVAL = 3
-      const val DEFAULT_ROUND_BORDER_RADIUS = 10         // 默认圆角大小
+      var DEFAULT_ROUND_BORDER_RADIUS = 6         // 默认圆角大小
    }
 
    init {
       mPaint = Paint()
       mPaint?.isAntiAlias = true       // 设置消除锯齿
-      mType = TYPE_CIRCLE
+      mType = TYPE_ROUND
       mRoundBorderRadius = DEFAULT_ROUND_BORDER_RADIUS
    }
 

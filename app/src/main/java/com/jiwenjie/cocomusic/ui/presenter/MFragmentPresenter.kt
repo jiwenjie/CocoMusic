@@ -25,8 +25,8 @@ class MFragmentPresenter(view: MineContract.View) :
       mView?.showLoading()
       addSubscription(mModel.getLocalMusicSize()
                       .subscribe({
-                         mView?.showLocalMusicSize(it)
                          mView?.dismissProgress()
+                         mView?.showLocalMusicSize(it)
                       }, {
                          LogUtils.e(it.message.toString())
                       }))
@@ -46,10 +46,26 @@ class MFragmentPresenter(view: MineContract.View) :
 
    /** 获取创建的歌单列表 **/
    override fun getCreateMusicList() {
-
+      mView?.showLoading()
+      addSubscription(
+              mModel.getCreateMusicList()
+                      .subscribe({
+                         mView?.dismissProgress()
+                         mView?.showCreateMusicList(it)
+                      }, {
+                         LogUtils.e(it.message.toString())
+                      }))
    }
 
    override fun getCollectMusicList() {
-
+      mView?.showLoading()
+      addSubscription(
+              mModel.getCreateMusicList()
+                      .subscribe({
+                         mView?.dismissProgress()
+                         mView?.showCollectMusicList(it)
+                      }, {
+                         LogUtils.e(it.message.toString())
+                      }))
    }
 }
