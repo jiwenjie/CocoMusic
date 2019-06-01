@@ -44,6 +44,10 @@
     <string name="my_collect">我的收藏</string>
     <string name="show_create_musicList">创建的歌单</string>
     <string name="collect_musicList">收藏的歌单</string>
+    <string name="dialog_set_only_me">设置为隐私歌单</string>
+
+    <string name="music_list_name_length_init">0/40</string>
+    <string name="music_list_name_length_limit">%1$d/40</string>
     
     <!-- 侧滑栏部分 -->
     <string name="moon_type">夜间模式</string>

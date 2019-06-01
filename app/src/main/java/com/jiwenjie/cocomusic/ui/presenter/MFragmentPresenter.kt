@@ -1,6 +1,7 @@
 package com.jiwenjie.cocomusic.ui.presenter
 
 import android.annotation.SuppressLint
+import android.os.Handler
 import com.jiwenjie.basepart.mvp.BaseMvpPresenter
 import com.jiwenjie.cocomusic.ui.contract.MineContract
 import com.jiwenjie.cocomusic.ui.model.MFragmentModel
@@ -22,14 +23,17 @@ class MFragmentPresenter(view: MineContract.View) :
    @SuppressLint("CheckResult")
    override fun getLocalMusicSize() {
       // 展示进度条
+      // 暂时作为缓冲
       mView?.showLoading()
-      addSubscription(mModel.getLocalMusicSize()
-                      .subscribe({
-                         mView?.dismissProgress()
-                         mView?.showLocalMusicSize(it)
-                      }, {
-                         LogUtils.e(it.message.toString())
-                      }))
+      Handler().postDelayed({       // 模拟获取数据，否则速度太快
+         addSubscription(mModel.getLocalMusicSize()
+                 .subscribe({
+                    mView?.dismissProgress()
+                    mView?.showLocalMusicSize(it)
+                 }, {
+                    LogUtils.e(it.message.toString())
+                 }))
+      }, 1200)
    }
 
    override fun getRecentOpen() {
@@ -50,7 +54,7 @@ class MFragmentPresenter(view: MineContract.View) :
       addSubscription(
               mModel.getCreateMusicList()
                       .subscribe({
-                         mView?.dismissProgress()
+//                         mView?.dismissProgress()
                          mView?.showCreateMusicList(it)
                       }, {
                          LogUtils.e(it.message.toString())
@@ -62,7 +66,7 @@ class MFragmentPresenter(view: MineContract.View) :
       addSubscription(
               mModel.getCreateMusicList()
                       .subscribe({
-                         mView?.dismissProgress()
+//                         mView?.dismissProgress()
                          mView?.showCollectMusicList(it)
                       }, {
                          LogUtils.e(it.message.toString())

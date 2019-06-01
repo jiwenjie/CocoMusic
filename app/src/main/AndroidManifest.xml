@@ -70,8 +70,10 @@
             android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait" />
 
-        <!-- 点击测试跳转的 Activity -->
+        <!-- 测试的 Activity start -->
         <activity android:name=".ui.activity.TestActivity" />
+        <activity android:name=".test.TextKeywordActiity" />
+        <!-- 测试的 Activity end -->
 
         <!-- Service Start-->
         <service

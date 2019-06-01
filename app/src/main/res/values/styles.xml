@@ -72,5 +72,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/layout_16_sp</item>
     </style>
+
+    <!-- 带点击效果的 TextStyle -->
+    <style name="ClickTextStyle">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <!-- dialogFragment checkBox style (change be selected color) -->
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
 </resources>
 
