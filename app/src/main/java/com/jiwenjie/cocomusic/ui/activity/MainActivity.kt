@@ -2,6 +2,7 @@ package com.jiwenjie.cocomusic.ui.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -17,6 +18,7 @@ import com.jiwenjie.cocomusic.ui.contract.MainContract
 import com.jiwenjie.cocomusic.ui.fragment.MineFragment
 import com.jiwenjie.cocomusic.ui.presenter.MainPresenter
 import com.jiwenjie.cocomusic.utils.ObjAnimatorUtils
+import com.jiwenjie.cocomusic.utils.SharedPreferenceUtils
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_left_layout.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,6 +54,17 @@ class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), Ma
     * 注意 super.initActivity() 必须调用
     */
    override fun initActivity(savedInstanceState: Bundle?) {
+
+      /**
+       * 初始化的时候获取手机的屏幕高度保存起来，在弹出框的输入法监听可以用到
+       */
+      val rect = Rect()
+      getActivity().window.decorView.getWindowVisibleDisplayFrame(rect)
+      val visibleHeight = rect.height()
+      SharedPreferenceUtils.setIntMethod(SharedPreferenceUtils.KEY_ORIGINAL_VISIBLE_HEIGHT, visibleHeight)
+
+      /**********************************************************************************************/
+
       StatusBarUtil.setColorForDrawerLayout(getActivity(), drawer_layout,
               ContextCompat.getColor(getActivity(), R.color.colorPrimary), 0)
       // 设置了该方法后即可使得侧滑栏高度充满全屏

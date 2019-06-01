@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.jiwenjie.basepart.mvp.BaseMvpFragment
@@ -58,15 +58,16 @@ class MineFragment : BaseMvpFragment<MineContract.View, MFragmentPresenter>(), M
    private fun initView() {
       mineRefreshLyt.run {
          isEnabled = false
-         setProgressViewOffset(true, 50, 200)    //设置下拉出现小圆圈是否是缩放出现，出现的位置，最大的下拉位置
-         setSize(SwipeRefreshLayout.LARGE)   //设置下拉圆圈的大小，两个值 LARGE， DEFAULT
-//         setColorSchemeResources(
-//                 ContextCompat.getColor(activity!!, R.color.colorPrimary))
-//                 setProgressBackgroundColorSchemeColor(ContextCompat.getColor(activity!!, R.color.white))
+//         setProgressViewOffset(true, 50, 200)    //设置下拉出现小圆圈是否是缩放出现，出现的位置，最大的下拉位置
+//         setSize(SwipeRefreshLayout.DEFAULT)   //设置下拉圆圈的大小，两个值 LARGE， DEFAULT
+         setColorSchemeResources(R.color.colorPrimary)
+         setDistanceToTriggerSync(200)
+         setProgressBackgroundColorSchemeColor(ContextCompat.getColor(activity!!, R.color.white))
       }
 
       createMusicListRv.adapter = createAdapter
       createMusicListRv.layoutManager = LinearLayoutManager(activity)
+
       collectMusicListRv.adapter = collectAdapter
       collectMusicListRv.layoutManager = LinearLayoutManager(activity)
    }
@@ -120,6 +121,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MFragmentPresenter>(), M
    // get the local music
    override fun showLocalMusicSize(musicList: MutableList<Music>?) {
       LogUtils.e("MusicSize: ${musicList?.size}")
+//      mineRefreshLyt.isRefreshing = false
       localMusicSizeText.text = String.format("(%d)", if (musicList.isNullOrEmpty() || musicList.size == 0) 0 else musicList.size)   // 设置本地音乐的数量
       localMusic = musicList as ArrayList<Music>
    }
@@ -200,7 +202,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MFragmentPresenter>(), M
     * add one musicList
     */
    fun addMusicList() {
-//      AddMusicListDialogFragment.showDialogFragment(fragmentManager!!)
+      AddMusicListDialogFragment.showDialogFragment(fragmentManager!!)
    }
 
    override fun initPresenter(): MFragmentPresenter = MFragmentPresenter(this)

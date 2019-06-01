@@ -41,10 +41,12 @@ object SharedPreferenceUtils {
 
     val KEY_ISPLAY = "key_isplay"     // 是否播放过音乐，如果播放过则显示底部菜单，否则隐藏
 
+    const val KEY_ORIGINAL_VISIBLE_HEIGHT = "original_visible_height"   // 存储初始化的 Android 应用可视化界面高度
+    /*******************************************************************************************************/
+
     var playPosition: Int
         get() = getIntMethod(PLAY_POSITION, -1)
         set(position) = setIntMethod(PLAY_POSITION, position)
-
 
     val currentSongId: String?
         get() = getStringMethod(MUSIC_ID, "")
