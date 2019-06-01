@@ -91,6 +91,7 @@ class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), Ma
       }
 
       viewPager.adapter = BaseFragmentPagerAdapter(supportFragmentManager, fragmentList, titleList)
+      viewPager.offscreenPageLimit = fragmentList.size
    }
 
    private fun initEvent() {

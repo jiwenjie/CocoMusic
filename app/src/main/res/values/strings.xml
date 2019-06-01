@@ -50,7 +50,7 @@
     <string name="music_list_name_length_limit">%1$d/40</string>
     
     <!-- 侧滑栏部分 -->
-    <string name="moon_type">夜间模式</string>
+    <string name="moon_type">夜间</string>
     <string name="setting">设置</string>
     <string name="exit_application">退出</string>
     

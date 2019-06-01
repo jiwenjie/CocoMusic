@@ -74,7 +74,7 @@
     </style>
 
     <!-- 带点击效果的 TextStyle -->
-    <style name="ClickTextStyle">
+    <style name="ClickStyle">
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 

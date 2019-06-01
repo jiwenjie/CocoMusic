@@ -63,6 +63,7 @@
 
             <LinearLayout
                 android:id="@+id/setTimeStopLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -83,6 +84,7 @@
 
             <LinearLayout
                 android:id="@+id/scanLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -103,6 +105,7 @@
 
             <LinearLayout
                 android:id="@+id/myFriendLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -123,6 +126,7 @@
 
             <LinearLayout
                 android:id="@+id/changeThemeLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -143,6 +147,7 @@
 
             <LinearLayout
                 android:id="@+id/alarmColckLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -163,6 +168,7 @@
 
             <LinearLayout
                 android:id="@+id/cloudDiskLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -183,6 +189,7 @@
 
             <LinearLayout
                 android:id="@+id/couponLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -203,6 +210,7 @@
 
             <LinearLayout
                 android:id="@+id/joinUsLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -223,6 +231,7 @@
 
             <LinearLayout
                 android:id="@+id/broadcastLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -255,11 +264,12 @@
 
             <LinearLayout
                 android:id="@+id/nightTypeLyt"
-                android:paddingStart="@dimen/layout_16_dp"
+                style="@style/ClickStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingStart="@dimen/layout_16_dp">
 
                 <ImageView
                     android:layout_width="@dimen/layout_20_dp"
@@ -275,6 +285,7 @@
 
             <LinearLayout
                 android:id="@+id/settingLyt"
+                style="@style/ClickStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -294,11 +305,12 @@
 
             <LinearLayout
                 android:id="@+id/exitLyt"
-                android:paddingEnd="@dimen/layout_16_dp"
+                style="@style/ClickStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingEnd="@dimen/layout_16_dp">
 
                 <ImageView
                     android:layout_width="@dimen/layout_20_dp"

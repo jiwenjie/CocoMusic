@@ -29,6 +29,7 @@
 
                 <LinearLayout
                     android:id="@+id/mine_localLyt"
+                    style="@style/ClickStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -67,6 +68,7 @@
 
                 <LinearLayout
                     android:id="@+id/mine_recentPlayLyt"
+                    style="@style/ClickStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -104,6 +106,7 @@
 
                 <LinearLayout
                     android:id="@+id/mine_downloadLyt"
+                    style="@style/ClickStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -141,6 +144,7 @@
 
                 <LinearLayout
                     android:id="@+id/mine_radioLyt"
+                    style="@style/ClickStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -178,6 +182,7 @@
 
                 <LinearLayout
                     android:id="@+id/mine_collectLyt"
+                    style="@style/ClickStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -216,15 +221,14 @@
 
             <LinearLayout
                 android:id="@+id/createMusicListLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/layout_55_dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/layout_16_dp"
-                android:paddingTop="@dimen/layout_12_dp"
-                android:paddingEnd="@dimen/layout_16_dp"
-                android:paddingBottom="@dimen/layout_12_dp">
+                android:paddingEnd="@dimen/layout_16_dp">
 
                 <ImageView
                     android:id="@+id/createListRArrow"
@@ -252,19 +256,28 @@
                     android:textSize="@dimen/layout_14_sp"
                     tools:text="(0)" />
 
-                <ImageView
+                <FrameLayout
                     android:id="@+id/createMusicListImg"
+                    style="@style/ClickStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/layout_12_dp"
-                    android:rotation="45"
-                    android:src="@drawable/ic_clear"
-                    android:tint="@color/alpha_70_black" />
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/layout_12_dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/layout_30_dp"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/layout_4_dp"
+                        android:rotation="45"
+                        android:src="@drawable/ic_clear"
+                        android:tint="@color/alpha_70_black" />
+                </FrameLayout>
 
                 <ImageView
                     android:id="@+id/editCreateIv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/ClickStyle"
+                    android:layout_width="@dimen/layout_30_dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/layout_4_dp"
                     android:src="@drawable/ic_more_grey" />
             </LinearLayout>
 
@@ -276,15 +289,14 @@
 
             <LinearLayout
                 android:id="@+id/collectMusicListLyt"
+                style="@style/ClickStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/layout_55_dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/layout_16_dp"
-                android:paddingTop="@dimen/layout_12_dp"
-                android:paddingEnd="@dimen/layout_16_dp"
-                android:paddingBottom="@dimen/layout_12_dp">
+                android:paddingEnd="@dimen/layout_16_dp">
 
                 <ImageView
                     android:id="@+id/collectListRArrow"
@@ -314,8 +326,12 @@
 
                 <ImageView
                     android:id="@+id/editCollectIv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/ClickStyle"
+                    android:layout_width="@dimen/layout_30_dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/layout_4_dp"
+                    android:paddingTop="@dimen/layout_12_dp"
+                    android:paddingBottom="@dimen/layout_12_dp"
                     android:src="@drawable/ic_more_grey" />
             </LinearLayout>
 

@@ -32,7 +32,7 @@ class ClearEditText(context: Context, attrs: AttributeSet?) : AppCompatEditText(
       mClearDrawable = compoundDrawables[2]
       if (mClearDrawable == null) {
          mClearDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clear)
-         (mClearDrawable as Drawable).setTint(ContextCompat.getColor(context, R.color.grey))
+         (mClearDrawable as Drawable).setTint(ContextCompat.getColor(context, R.color.translucent_grey))
       }
       mClearDrawable?.setBounds(0, 0, mClearDrawable!!.intrinsicWidth, mClearDrawable!!.intrinsicHeight)
       setClearIconVisible(false)    // 默认不显示清除图标

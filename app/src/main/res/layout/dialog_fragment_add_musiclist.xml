@@ -27,11 +27,12 @@
         <com.jiwenjie.cocomusic.widget.ClearEditText
             android:id="@+id/dialog_musicListNameEdit"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/layout_50_dp"
+            android:layout_height="@dimen/layout_40_dp"
             android:layout_marginTop="@dimen/layout_16_dp"
             android:background="@null"
             android:hint="请输入歌单标题"
             android:lines="1"
+            android:maxLength="40"
             android:padding="@dimen/layout_8_dp"
             android:textSize="@dimen/layout_16_sp" />
 
@@ -78,33 +79,35 @@
 
             <TextView
                 android:id="@+id/dialog_cancel"
-                style="@style/ClickTextStyle"
+                style="@style/ClickStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:gravity="center"
-                android:paddingStart="@dimen/layout_10_dp"
-                android:paddingTop="@dimen/layout_6_dp"
-                android:paddingEnd="@dimen/layout_10_dp"
-                android:paddingBottom="@dimen/layout_6_dp"
+                android:paddingStart="@dimen/layout_12_dp"
+                android:paddingTop="@dimen/layout_8_dp"
+                android:paddingEnd="@dimen/layout_12_dp"
+                android:paddingBottom="@dimen/layout_8_dp"
                 android:text="取消"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/layout_14_sp" />
 
             <TextView
                 android:id="@+id/dialog_sure"
-                style="@style/ClickTextStyle"
+                style="@style/ClickStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginStart="@dimen/layout_25_dp"
+                android:alpha="0.5"
+                android:enabled="false"
                 android:gravity="center"
-                android:paddingStart="@dimen/layout_10_dp"
-                android:paddingTop="@dimen/layout_6_dp"
-                android:paddingEnd="@dimen/layout_10_dp"
-                android:paddingBottom="@dimen/layout_6_dp"
+                android:paddingStart="@dimen/layout_12_dp"
+                android:paddingTop="@dimen/layout_8_dp"
+                android:paddingEnd="@dimen/layout_12_dp"
+                android:paddingBottom="@dimen/layout_8_dp"
                 android:text="确定"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/alphaAccent"
                 android:textSize="@dimen/layout_14_sp" />
         </LinearLayout>
     </LinearLayout>
