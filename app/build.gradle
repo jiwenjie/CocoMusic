@@ -47,4 +47,8 @@ dependencies {
 
     // 添加 kotlin 的协程依赖
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'
+
+    // 引入 room 数据库
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 }

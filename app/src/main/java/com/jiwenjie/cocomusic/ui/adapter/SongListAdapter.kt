@@ -20,8 +20,9 @@ class SongListAdapter(context: Context, beanList: ArrayList<MusicListBean>) :
       BaseRecyclerAdapter<MusicListBean>(context, beanList) {
 
    override fun convertView(itemView: View, data: MusicListBean, position: Int) {
-      itemView.listItemAlbum.setType(XCRoundImageView.DEFAULT_ROUND_BORDER_RADIUS)
       itemView.listItemAlbum.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.default_album))   // 自己先写假数据，都是默认的背景
+      itemView.listItemAlbum.setType(XCRoundImageView.DEFAULT_ROUND_BORDER_RADIUS)
+      itemView.listItemAlbum.setRoundBorderRadius(12)
 
       itemView.musicListNameText.text = data.name
       itemView.otherMessageText.text = String.format("共有%d首歌, 已下载%d首", data.totalSize, data.downloadSize)

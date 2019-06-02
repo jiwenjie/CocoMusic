@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/action_search"
+        android:icon="@drawable/icon_search"
+        android:iconTint="@color/white"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_scanMusic"
+        android:title="@string/action_scan_music"
+        android:icon="@drawable/icon_scan_local"
+        android:iconTint="@color/white"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_selectSort"
+        android:title="@string/action_select_sort"
+        android:icon="@drawable/icon_sort"
+        android:iconTint="@color/white"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_getLyric"
+        android:title="@string/action_get_lyric"
+        android:icon="@drawable/icon_lyric"
+        android:iconTint="@color/white"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_upgradeQuailty"
+        android:title="@string/action_upgrade_music_quailty"
+        android:icon="@drawable/icon_upgrade_quailty"
+        android:iconTint="@color/white"
+        app:showAsAction="never"
+        />
+</menu>

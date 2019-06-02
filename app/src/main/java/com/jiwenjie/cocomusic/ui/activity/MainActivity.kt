@@ -50,11 +50,7 @@ class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), Ma
       }
    }
 
-   /**
-    * 注意 super.initActivity() 必须调用
-    */
    override fun initActivity(savedInstanceState: Bundle?) {
-
       /**
        * 初始化的时候获取手机的屏幕高度保存起来，在弹出框的输入法监听可以用到
        */

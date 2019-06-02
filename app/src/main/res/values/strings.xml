@@ -63,4 +63,11 @@
     <string name="start_broadcast">我要开播</string>
     <string name="my_friend">我的好友</string>
     <string name="change_theme">个性换肤</string>
+    
+    <!-- localMusic toolbar -->
+    <string name="action_search">搜索</string>
+    <string name="action_scan_music">扫描本地音乐</string>
+    <string name="action_select_sort">选择排序方式</string>
+    <string name="action_get_lyric">获取封面歌词</string>
+    <string name="action_upgrade_music_quailty">升级音质</string>
 </resources>

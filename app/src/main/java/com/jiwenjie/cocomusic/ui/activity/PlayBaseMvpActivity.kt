@@ -35,6 +35,9 @@ abstract class PlayBaseMvpActivity<V : BaseMvpViewImpl, P : BaseMvpPresenter<V>>
 
    protected lateinit var mPresenter: P
 
+   /**
+    * this.super.onCreate music be used
+    */
    override fun onCreate(savedInstanceState: Bundle?) {
       mPresenter = initPresenter()
       EventBus.getDefault().register(this)

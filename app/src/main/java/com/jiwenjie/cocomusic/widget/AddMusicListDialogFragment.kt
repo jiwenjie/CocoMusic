@@ -103,19 +103,15 @@ class AddMusicListDialogFragment : AppCompatDialogFragment() {
          this.dismiss()
       }
 
-      var size = 0
       dialog_sure.setOnClickListener {
-         //         this.dismiss()
-
-         size -= 20
-         windowDeploy(0, size)
+         this.dismiss()
          // 点击保存
          if (selectOnlyme.isChecked) {
             // 被选中说明是隐私歌单
-            LogUtils.e("隐私")
+            LogUtils.e("DialogFragment 隐私")
          } else {
             // 默认是公开歌单
-            LogUtils.e("公开")
+            LogUtils.e("DialogFragment 公开")
          }
       }
    }
@@ -128,13 +124,18 @@ class AddMusicListDialogFragment : AppCompatDialogFragment() {
       dialog_editTextLength.text = String.format(resources.getString(R.string.music_list_name_length_limit), length)
       if (s.toString().trim { it <= ' ' }.isNotEmpty()) {
          dialog_sure.isEnabled = true
+         dialog_sure.alpha = 1f
          dialog_sure.setTextColor(ContextCompat.getColor(activity!!, R.color.colorPrimary))
       } else {
          dialog_sure.isEnabled = false
          dialog_sure.setTextColor(ContextCompat.getColor(activity!!, R.color.alphaAccent))
+         dialog_sure.alpha = 0.5.toFloat()
       }
    }
 
+   /**
+    * when the keyboard pop or dismiss make the dialog animation
+    */
    fun changeDialogUI() {
       /**
        * 根据键盘的显示隐藏来变化位置
@@ -143,9 +144,11 @@ class AddMusicListDialogFragment : AppCompatDialogFragment() {
          override fun keyBoardShow(height: Int) {
             super.keyBoardShow(height)    // 键盘显示
             LogUtils.e("ScreenHeight: $height")
+            if (dialog == null) return
+
             val objAnim = ValueAnimator.ofInt(
                     0, ((ScreenUtils.getScreenHeight(activity!!) - height - dialog.window.attributes.height) / 2) -
-                     (ScreenUtils.getScreenHeight(activity!!) / 2))
+                    (ScreenUtils.getScreenHeight(activity!!) / 2))
             objAnim.addUpdateListener {
                windowDeploy(0, it.animatedValue as Int)
             }
@@ -155,6 +158,8 @@ class AddMusicListDialogFragment : AppCompatDialogFragment() {
 
          override fun keyBoardHide(height: Int) {
             super.keyBoardHide(height)    // 键盘隐藏
+            if (dialog == null) return
+
             val objAnim = ValueAnimator.ofInt(
                     ((ScreenUtils.getScreenHeight(activity!!) - height - dialog.window.attributes.height) / 2) -
                             (ScreenUtils.getScreenHeight(activity!!) / 2), 0)

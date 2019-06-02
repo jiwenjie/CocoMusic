@@ -19,7 +19,6 @@
             app:tabMode="fixed"
             app:tabSelectedTextColor="@android:color/white"
             app:tabTextColor="@android:color/white" />
-
     </android.support.design.widget.AppBarLayout>
 
     <View

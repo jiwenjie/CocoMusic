@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Roots"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activity.LocalMusicActivity">
 
-    <TextView
-        android:id="@+id/testJump"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/localToolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/layout_40_dp"
-        android:background="@android:color/darker_gray"
-        android:gravity="center"
-        android:text="测试跳转"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:navigationIcon="@drawable/arrow_left"
+        app:title="本地音乐"
+        app:titleTextColor="@color/white" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/localTabLyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@android:color/white" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/localViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
