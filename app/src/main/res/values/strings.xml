@@ -70,4 +70,10 @@
     <string name="action_select_sort">选择排序方式</string>
     <string name="action_get_lyric">获取封面歌词</string>
     <string name="action_upgrade_music_quailty">升级音质</string>
+
+    <!-- localMusic tabLayout -->
+    <string name="tab_single_music">单曲</string>
+    <string name="tab_singer">歌手</string>
+    <string name="tab_album">专辑</string>
+    <string name="tab_folder">文件夹</string>
 </resources>

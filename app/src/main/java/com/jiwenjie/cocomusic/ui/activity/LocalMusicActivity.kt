@@ -3,6 +3,7 @@ package com.jiwenjie.cocomusic.ui.activity
 import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.view.menu.MenuBuilder
 import android.view.Menu
 import android.view.MenuItem
 import com.jiwenjie.basepart.adapters.BaseFragmentPagerAdapter
@@ -38,7 +39,11 @@ class LocalMusicActivity : PlayBaseActivity() {
    }
 
    private fun initView() {
-      val fragmentList= ArrayList<Fragment>().apply {
+      // toolbar 加载 menu 有两种方式，我这里用的是第一种，必须增加这条语句。
+      // 第二种是用 toolbar 的 setMenu 方法设置则不必
+      setSupportActionBar(localToolbar)
+
+      val fragmentList = ArrayList<Fragment>().apply {
          add(SingleMusicFragment.newInstance(intent.getParcelableArrayListExtra(KEY_BEAN_LIST)))
          add(TestFragment.newInstance("second"))
          add(TestFragment.newInstance("third"))
@@ -46,10 +51,10 @@ class LocalMusicActivity : PlayBaseActivity() {
       }
 
       val titleList = ArrayList<String>().apply {
-         add("单曲")
-         add("歌手")
-         add("专辑")
-         add("文件夹")
+         add(resources.getString(R.string.tab_single_music))
+         add(resources.getString(R.string.tab_singer))
+         add(resources.getString(R.string.tab_album))
+         add(resources.getString(R.string.tab_folder))
       }
 
       localTabLyt.setupWithViewPager(localViewPager)
@@ -61,6 +66,22 @@ class LocalMusicActivity : PlayBaseActivity() {
       localToolbar.setNavigationOnClickListener {
          finish()
       }
+   }
+
+   /**
+    * 把 toolbar 中的 menu icon 和 title 同时显示出来
+    */
+   override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+      if (menu.javaClass == MenuBuilder::class.java) {
+         try {
+            val m = menu.javaClass.getDeclaredMethod("setOptionalIconsVisible", java.lang.Boolean.TYPE)
+            m.isAccessible = true
+            m.invoke(menu, true)
+         } catch (e: Exception) {
+            e.printStackTrace()
+         }
+      }
+      return super.onPrepareOptionsMenu(menu)
    }
 
    /**

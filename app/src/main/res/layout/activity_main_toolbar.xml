@@ -78,6 +78,5 @@
         android:layout_marginEnd="@dimen/layout_8_dp"
         android:background="?android:attr/selectableItemBackground"
         android:padding="@dimen/layout_6_dp"
-        android:src="@drawable/icon_search"
-        android:tint="@color/white" />
+        android:src="@drawable/icon_search" />
 </LinearLayout>

@@ -29,6 +29,11 @@
         <!--<item name="android:windowAnimationStyle">@style/AnimationActivity</item>-->
         <!-- 为了防止底部导航栏遮住布局 -->
         <item name="android:windowDrawsSystemBarBackgrounds" tools:ignore="DuplicateDefinition">false</item>
+
+        <!-- 添加这一句， 即可改变 toolbar menu 图标的颜色-->
+        <item name="android:textColorSecondary">@color/white</item>
+        <!--toolbar标题文字颜色-->
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
 
     <!-- setting the color about toolbar reference drawerLayout menu -->
@@ -82,6 +87,13 @@
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/grey</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <!-- local music  toolbar popupTheme -->
+    <style name="ToolBarPopTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <!--<item name="android:colorBackground">#90000000</item>  &lt;!&ndash; 设置背景颜色&ndash;&gt;-->
+        <item name="overlapAnchor">false</item>  <!--设置不覆盖锚点-->
+        <item name="android:textColor">@color/dark</item>
     </style>
 </resources>
 

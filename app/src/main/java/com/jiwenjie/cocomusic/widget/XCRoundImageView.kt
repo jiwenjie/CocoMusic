@@ -39,7 +39,7 @@ class XCRoundImageView(context: Context, attributeSet: AttributeSet?) : ImageVie
        * 椭圆形
        */
       const val TYPE_OVAL = 3
-      var DEFAULT_ROUND_BORDER_RADIUS = 6         // 默认圆角大小
+      var DEFAULT_ROUND_BORDER_RADIUS = 10         // 默认圆角大小
    }
 
    init {

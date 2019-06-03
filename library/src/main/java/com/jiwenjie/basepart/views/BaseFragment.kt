@@ -17,6 +17,11 @@ import com.jiwenjie.basepart.utils.LogUtils
  */
 abstract class BaseFragment : Fragment() {
 
+    /**
+     * 多种状态的 View 切换
+     */
+    protected var mLayoutStatusView: MultipleStatusView? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         LogUtils.e("onCreateView()")
         return inflater.inflate(getLayoutId(), container, false)
@@ -26,6 +31,9 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         LogUtils.e("onViewCreated()")
         initFragment(savedInstanceState)
+        mLayoutStatusView?.setOnClickListener {
+            loadData()
+        }
         loadData()
         setListener()
     }

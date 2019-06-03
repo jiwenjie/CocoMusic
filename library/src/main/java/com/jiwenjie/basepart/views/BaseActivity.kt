@@ -32,6 +32,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
    private var mPermissionListener: PermissionListener? = null
 
+   /**
+    * 多种状态的 View 切换
+    */
+   protected var mLayoutStatusView: MultipleStatusView? = null
+
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       StatusBarUtil.setColor(getActivity(), ContextCompat.getColor(getActivity(), R.color.default_theme))
@@ -42,6 +47,9 @@ abstract class BaseActivity : AppCompatActivity() {
       setContentView(getLayoutId())
       ActivityStackManager.addActivity(this)
       initActivity(savedInstanceState)
+      mLayoutStatusView?.setOnClickListener {
+         loadData()
+      }
       loadData()
       setListener()
    }
