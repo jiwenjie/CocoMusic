@@ -29,18 +29,18 @@ class PlayControlPresenter(view: PlayContract.View) :
     */
    override fun onCreate() {
       super.onCreate()
-      LogUtils.e("添加 onCreate 监听")
+//      LogUtils.e("添加 onCreate 监听")
       MusicPlayerService.addProgressListener(this)
    }
 
    override fun onDestroy() {
       super.onDestroy()
-      LogUtils.e("移除 onDestroy 监听")
+//      LogUtils.e("移除 onDestroy 监听")
       MusicPlayerService.removeProgressListener(this)
    }
 
    override fun onProgressUpdate(position: Long, duration: Long) {
-      LogUtils.e("mPresenter中 position:$position   duration: $duration")
+//      LogUtils.e("mPresenter中 position:$position   duration: $duration")
       mView?.updateProgress(position, duration)
    }
 

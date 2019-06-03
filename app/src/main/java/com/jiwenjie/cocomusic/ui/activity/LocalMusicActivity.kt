@@ -11,6 +11,7 @@ import com.jiwenjie.basepart.utils.LogUtils
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.test.TestFragment
+import com.jiwenjie.cocomusic.ui.fragment.SingerFragment
 import com.jiwenjie.cocomusic.ui.fragment.SingleMusicFragment
 import kotlinx.android.synthetic.main.activity_local.*
 import kotlin.collections.ArrayList
@@ -45,7 +46,7 @@ class LocalMusicActivity : PlayBaseActivity() {
 
       val fragmentList = ArrayList<Fragment>().apply {
          add(SingleMusicFragment.newInstance(intent.getParcelableArrayListExtra(KEY_BEAN_LIST)))
-         add(TestFragment.newInstance("second"))
+         add(SingerFragment.newInstance())
          add(TestFragment.newInstance("third"))
          add(TestFragment.newInstance("four"))
       }
