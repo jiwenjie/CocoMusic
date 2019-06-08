@@ -1,5 +1,9 @@
 package com.jiwenjie.cocomusic.bean
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 import com.jiwenjie.cocomusic.aidl.Music
@@ -12,20 +16,27 @@ import com.jiwenjie.cocomusic.common.Constants
  *  desc:
  *  version:1.0
  */
+@Entity(tableName = "artist")
 class Artist() : Parcelable {
     var name: String? = null
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0
     var artistId: String?=null
     var count: Int = 0
     var type: String? = Constants.LOCAL
+    @ColumnInfo(name = "picurl")
     var picUrl: String? = null
     var desc: String? = null
+    @ColumnInfo(name = "musicsize")
     var musicSize: Int = 0
     var score: Int = 0
+    @ColumnInfo(name = "albumsize")
     var albumSize: Int = 0
 
+    @Ignore
     var songs = mutableListOf<Music>()
 
+    @Ignore
     constructor(parcel: Parcel) : this() {
         name = parcel.readString()
         id = parcel.readLong()
@@ -39,6 +50,7 @@ class Artist() : Parcelable {
         albumSize = parcel.readInt()
     }
 
+    @Ignore
     constructor(id: Long, name: String, count: Int) : this() {
         this.name = name
         this.artistId = id.toString()

@@ -5,7 +5,6 @@ import android.database.Cursor
 import android.provider.MediaStore
 import android.text.TextUtils
 import com.jiwenjie.cocomusic.aidl.Music
-import com.jiwenjie.cocomusic.bean.Artist
 import com.jiwenjie.cocomusic.common.Constants
 
 /**
@@ -57,7 +56,7 @@ object SongLoader {
                     music.duration = duration.toLong()
                     music.title = title
                     music.date = System.currentTimeMillis()
-//                    DaoLitepal.saveOrUpdateMusic(music)
+                    CocoDataBaseUtil.mMusicDao.saveOrUpdate(music)  // 插入数据库
                     results.add(music)
                 } while (cursor.moveToNext())
             }

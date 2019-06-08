@@ -25,15 +25,16 @@ class MFragmentPresenter(view: MineContract.View) :
       // 展示进度条
       // 暂时作为缓冲
       mView?.showLoading()
-      Handler().postDelayed({       // 模拟获取数据，否则速度太快
-         addSubscription(mModel.getLocalMusicSize()
-                 .subscribe({
-                    mView?.dismissProgress()
-                    mView?.showLocalMusicSize(it)
-                 }, {
-                    LogUtils.e(it.message.toString())
-                 }))
-      }, 1200)
+           // 模拟获取数据，否则速度太快
+       addSubscription(mModel.getLocalMusicSize()
+           .subscribe({
+               LogUtils.e("MusicSize: ${it?.size}")
+               mView?.dismissProgress()
+               mView?.showLocalMusicSize(it)
+           }, {
+               LogUtils.e(it.message.toString())
+           }))
+
    }
 
    override fun getRecentOpen() {

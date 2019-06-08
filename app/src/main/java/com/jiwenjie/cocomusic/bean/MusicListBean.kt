@@ -1,5 +1,8 @@
 package com.jiwenjie.cocomusic.bean
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 
@@ -10,8 +13,10 @@ import android.os.Parcelable
  *  desc:该 bean 自己先实现，暂时没有接口可以得到
  *  version:1.0
  */
+@Entity
 class MusicListBean() : Parcelable {
-
+   @PrimaryKey(autoGenerate = true)
+   var id: Long = 0
    var name: String? = null         // 歌单的名称
    var createtime: String? = null   // 歌单创建时间
    var ownername: String? = null    // 歌单的拥有者
@@ -19,6 +24,7 @@ class MusicListBean() : Parcelable {
    var totalSize = 0                // 歌曲的数量
    var downloadSize = 0             // 已经下载的数量
 
+   @Ignore
    constructor(parcel: Parcel) : this() {
       name = parcel.readString()
       createtime = parcel.readString()

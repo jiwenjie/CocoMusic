@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -14,6 +16,14 @@ android {
         versionName "0.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //room的数据库概要、记录
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -40,7 +50,7 @@ dependencies {
 
     implementation project(':library')
 
-    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
+//    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
     //Eventbus
     implementation 'org.greenrobot:eventbus:3.1.1'
     api "org.jetbrains.anko:anko-appcompat-v7-commons:0.10.8"
@@ -50,5 +60,7 @@ dependencies {
 
     // 引入 room 数据库
     implementation "android.arch.persistence.room:runtime:1.1.1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+//    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+//    kapt "android.arch.persistence.room:compiler:1.1.1"
 }

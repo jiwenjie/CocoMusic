@@ -22,9 +22,8 @@ class CocoApp : Application() {
       super.onCreate()
       MultiDex.install(this)
 
-      LeakCanary.install(this)         // 内存泄漏中注册
+//      LeakCanary.install(this)         // 内存泄漏中注册
       UnCaught.getInstance().init(this)   // 本地 crash 捕捉
-//      PgyCrashManager.register()    // 新版推荐使用，注册 蒲公英
       contextInstance = this
       // 现在测试使用默认是 true，显示底部菜单控制栏
       isPlayMusic = SharedPreferenceUtils.getBooleanMethod(SharedPreferenceUtils.KEY_ISPLAY, true)

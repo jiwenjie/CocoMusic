@@ -1,5 +1,9 @@
 package com.jiwenjie.cocomusic.aidl
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 
@@ -10,10 +14,12 @@ import android.os.Parcelable
  *  desc:
  *  version:1.0
  */
+@Entity(tableName = "music")
 class Music() : Parcelable {
     // 歌曲类型 本地/网络
     var type: String? = null
     //数据库存储id
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0
     // 歌曲id
     var mid: String? = null
@@ -24,40 +30,53 @@ class Music() : Parcelable {
     // 专辑
     var album: String? = null
     // 专辑id
+    @ColumnInfo(name="artistid")
     var artistId: String? = null//{123,123,13}
     // 专辑id
+    @ColumnInfo(name="albumid")
     var albumId: String? = null
     // 专辑内歌曲个数
+    @ColumnInfo(name="tracknumber")
     var trackNumber: Int = 0
     // 持续时间
     var duration: Long = 0
     // 收藏
+    @ColumnInfo(name="islove")
     var isLove: Boolean = false
     // [本地|网络]
+    @ColumnInfo(name="isonline")
     var isOnline: Boolean = true
     // 音乐路径
     var uri: String? = null
     // [本地|网络] 音乐歌词地址
     var lyric: String? = null
     // [本地|网络]专辑封面路径
+    @ColumnInfo(name="coveruri")
     var coverUri: String? = null
     // [网络]专辑封面
+    @ColumnInfo(name="coverbig")
     var coverBig: String? = null
     // [网络]small封面
+    @ColumnInfo(name="coversmall")
     var coverSmall: String? = null
     // 文件名
+    @ColumnInfo(name="filename")
     var fileName: String? = null
     // 文件大小
+    @ColumnInfo(name="filesize")
     var fileSize: Long = 0
     // 发行日期
     var year: String? = null
     //更新日期
     var date: Long = 0
     //在线歌曲是否限制播放，false 可以播放
+    @ColumnInfo(name="iscp")
     var isCp: Boolean = false
     //在线歌曲是否付费歌曲，false 不能下载
+    @ColumnInfo(name="isdl")
     var isDl: Boolean = true
     //收藏id
+    @ColumnInfo(name="collectid")
     var collectId: String? = null
     //音乐品质，默认标准模式
     var quality: Int = 128000
@@ -69,6 +88,7 @@ class Music() : Parcelable {
     //是否有mv 0代表无，1代表有
     var hasMv: Int = 0
 
+    @Ignore
     constructor(parcel: Parcel) : this() {
         type = parcel.readString()
         id = parcel.readLong()
