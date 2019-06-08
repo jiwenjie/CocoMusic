@@ -52,7 +52,7 @@ dependencies {
     api "com.android.support.constraint:constraint-layout:$constraint_version"
     api "de.hdodenhof:circleimageview:$circle_image_version"
 
-//    api "android.arch.paging:runtime:$paging_version"
+    api "android.arch.paging:runtime:$paging_version"
     api "android.arch.lifecycle:extensions:$lifecycle_version"
 
     //noinspection GradleDependency
@@ -76,7 +76,6 @@ dependencies {
 
     // 设置状态栏的 Utils 库; 这里不能用最新的 1.5.1，两个版本实现应该有所
     // 不同。1.5.0 设置之后可以使得侧滑栏高度充满全屏，1.5.1 则不可以。需要注意
-    //noinspection GradleDependency
     api 'com.jaeger.statusbarutil:library:1.5.0'
     api 'com.alibaba:fastjson:1.2.54'
 }

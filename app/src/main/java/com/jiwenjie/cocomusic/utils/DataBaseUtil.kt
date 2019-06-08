@@ -7,6 +7,7 @@ import com.jiwenjie.cocomusic.bean.Artist
 import com.jiwenjie.cocomusic.common.Constants
 import android.arch.persistence.room.Room
 import android.content.Context
+import android.provider.SyncStateContract
 
 
 /**
@@ -16,7 +17,7 @@ import android.content.Context
  *  desc:Room 数据库工具类
  *  version:1.0
  */
-@Database(entities = [Music::class, Artist::class], version = Constants.DATABASE_VERSION, exportSchema = false)
+@Database(entities = [Music::class, Artist::class], version = SyncStateContract.Constants.DATABASE_VERSION, exportSchema = false)
 abstract class DataBaseUtil : RoomDatabase() {
 
     private var INSTANCE: DataBaseUtil? = null
