@@ -28,7 +28,6 @@ class MFragmentPresenter(view: MineContract.View) :
            // 模拟获取数据，否则速度太快
        addSubscription(mModel.getLocalMusicSize()
            .subscribe({
-               LogUtils.e("MusicSize: ${it?.size}")
                mView?.dismissProgress()
                mView?.showLocalMusicSize(it)
            }, {

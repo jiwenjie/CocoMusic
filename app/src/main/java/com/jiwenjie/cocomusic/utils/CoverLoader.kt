@@ -87,7 +87,7 @@ object CoverLoader {
             })
     }
 
-    fun loadImageView(mContext: Context?, url: String, imageView: ImageView?) {
+    fun loadImageView(mContext: Context?, url: String?, imageView: ImageView?) {
         if (mContext == null) return
         Glide.with(mContext)
                 .load(url)

@@ -20,13 +20,15 @@ class LocalMusicActivity : PlayBaseActivity() {
 
    companion object {
       private const val KEY_BEAN_LIST = "key_bean_list"
+      private const val KEY_DIS_SIZE = "key_size"  // mine localText dis size
 
       @JvmStatic
-      fun runActivity(activity: Activity, beanList: ArrayList<Music>) {
+      fun runActivity(activity: Activity, beanList: ArrayList<Music>, size: Int) {
          activity.apply {
             intent.apply {
                setClass(activity, LocalMusicActivity::class.java)
                putExtra(KEY_BEAN_LIST, beanList)
+               putExtra(KEY_DIS_SIZE, size)
             }
             startActivity(intent)
          }
@@ -45,7 +47,7 @@ class LocalMusicActivity : PlayBaseActivity() {
       setSupportActionBar(localToolbar)
 
       val fragmentList = ArrayList<Fragment>().apply {
-         add(SingleMusicFragment.newInstance(intent.getParcelableArrayListExtra(KEY_BEAN_LIST)))
+         add(SingleMusicFragment.newInstance(intent.getParcelableArrayListExtra(KEY_BEAN_LIST), intent.getIntExtra(KEY_DIS_SIZE, -1)))
          add(SingerFragment.newInstance())
          add(TestFragment.newInstance("third"))
          add(TestFragment.newInstance("four"))

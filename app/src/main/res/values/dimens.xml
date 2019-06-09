@@ -28,6 +28,7 @@
     <dimen name="layout_75_dp">75dp</dimen>
     <dimen name="layout_80_dp">80dp</dimen>
     <dimen name="layout_100_dp">100dp</dimen>
+    <dimen name="layout_120_dp">120dp</dimen>
 
     <!-- 字体 sp 的大小 -->
     <dimen name="layout_10_sp">10sp</dimen>

@@ -26,10 +26,12 @@ class MFragmentModel : MineContract.Model {
    override fun getRecentOpen(): Observable<MutableList<Music>?> {
       // 这里现在只是一个占位作用，实际获取最近播放的位置应该改变
       return Observable.create<MutableList<Music>> { e ->
-         if (!e.isDisposed) {
-            e.onNext(SongLoader.getAllLocalSongs(CocoApp.contextInstance))
-            e.onComplete()
-         }
+//         if (!e.isDisposed) {
+//            SongLoader.getAllLocalSongs(CocoApp.contextInstance)?.let {
+//               e.onNext(it)
+//            }
+//            e.onComplete()
+//         }
       }.compose(RxJavaUtils.applyObservableAsync())
    }
 

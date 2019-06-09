@@ -18,20 +18,28 @@ import com.jiwenjie.cocomusic.common.Constants
  */
 @Entity(tableName = "artist")
 class Artist() : Parcelable {
+
     var name: String? = null
+
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
+    var id: Long? = 0
+
+    @ColumnInfo(name = "artistid")
     var artistId: String?=null
-    var count: Int = 0
+    var count: Int? = 0
     var type: String? = Constants.LOCAL
+
     @ColumnInfo(name = "picurl")
     var picUrl: String? = null
     var desc: String? = null
+
     @ColumnInfo(name = "musicsize")
-    var musicSize: Int = 0
-    var score: Int = 0
+    var musicSize: Int? = 0
+
+    var score: Int? = 0
+
     @ColumnInfo(name = "albumsize")
-    var albumSize: Int = 0
+    var albumSize: Int? = 0
 
     @Ignore
     var songs = mutableListOf<Music>()
@@ -59,15 +67,15 @@ class Artist() : Parcelable {
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
-        parcel.writeLong(id)
+        id?.let { parcel.writeLong(it) }
         parcel.writeString(artistId)
-        parcel.writeInt(count)
+        count?.let { parcel.writeInt(it) }
         parcel.writeString(type)
         parcel.writeString(picUrl)
         parcel.writeString(desc)
-        parcel.writeInt(musicSize)
-        parcel.writeInt(score)
-        parcel.writeInt(albumSize)
+        musicSize?.let { parcel.writeInt(it) }
+        score?.let { parcel.writeInt(it) }
+        albumSize?.let { parcel.writeInt(it) }
     }
 
     override fun describeContents(): Int {

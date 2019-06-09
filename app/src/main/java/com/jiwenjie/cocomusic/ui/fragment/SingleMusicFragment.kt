@@ -12,7 +12,9 @@ import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.Constants
 import com.jiwenjie.cocomusic.play.playservice.PlayManager
 import com.jiwenjie.cocomusic.ui.adapter.MusicListAdapter
-import kotlinx.android.synthetic.main.common_recyclerview.*
+import com.jiwenjie.cocomusic.utils.SongLoader
+import kotlinx.android.synthetic.main.common_multiply_recyclerview.*
+import org.jetbrains.anko.doAsync
 
 /**
  *  author:Jiwenjie
@@ -23,6 +25,7 @@ import kotlinx.android.synthetic.main.common_recyclerview.*
  */
 class SingleMusicFragment : BaseFragment() {
 
+    private var size = -1
    private lateinit var beanList: ArrayList<Music>
    private val adapter by lazy { MusicListAdapter(activity!!, beanList) }
 
@@ -30,12 +33,14 @@ class SingleMusicFragment : BaseFragment() {
 
    companion object {
       private const val KEY_LOCAL_MUSIC = "key_local_music"
+       private var KEY_DIS_SIZE = "key_size"
 
       @JvmStatic
-      fun newInstance(beanList: ArrayList<Music>) : SingleMusicFragment {
+      fun newInstance(beanList: ArrayList<Music>, size: Int) : SingleMusicFragment {
          return SingleMusicFragment().apply {
             arguments = Bundle().apply {
                this.putParcelableArrayList(KEY_LOCAL_MUSIC, beanList)
+                this.putInt(KEY_DIS_SIZE, size)
             }
          }
       }
@@ -43,13 +48,32 @@ class SingleMusicFragment : BaseFragment() {
 
    override fun initFragment(savedInstanceState: Bundle?) {
       StatusBarUtil.setColor(activity, ContextCompat.getColor(activity!!, R.color.colorPrimary), 0)
+       mLayoutStatusView = common_multipleStatusView
 
-      beanList = arguments!!.getParcelableArrayList(KEY_LOCAL_MUSIC)
+       size = arguments!!.getInt(KEY_DIS_SIZE, -1)
+       beanList = arguments!!.getParcelableArrayList(KEY_LOCAL_MUSIC)
 
-      common_rv.adapter = adapter
-      common_rv.layoutManager = LinearLayoutManager(activity)
+       commonRv.adapter = adapter
+       commonRv.layoutManager = LinearLayoutManager(activity)
+
+       when (size) {
+           0 -> mLayoutStatusView?.showEmpty()
+           -1 -> {
+               mLayoutStatusView?.showLoading()
+               doAsync {
+                   beanList = SongLoader.getAllLocalSongs(activity!!) as ArrayList<Music>
+                   adapter.addAllData(beanList)
+                   mLayoutStatusView?.showContent()
+               }
+           }
+           else -> {
+               adapter.addAllData(beanList)
+               mLayoutStatusView?.showContent()
+           }
+       }
+
       PlayManager.setPlayList(beanList)
-       adapter.addAllData(beanList)
+
        adapter.setOnItemClickListener { position, view ->
            if (beanList.isNullOrEmpty() || beanList.size == 0) return@setOnItemClickListener
            // 处理用户重复点击一首歌曲的时候每次都重新开始播放
@@ -66,5 +90,5 @@ class SingleMusicFragment : BaseFragment() {
        }
    }
 
-   override fun getLayoutId(): Int = R.layout.common_recyclerview
+   override fun getLayoutId(): Int = R.layout.common_multiply_recyclerview
 }

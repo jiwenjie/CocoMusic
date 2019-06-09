@@ -66,7 +66,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MFragmentPresenter>(), M
       }
 
       createMusicListRv.adapter = createAdapter
-      createMusicListRv.layoutManager = LinearLayoutManager(activity)
+      createMusicListRv.layoutManager = LinearLayoutManager(activity!!)
 
       collectMusicListRv.adapter = collectAdapter
       collectMusicListRv.layoutManager = LinearLayoutManager(activity)
@@ -75,7 +75,8 @@ class MineFragment : BaseMvpFragment<MineContract.View, MFragmentPresenter>(), M
    private fun initEvent() {
       mine_localLyt.setOnClickListener {
          // 点击跳转本地音乐
-         LocalMusicActivity.runActivity(activity!!, beanList = localMusic)
+         LocalMusicActivity.runActivity(activity!!, beanList = localMusic, size =
+         if (localMusic.isNullOrEmpty() || localMusic.size == 0) 0 else localMusic.size)
       }
       createMusicListLyt.setOnClickListener {
          // first start animation, display rv when the animation complete
@@ -120,7 +121,6 @@ class MineFragment : BaseMvpFragment<MineContract.View, MFragmentPresenter>(), M
 
    // get the local music
    override fun showLocalMusicSize(musicList: MutableList<Music>?) {
-      LogUtils.e("MusicSize: ${musicList?.size}")
       localMusicSizeText.text = String.format("(%d)", if (musicList.isNullOrEmpty() || musicList?.size == 0) 0 else musicList?.size)   // 设置本地音乐的数量
       localMusic = musicList as ArrayList<Music>
    }
