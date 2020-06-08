@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.util.Log
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.bean.Album
 import com.jiwenjie.cocomusic.bean.Artist
@@ -77,6 +78,7 @@ object SongLoader {
             val results = mutableListOf<Music>()
             try {
                 if (cursor != null && cursor.moveToFirst()) {
+                    Log.e("SongLoader", "------")
                     do {
                         val is_music = cursor.getInt(9)
                         val id = cursor.getLong(0)

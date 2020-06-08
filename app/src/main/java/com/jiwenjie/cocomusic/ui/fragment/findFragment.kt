@@ -14,11 +14,10 @@ import org.jetbrains.anko.doAsync
 /**
  *  author:Jiwenjie
  *  email:278630464@qq.com
- *  time:2019/06/03
- *  desc:localMusic -> singerFragment (tabLayout 歌手)
+ *  desc:发现 fragment
  *  version:1.0
  */
-class SingerFragment : BaseFragment() {
+class findFragment : BaseFragment() {
 
    private var beanList = ArrayList<Artist>()
 
@@ -26,8 +25,8 @@ class SingerFragment : BaseFragment() {
 
    companion object {
       @JvmStatic
-      fun newInstance(): SingerFragment {
-         return SingerFragment().apply {
+      fun newInstance(): findFragment {
+         return findFragment().apply {
             arguments = Bundle().apply {}
          }
       }
