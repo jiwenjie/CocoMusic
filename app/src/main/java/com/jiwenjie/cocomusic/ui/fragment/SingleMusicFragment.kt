@@ -26,69 +26,68 @@ import org.jetbrains.anko.doAsync
 class SingleMusicFragment : BaseFragment() {
 
     private var size = -1
-   private lateinit var beanList: ArrayList<Music>
-   private val adapter by lazy { MusicListAdapter(activity!!, beanList) }
+    private lateinit var beanList: ArrayList<Music>
+    private val adapter by lazy { MusicListAdapter(activity!!, beanList) }
 
-   private var currentMusic: Music? = null
+    private var currentMusic: Music? = null
 
-   companion object {
-      private const val KEY_LOCAL_MUSIC = "key_local_music"
-       private var KEY_DIS_SIZE = "key_size"
+    companion object {
+        private const val KEY_LOCAL_MUSIC = "key_local_music"
+        private var KEY_DIS_SIZE = "key_size"
 
-      @JvmStatic
-      fun newInstance(beanList: ArrayList<Music>, size: Int) : SingleMusicFragment {
-         return SingleMusicFragment().apply {
-            arguments = Bundle().apply {
-               this.putParcelableArrayList(KEY_LOCAL_MUSIC, beanList)
-                this.putInt(KEY_DIS_SIZE, size)
+        @JvmStatic
+        fun newInstance(beanList: ArrayList<Music>, size: Int): SingleMusicFragment {
+            return SingleMusicFragment().apply {
+                arguments = Bundle().apply {
+                    this.putParcelableArrayList(KEY_LOCAL_MUSIC, beanList)
+                    this.putInt(KEY_DIS_SIZE, size)
+                }
             }
-         }
-      }
-   }
+        }
+    }
 
-   override fun initFragment(savedInstanceState: Bundle?) {
-      StatusBarUtil.setColor(activity, ContextCompat.getColor(activity!!, R.color.colorPrimary), 0)
-       mLayoutStatusView = common_multipleStatusView
+    override fun initFragment(savedInstanceState: Bundle?) {
+        StatusBarUtil.setColor(activity, ContextCompat.getColor(activity!!, R.color.colorPrimary), 0)
+        mLayoutStatusView = common_multipleStatusView
 
-       size = arguments!!.getInt(KEY_DIS_SIZE, -1)
-       beanList = arguments!!.getParcelableArrayList(KEY_LOCAL_MUSIC)
+        size = arguments!!.getInt(KEY_DIS_SIZE, -1)
+        beanList = arguments!!.getParcelableArrayList(KEY_LOCAL_MUSIC)
 
-       commonRv.adapter = adapter
-       commonRv.layoutManager = LinearLayoutManager(activity)
+        commonRv.adapter = adapter
+        commonRv.layoutManager = LinearLayoutManager(activity)
 
-       when (size) {
-           0 -> mLayoutStatusView?.showEmpty()
-           -1 -> {
-               mLayoutStatusView?.showLoading()
-               doAsync {
-                   beanList = SongLoader.getAllLocalSongs(activity!!) as ArrayList<Music>
-                   adapter.addAllData(beanList)
-                   mLayoutStatusView?.showContent()
-               }
-           }
-           else -> {
-               adapter.addAllData(beanList)
-               mLayoutStatusView?.showContent()
-           }
-       }
+        when (size) {
+            0 -> mLayoutStatusView?.showEmpty()
+            -1 -> {
+                mLayoutStatusView?.showLoading()
+                doAsync {
+                    beanList = SongLoader.getAllLocalSongs(activity!!) as ArrayList<Music>
+                    adapter.mDataList = beanList
+                    mLayoutStatusView?.showContent()
+                }
+            }
+            else -> {
+                adapter.mDataList = beanList
+                mLayoutStatusView?.showContent()
+            }
+        }
 
-      PlayManager.setPlayList(beanList)
+        PlayManager.setPlayList(beanList)
+        adapter.setOnItemClickListener { position, view ->
+            if (beanList.isNullOrEmpty() || beanList.size == 0) return@setOnItemClickListener
+            // 处理用户重复点击一首歌曲的时候每次都重新开始播放
+            if (currentMusic != null) {
+                val clickMusic = beanList[position]
+                if (currentMusic != clickMusic) {
+                    currentMusic = clickMusic
+                    PlayManager.play(position, beanList, Constants.PLAYLIST_LOCAL_ID)
+                }
+            } else {
+                currentMusic = beanList[position]
+                PlayManager.play(position, beanList, Constants.PLAYLIST_LOCAL_ID)
+            }
+        }
+    }
 
-       adapter.setOnItemClickListener { position, view ->
-           if (beanList.isNullOrEmpty() || beanList.size == 0) return@setOnItemClickListener
-           // 处理用户重复点击一首歌曲的时候每次都重新开始播放
-           if (currentMusic != null) {
-               val clickMusic = beanList[position]
-               if (currentMusic != clickMusic) {
-                   currentMusic = clickMusic
-                   PlayManager.play(position, beanList, Constants.PLAYLIST_LOCAL_ID)
-               }
-           } else {
-               currentMusic = beanList[position]
-               PlayManager.play(position, beanList, Constants.PLAYLIST_LOCAL_ID)
-           }
-       }
-   }
-
-   override fun getLayoutId(): Int = R.layout.common_multiply_recyclerview
+    override fun getLayoutId(): Int = R.layout.common_multiply_recyclerview
 }

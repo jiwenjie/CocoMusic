@@ -27,12 +27,17 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
 
-        <fragment
-            android:id="@+id/activityMainControl"
-            class="com.jiwenjie.cocomusic.ui.fragment.PlayControlFragment"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_gravity="bottom" />
+        <FrameLayout
+                android:id="@+id/bottomControlView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <fragment
+                    android:id="@+id/activityMainControl"
+                    class="com.jiwenjie.cocomusic.ui.fragment.PlayControlFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_gravity="bottom" />
+        </FrameLayout>
     </LinearLayout>
 
     <include layout="@layout/activity_left_layout" />

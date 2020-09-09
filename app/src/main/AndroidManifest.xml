@@ -72,23 +72,7 @@
 
         <!-- 测试的 Activity start -->
         <activity android:name=".ui.activity.TestActivity" />
-        <activity android:name=".test.TextKeywordActiity" />
         <!-- 测试的 Activity end -->
-
-        <!-- Service Start-->
-        <service
-            android:name=".one.service.PlayService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="com.jiwenjie.cocomusic.ACCESS_PLAY_SERVICE"
-            android:process=":playService">
-            <intent-filter>
-                <action android:name="com.jiwenjie.cocomusic.action.PLAY_SERVICE" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </service>
-        <!-- Service End-->
 
         <!-- second Play Service Start -->
         <service

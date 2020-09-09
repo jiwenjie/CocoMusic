@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.view.Gravity
 import android.view.KeyEvent
+import android.view.View
 import com.jaeger.library.StatusBarUtil
 import com.jiwenjie.basepart.adapters.BaseFragmentPagerAdapter
 import com.jiwenjie.basepart.utils.ToastUtils
@@ -88,6 +89,9 @@ class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), Ma
 
       viewPager.adapter = BaseFragmentPagerAdapter(supportFragmentManager, fragmentList, titleList)
       viewPager.offscreenPageLimit = fragmentList.size
+
+      // 默认隐藏底部操作栏按钮，实际应该是查询播放记录，如果本地有播放记录则显示，初次进入隐藏
+      bottomControlView.visibility = View.GONE
    }
 
    private fun initEvent() {

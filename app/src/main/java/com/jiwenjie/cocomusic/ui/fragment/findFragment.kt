@@ -10,6 +10,7 @@ import com.jiwenjie.cocomusic.ui.adapter.ArtistListAdapter
 import com.jiwenjie.cocomusic.utils.SongLoader
 import kotlinx.android.synthetic.main.common_multiply_recyclerview.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.runOnUiThread
 
 /**
  *  author:Jiwenjie
@@ -39,7 +40,9 @@ class findFragment : BaseFragment() {
       doAsync {
          beanList = SongLoader.getAllArtists() as ArrayList<Artist>
          LogUtils.e("ArtistSize ${beanList.size}")
-         mLayoutStatusView?.showContent()
+         runOnUiThread {
+            mLayoutStatusView?.showContent()
+         }
       }
 
       commonRv.adapter = adapter

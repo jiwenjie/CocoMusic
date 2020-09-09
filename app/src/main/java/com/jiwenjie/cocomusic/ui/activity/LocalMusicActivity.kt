@@ -48,16 +48,12 @@ class LocalMusicActivity : PlayBaseActivity() {
 
       val fragmentList = ArrayList<Fragment>().apply {
          add(SingleMusicFragment.newInstance(intent.getParcelableArrayListExtra(KEY_BEAN_LIST), intent.getIntExtra(KEY_DIS_SIZE, -1)))
-         add(SingerFragment.newInstance())
-         add(TestFragment.newInstance("third"))
-         add(TestFragment.newInstance("four"))
+         add(SingerFragment.newInstance(intent.getParcelableArrayListExtra(KEY_BEAN_LIST)))
       }
 
       val titleList = ArrayList<String>().apply {
          add(resources.getString(R.string.tab_single_music))
          add(resources.getString(R.string.tab_singer))
-         add(resources.getString(R.string.tab_album))
-         add(resources.getString(R.string.tab_folder))
       }
 
       localTabLyt.setupWithViewPager(localViewPager)
