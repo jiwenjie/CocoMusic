@@ -14,7 +14,6 @@ import java.util.*
  */
 object FormatUtil {
 
-
     /**
      * 格式化时间
      *

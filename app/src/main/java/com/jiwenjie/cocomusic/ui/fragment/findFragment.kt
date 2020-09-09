@@ -34,23 +34,23 @@ class findFragment : BaseFragment() {
    }
 
    override fun initFragment(savedInstanceState: Bundle?) {
-      mLayoutStatusView = common_multipleStatusView
-      mLayoutStatusView?.showLoading()
-
-      doAsync {
-         beanList = SongLoader.getAllArtists() as ArrayList<Artist>
-         LogUtils.e("ArtistSize ${beanList.size}")
-         runOnUiThread {
-            mLayoutStatusView?.showContent()
-         }
-      }
-
-      commonRv.adapter = adapter
-      commonRv.layoutManager = LinearLayoutManager(activity)
-      adapter.setOnItemClickListener { position, view ->
-
-      }
+//      mLayoutStatusView = common_multipleStatusView
+//      mLayoutStatusView?.showLoading()
+//
+////      doAsync {
+////         beanList = SongLoader.getAllArtists() as ArrayList<Artist>
+////         LogUtils.e("ArtistSize ${beanList.size}")
+////         runOnUiThread {
+////            mLayoutStatusView?.showContent()
+////         }
+////      }
+//
+//      commonRv.adapter = adapter
+//      commonRv.layoutManager = LinearLayoutManager(activity)
+//      adapter.setOnItemClickListener { position, view ->
+//
+//      }
    }
 
-   override fun getLayoutId(): Int = R.layout.common_multiply_recyclerview
+   override fun getLayoutId(): Int = R.layout.fragment_find_view
 }

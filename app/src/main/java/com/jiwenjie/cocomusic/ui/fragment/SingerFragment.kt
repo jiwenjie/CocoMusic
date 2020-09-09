@@ -3,6 +3,7 @@ package com.jiwenjie.cocomusic.ui.fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.jiwenjie.basepart.utils.LogUtils
+import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.basepart.views.BaseFragment
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
@@ -23,7 +24,6 @@ import org.jetbrains.anko.support.v4.runOnUiThread
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class SingerFragment : BaseFragment() {
 
-   private var songBeanList = ArrayList<Music>()
    private var beanList = ArrayList<Artist>()
 
    private val adapter by lazy { ArtistListAdapter(activity!!, beanList) }
@@ -32,11 +32,9 @@ class SingerFragment : BaseFragment() {
       private const val KEY_LOCAL_MUSIC_Art = "key_local_music_artist"
 
       @JvmStatic
-      fun newInstance(beanList: ArrayList<Music>): SingerFragment {
+      fun newInstance(): SingerFragment {
          return SingerFragment().apply {
-            arguments = Bundle().apply {
-               this.putParcelableArrayList(KEY_LOCAL_MUSIC_Art, beanList)
-            }
+            arguments = Bundle().apply {}
          }
       }
    }
@@ -45,11 +43,9 @@ class SingerFragment : BaseFragment() {
       mLayoutStatusView = common_multipleStatusView
       mLayoutStatusView?.showLoading()
 
-      songBeanList = arguments!!.getParcelableArrayList(KEY_LOCAL_MUSIC_Art)
-
       doAsync {
-         beanList = SongLoader.getAllArtists(songBeanList) as ArrayList<Artist>
-         LogUtils.e("ArtistSize ${beanList.size}")
+         beanList = SongLoader.getAllArtists() as ArrayList<Artist>
+         adapter.mDataList = beanList
          runOnUiThread {
             mLayoutStatusView?.showContent()
          }
@@ -58,7 +54,6 @@ class SingerFragment : BaseFragment() {
       commonRv.adapter = adapter
       commonRv.layoutManager = LinearLayoutManager(activity)
       adapter.setOnItemClickListener { position, view ->
-
       }
    }
 

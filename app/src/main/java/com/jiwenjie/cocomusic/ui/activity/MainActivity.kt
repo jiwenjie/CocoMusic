@@ -14,16 +14,22 @@ import com.jaeger.library.StatusBarUtil
 import com.jiwenjie.basepart.adapters.BaseFragmentPagerAdapter
 import com.jiwenjie.basepart.utils.ToastUtils
 import com.jiwenjie.cocomusic.R
+import com.jiwenjie.cocomusic.event.MusicHavePlayed
 import com.jiwenjie.cocomusic.test.TestFragment
 import com.jiwenjie.cocomusic.ui.contract.MainContract
 import com.jiwenjie.cocomusic.ui.fragment.MineFragment
+import com.jiwenjie.cocomusic.ui.fragment.findFragment
 import com.jiwenjie.cocomusic.ui.presenter.MainPresenter
 import com.jiwenjie.cocomusic.utils.ObjAnimatorUtils
 import com.jiwenjie.cocomusic.utils.SharedPreferenceUtils
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_left_layout.*
+import kotlinx.android.synthetic.main.activity_local.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottomControlView
 import kotlinx.android.synthetic.main.activity_main_toolbar.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.concurrent.TimeUnit
 
 /**
@@ -75,7 +81,7 @@ class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), Ma
       // main part
       val fragmentList = ArrayList<Fragment>().apply {
          add(MineFragment.newInstance())
-         add(TestFragment.newInstance("two"))
+         add(findFragment.newInstance())
          add(TestFragment.newInstance("three"))
          add(TestFragment.newInstance("four"))
       }
@@ -235,6 +241,11 @@ class MainActivity : PlayBaseMvpActivity<MainContract.View, MainPresenter>(), Ma
       changeItem(lastIndex, isSelect = false)
 
       viewPager.setCurrentItem(currentItem, true)
+   }
+
+   @Subscribe(threadMode = ThreadMode.MAIN)
+   fun onShowControlView(event: MusicHavePlayed) {
+      bottomControlView.visibility = View.VISIBLE
    }
 
    // 改变选择 item 的方法

@@ -27,7 +27,7 @@ public class TestFragment extends BaseFragment {
 
    @Override
    protected int getLayoutId() {
-      return R.layout.fragment_find_view;
+      return R.layout.fragment_test;
    }
 
    @Override

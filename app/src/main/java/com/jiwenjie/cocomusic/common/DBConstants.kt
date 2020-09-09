@@ -15,7 +15,7 @@ import com.jiwenjie.cocomusic.bean.Artist
  *  desc:
  */
 object DBConstant {
-    const val DB_VERSION = 2
+    const val DB_VERSION = 3
     const val DB_NAME = "CocoRoom"
 }
 
@@ -50,9 +50,4 @@ interface DBContract {
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         fun saveArtist(vararg artist: Artist): List<Long>
     }
-
-//    @Dao    // 歌单列表 dao
-//    interface MusicListDao {
-//
-//    }
 }

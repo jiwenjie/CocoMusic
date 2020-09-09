@@ -10,10 +10,12 @@ import com.jiwenjie.basepart.views.BaseFragment
 import com.jiwenjie.cocomusic.R
 import com.jiwenjie.cocomusic.aidl.Music
 import com.jiwenjie.cocomusic.common.Constants
+import com.jiwenjie.cocomusic.event.MusicHavePlayed
 import com.jiwenjie.cocomusic.play.playservice.PlayManager
 import com.jiwenjie.cocomusic.ui.adapter.MusicListAdapter
 import com.jiwenjie.cocomusic.utils.SongLoader
 import kotlinx.android.synthetic.main.common_multiply_recyclerview.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
 
 /**
@@ -86,6 +88,8 @@ class SingleMusicFragment : BaseFragment() {
                 currentMusic = beanList[position]
                 PlayManager.play(position, beanList, Constants.PLAYLIST_LOCAL_ID)
             }
+            // 通知全局音乐已经点击播放
+            EventBus.getDefault().post(MusicHavePlayed(true))
         }
     }
 

@@ -7,7 +7,6 @@ import com.jiwenjie.cocomusic.bean.Artist
 
 
 class MusicCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
-
     val album: Album
         get() {
             val id = getString(getColumnIndex("albumid"))

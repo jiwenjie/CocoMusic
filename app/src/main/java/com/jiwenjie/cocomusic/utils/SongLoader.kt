@@ -24,32 +24,22 @@ object SongLoader {
     /**
      * 获取所有艺术家
      */
-    fun getAllArtists(beanList: ArrayList<Music>): MutableList<Artist>? {
-//        var result = CocoDataBaseUtil.mArtistDao.getAllArtist()
-//        if (result.isNullOrEmpty() || result?.size == 0) {
-//            result = mutableListOf()
-//            val cursor = CocoDataBaseUtil.mArtistDao.getArtistByMusic()
-//            if (cursor != null && cursor.count > 0) {
-//                while (cursor.moveToNext()) {
-//                    val artist = MusicCursorWrapper(cursor).artists
-//                    CocoDataBaseUtil.mArtistDao.saveArtist(artist)
-////                    artist.saveOrUpdate("artistId = ?", artist.artistId.toString())
-//                    result.add(artist)
-//                }
-//            }
-//        }
-//        return result
-
-        val resultList = mutableListOf<Artist>()
-
-        val jsobObj = mutableMapOf<String, Int>() //可增删改查的mutable map，初始化为空。
-        if (beanList.size > 0) {
-            for (music in beanList) {
-
+    fun getAllArtists(): MutableList<Artist>? {
+        var result = CocoDataBaseUtil.mArtistDao.getAllArtist()
+        if (result.isNullOrEmpty() || result.size == 0) {
+            result = mutableListOf()
+            val cursor = CocoDataBaseUtil.mArtistDao.getArtistByMusic()
+            if (cursor != null && cursor.count > 0) {
+                while (cursor.moveToNext()) {
+                    val artist = MusicCursorWrapper(cursor).artists
+                    CocoDataBaseUtil.mArtistDao.saveArtist(artist)
+//                    artist.saveOrUpdate("artistId = ?", artist.artistId.toString())
+                    result.add(artist)
+                }
             }
         }
 
-        return resultList
+        return result
     }
 
     /**
